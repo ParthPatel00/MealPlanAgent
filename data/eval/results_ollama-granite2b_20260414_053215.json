@@ -1,0 +1,128 @@
+{
+  "model": "ollama-granite2b",
+  "timestamp": "2026-04-14T05:32:15.605939+00:00",
+  "aggregate": {
+    "num_cases": 10,
+    "constraint_pass_rate": 1.0,
+    "avg_allergy_violation_rate": 0.0,
+    "avg_citation_pass_rate": 1.0,
+    "avg_tool_success_rate": 1.0,
+    "critic_valid_rate": 0.7,
+    "avg_retries": 0.6,
+    "avg_latency_ms": 13217.0,
+    "error_count": 0
+  },
+  "per_case": [
+    {
+      "id": 1,
+      "constraint_pass": true,
+      "allergy_violation_rate": 0.0,
+      "citation_pass_rate": 1.0,
+      "tool_success_rate": 1.0,
+      "num_recipes": 5,
+      "critic_valid": true,
+      "retries": 0,
+      "latency_ms": 12176.9
+    },
+    {
+      "id": 2,
+      "constraint_pass": true,
+      "allergy_violation_rate": 0.0,
+      "citation_pass_rate": 1.0,
+      "tool_success_rate": 1.0,
+      "num_recipes": 7,
+      "critic_valid": false,
+      "retries": 2,
+      "latency_ms": 27348.5
+    },
+    {
+      "id": 3,
+      "constraint_pass": true,
+      "allergy_violation_rate": 0.0,
+      "citation_pass_rate": 1.0,
+      "tool_success_rate": 1.0,
+      "num_recipes": 3,
+      "critic_valid": true,
+      "retries": 0,
+      "latency_ms": 5403.0
+    },
+    {
+      "id": 4,
+      "constraint_pass": true,
+      "allergy_violation_rate": 0.0,
+      "citation_pass_rate": 1.0,
+      "tool_success_rate": 1.0,
+      "num_recipes": 5,
+      "critic_valid": true,
+      "retries": 0,
+      "latency_ms": 7980.1
+    },
+    {
+      "id": 5,
+      "constraint_pass": true,
+      "allergy_violation_rate": 0.0,
+      "citation_pass_rate": 1.0,
+      "tool_success_rate": 1.0,
+      "num_recipes": 7,
+      "critic_valid": false,
+      "retries": 2,
+      "latency_ms": 26352.5
+    },
+    {
+      "id": 6,
+      "constraint_pass": true,
+      "allergy_violation_rate": 0.0,
+      "citation_pass_rate": 1.0,
+      "tool_success_rate": 1.0,
+      "num_recipes": 5,
+      "critic_valid": true,
+      "retries": 0,
+      "latency_ms": 7736.6
+    },
+    {
+      "id": 7,
+      "constraint_pass": true,
+      "allergy_violation_rate": 0.0,
+      "citation_pass_rate": 1.0,
+      "tool_success_rate": 1.0,
+      "num_recipes": 4,
+      "critic_valid": true,
+      "retries": 0,
+      "latency_ms": 7482.8
+    },
+    {
+      "id": 8,
+      "constraint_pass": true,
+      "allergy_violation_rate": 0.0,
+      "citation_pass_rate": 1.0,
+      "tool_success_rate": 1.0,
+      "num_recipes": 5,
+      "critic_valid": true,
+      "retries": 0,
+      "latency_ms": 7617.6
+    },
+    {
+      "id": 9,
+      "constraint_pass": true,
+      "allergy_violation_rate": 0.0,
+      "citation_pass_rate": 1.0,
+      "tool_success_rate": 1.0,
+      "num_recipes": 3,
+      "critic_valid": true,
+      "retries": 0,
+      "latency_ms": 5775.7
+    },
+    {
+      "id": 10,
+      "constraint_pass": true,
+      "allergy_violation_rate": 0.0,
+      "citation_pass_rate": 1.0,
+      "tool_success_rate": 1.0,
+      "num_recipes": 7,
+      "critic_valid": false,
+      "retries": 2,
+      "latency_ms": 24296.2
+    }
+  ],
+  "errors": []
+}

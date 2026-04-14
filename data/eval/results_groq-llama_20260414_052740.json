@@ -1,0 +1,128 @@
+{
+  "model": "groq-llama",
+  "timestamp": "2026-04-14T05:27:40.490545",
+  "aggregate": {
+    "num_cases": 10,
+    "constraint_pass_rate": 0.8,
+    "avg_allergy_violation_rate": 0.0,
+    "avg_citation_pass_rate": 1.0,
+    "avg_tool_success_rate": 1.0,
+    "critic_valid_rate": 1.0,
+    "avg_retries": 0.0,
+    "avg_latency_ms": 2081.2,
+    "error_count": 0
+  },
+  "per_case": [
+    {
+      "id": 1,
+      "constraint_pass": true,
+      "allergy_violation_rate": 0.0,
+      "citation_pass_rate": 1.0,
+      "tool_success_rate": 1.0,
+      "num_recipes": 5,
+      "critic_valid": true,
+      "retries": 0,
+      "latency_ms": 4273.6
+    },
+    {
+      "id": 2,
+      "constraint_pass": true,
+      "allergy_violation_rate": 0.0,
+      "citation_pass_rate": 1.0,
+      "tool_success_rate": 1.0,
+      "num_recipes": 7,
+      "critic_valid": true,
+      "retries": 0,
+      "latency_ms": 1135.9
+    },
+    {
+      "id": 3,
+      "constraint_pass": false,
+      "allergy_violation_rate": 0.0,
+      "citation_pass_rate": 1.0,
+      "tool_success_rate": 1.0,
+      "num_recipes": 2,
+      "critic_valid": true,
+      "retries": 0,
+      "latency_ms": 723.2
+    },
+    {
+      "id": 4,
+      "constraint_pass": true,
+      "allergy_violation_rate": 0.0,
+      "citation_pass_rate": 1.0,
+      "tool_success_rate": 1.0,
+      "num_recipes": 5,
+      "critic_valid": true,
+      "retries": 0,
+      "latency_ms": 1216.7
+    },
+    {
+      "id": 5,
+      "constraint_pass": false,
+      "allergy_violation_rate": 0.0,
+      "citation_pass_rate": 1.0,
+      "tool_success_rate": 1.0,
+      "num_recipes": 6,
+      "critic_valid": true,
+      "retries": 0,
+      "latency_ms": 2160.2
+    },
+    {
+      "id": 6,
+      "constraint_pass": true,
+      "allergy_violation_rate": 0.0,
+      "citation_pass_rate": 1.0,
+      "tool_success_rate": 1.0,
+      "num_recipes": 5,
+      "critic_valid": true,
+      "retries": 0,
+      "latency_ms": 853.0
+    },
+    {
+      "id": 7,
+      "constraint_pass": true,
+      "allergy_violation_rate": 0.0,
+      "citation_pass_rate": 1.0,
+      "tool_success_rate": 1.0,
+      "num_recipes": 4,
+      "critic_valid": true,
+      "retries": 0,
+      "latency_ms": 3189.9
+    },
+    {
+      "id": 8,
+      "constraint_pass": true,
+      "allergy_violation_rate": 0.0,
+      "citation_pass_rate": 1.0,
+      "tool_success_rate": 1.0,
+      "num_recipes": 5,
+      "critic_valid": true,
+      "retries": 0,
+      "latency_ms": 1913.1
+    },
+    {
+      "id": 9,
+      "constraint_pass": true,
+      "allergy_violation_rate": 0.0,
+      "citation_pass_rate": 1.0,
+      "tool_success_rate": 1.0,
+      "num_recipes": 3,
+      "critic_valid": true,
+      "retries": 0,
+      "latency_ms": 3129.9
+    },
+    {
+      "id": 10,
+      "constraint_pass": true,
+      "allergy_violation_rate": 0.0,
+      "citation_pass_rate": 1.0,
+      "tool_success_rate": 1.0,
+      "num_recipes": 7,
+      "critic_valid": true,
+      "retries": 0,
+      "latency_ms": 2216.7
+    }
+  ],
+  "errors": []
+}

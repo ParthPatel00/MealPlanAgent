@@ -1,0 +1,128 @@
+{
+  "model": "ollama-granite2b",
+  "timestamp": "2026-04-14T05:37:35.244559+00:00",
+  "aggregate": {
+    "num_cases": 10,
+    "constraint_pass_rate": 1.0,
+    "avg_allergy_violation_rate": 0.0,
+    "avg_citation_pass_rate": 1.0,
+    "avg_tool_success_rate": 1.0,
+    "critic_valid_rate": 1.0,
+    "avg_retries": 0.0,
+    "avg_latency_ms": 8056.6,
+    "error_count": 0
+  },
+  "per_case": [
+    {
+      "id": 1,
+      "constraint_pass": true,
+      "allergy_violation_rate": 0.0,
+      "citation_pass_rate": 1.0,
+      "tool_success_rate": 1.0,
+      "num_recipes": 5,
+      "critic_valid": true,
+      "retries": 0,
+      "latency_ms": 11312.1
+    },
+    {
+      "id": 2,
+      "constraint_pass": true,
+      "allergy_violation_rate": 0.0,
+      "citation_pass_rate": 1.0,
+      "tool_success_rate": 1.0,
+      "num_recipes": 7,
+      "critic_valid": true,
+      "retries": 0,
+      "latency_ms": 9486.7
+    },
+    {
+      "id": 3,
+      "constraint_pass": true,
+      "allergy_violation_rate": 0.0,
+      "citation_pass_rate": 1.0,
+      "tool_success_rate": 1.0,
+      "num_recipes": 3,
+      "critic_valid": true,
+      "retries": 0,
+      "latency_ms": 5386.0
+    },
+    {
+      "id": 4,
+      "constraint_pass": true,
+      "allergy_violation_rate": 0.0,
+      "citation_pass_rate": 1.0,
+      "tool_success_rate": 1.0,
+      "num_recipes": 5,
+      "critic_valid": true,
+      "retries": 0,
+      "latency_ms": 7687.9
+    },
+    {
+      "id": 5,
+      "constraint_pass": true,
+      "allergy_violation_rate": 0.0,
+      "citation_pass_rate": 1.0,
+      "tool_success_rate": 1.0,
+      "num_recipes": 7,
+      "critic_valid": true,
+      "retries": 0,
+      "latency_ms": 8946.6
+    },
+    {
+      "id": 6,
+      "constraint_pass": true,
+      "allergy_violation_rate": 0.0,
+      "citation_pass_rate": 1.0,
+      "tool_success_rate": 1.0,
+      "num_recipes": 5,
+      "critic_valid": true,
+      "retries": 0,
+      "latency_ms": 7819.5
+    },
+    {
+      "id": 7,
+      "constraint_pass": true,
+      "allergy_violation_rate": 0.0,
+      "citation_pass_rate": 1.0,
+      "tool_success_rate": 1.0,
+      "num_recipes": 4,
+      "critic_valid": true,
+      "retries": 0,
+      "latency_ms": 7167.5
+    },
+    {
+      "id": 8,
+      "constraint_pass": true,
+      "allergy_violation_rate": 0.0,
+      "citation_pass_rate": 1.0,
+      "tool_success_rate": 1.0,
+      "num_recipes": 5,
+      "critic_valid": true,
+      "retries": 0,
+      "latency_ms": 7998.3
+    },
+    {
+      "id": 9,
+      "constraint_pass": true,
+      "allergy_violation_rate": 0.0,
+      "citation_pass_rate": 1.0,
+      "tool_success_rate": 1.0,
+      "num_recipes": 3,
+      "critic_valid": true,
+      "retries": 0,
+      "latency_ms": 6245.4
+    },
+    {
+      "id": 10,
+      "constraint_pass": true,
+      "allergy_violation_rate": 0.0,
+      "citation_pass_rate": 1.0,
+      "tool_success_rate": 1.0,
+      "num_recipes": 7,
+      "critic_valid": true,
+      "retries": 0,
+      "latency_ms": 8516.3
+    }
+  ],
+  "errors": []
+}
