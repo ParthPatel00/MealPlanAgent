@@ -24,6 +24,8 @@ data/raw/
 data/RAW_recipes.csv
 data/RAW_interactions.csv
 data/processed/
+# Keep the sample in version control
+!data/sample_recipes.csv
 
 # ChromaDB index
 data/chroma_db/
