@@ -36,7 +36,7 @@ app.add_middleware(
 
 NL_PARSE_PROMPT = """Extract meal planning constraints from the user's message.
 Return ONLY valid JSON with these keys:
-- num_meals (int): how many meals they want. If not mentioned, use 5.
+- num_meals (int): how many meals they want. Pay close attention to singular vs plural: "a meal" or "a dinner" means 1, "some meals" or "meals for the week" means 5. If they say a specific number, use that number. Only default to 5 if quantity is truly ambiguous.
 - max_minutes (int): maximum cooking time per meal. If not mentioned, use 60.
 - tags (list of strings): dietary preferences or cuisine types they want (e.g. "high-protein", "vegetarian", "keto", "italian"). Only include if explicitly stated.
 - allergens (list of strings): foods/ingredients to AVOID (e.g. "peanuts", "gluten", "dairy", "lettuce"). Include anything they say they're allergic to or want to avoid.
@@ -102,7 +102,7 @@ def generate_meal_plan(req: GenerateRequest):
         constraints["num_meals"] = 5
     if not constraints["max_minutes"] or constraints["max_minutes"] < 5:
         constraints["max_minutes"] = 60
-    if constraints["cook_after_hour"] < 0 or constraints["cook_after_hour"] > 23:
+    if not isinstance(constraints["cook_after_hour"], int) or constraints["cook_after_hour"] < 0 or constraints["cook_after_hour"] > 23:
         constraints["cook_after_hour"] = 18
 
     constraints["_original_input"] = req.user_input

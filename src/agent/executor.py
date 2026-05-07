@@ -118,9 +118,11 @@ def run_executor(plan: dict, constraints: dict, logger: StructuredLogger) -> Exe
                 except (TypeError, ValueError):
                     best["_cook_hour"] = constraints.get("cook_after_hour", 18)
                 result.recipes.append(best)
-                result.tool_calls.append(
-                    {"tool": "recipe_search", "query": meal_req.get("query"), "result": best["name"]}
-                )
+                result.tool_calls.append({
+                    "tool": "recipe_search",
+                    "input": {"query": meal_req.get("query"), "max_minutes": meal_req.get("max_minutes", max_minutes), "forbidden_ingredients": allergens},
+                    "output": {"name": best["name"], "minutes": best.get("minutes"), "relevance_score": best.get("relevance_score")},
+                })
         except Exception as exc:
             logger.log_error("executor.recipe_search", str(exc))
 
@@ -190,9 +192,11 @@ def run_executor(plan: dict, constraints: dict, logger: StructuredLogger) -> Exe
                     candidate["_cook_hour"] = constraints.get("cook_after_hour", 18)
                     selected_recipe_ids.add(cid)
                     result.recipes.append(candidate)
-                    result.tool_calls.append(
-                        {"tool": "recipe_search_fill", "query": fallback_queries[fq_idx], "result": candidate["name"]}
-                    )
+                    result.tool_calls.append({
+                        "tool": "recipe_search_fill",
+                        "input": {"query": fallback_queries[fq_idx], "max_minutes": max_minutes, "forbidden_ingredients": allergens},
+                        "output": {"name": candidate["name"], "minutes": candidate.get("minutes"), "relevance_score": candidate.get("relevance_score")},
+                    })
                     break
         except Exception:
             pass
@@ -221,9 +225,11 @@ def run_executor(plan: dict, constraints: dict, logger: StructuredLogger) -> Exe
             )
 
             result.allergy_reports.append(report)
-            result.tool_calls.append(
-                {"tool": "allergy_checker", "recipe": recipe["name"], "safe": report["safe"]}
-            )
+            result.tool_calls.append({
+                "tool": "allergy_checker",
+                "input": {"recipe": recipe["name"], "allergens": allergens, "ingredients_count": len(recipe.get("ingredients", []))},
+                "output": {"safe": report["safe"], "violations": report.get("violations", []), "checked_via": report.get("checked_via", [])},
+            })
         except Exception as exc:
             logger.log_error("executor.allergy_checker", str(exc))
 
@@ -244,7 +250,11 @@ def run_executor(plan: dict, constraints: dict, logger: StructuredLogger) -> Exe
             latency_ms=latency,
             success=True,
         )
-        result.tool_calls.append({"tool": "nutrition", "summary": result.nutrition_summary})
+        result.tool_calls.append({
+            "tool": "nutrition",
+            "input": {"num_recipes": len(result.recipes)},
+            "output": {"per_recipe_keys": list(result.nutrition_summary.get("per_recipe", {}).keys()) if isinstance(result.nutrition_summary.get("per_recipe"), dict) else [], "has_totals": "totals" in result.nutrition_summary},
+        })
     except Exception as exc:
         logger.log_error("executor.nutrition", str(exc))
 
@@ -263,9 +273,11 @@ def run_executor(plan: dict, constraints: dict, logger: StructuredLogger) -> Exe
             latency_ms=latency,
             success=True,
         )
-        result.tool_calls.append(
-            {"tool": "grocery_list", "categories": list(result.grocery_list.keys())}
-        )
+        result.tool_calls.append({
+            "tool": "grocery_list",
+            "input": {"num_recipes": len(result.recipes)},
+            "output": {"categories": list(result.grocery_list.keys()), "total_items": sum(len(v) for v in result.grocery_list.values())},
+        })
     except Exception as exc:
         logger.log_error("executor.grocery_list", str(exc))
 
@@ -285,9 +297,11 @@ def run_executor(plan: dict, constraints: dict, logger: StructuredLogger) -> Exe
                 latency_ms=latency,
                 success=True,
             )
-            result.tool_calls.append(
-                {"tool": "budget_estimator", "total": result.budget_estimate.get("total_estimated_cost", 0)}
-            )
+            result.tool_calls.append({
+                "tool": "budget_estimator",
+                "input": {"num_categories": len(result.grocery_list), "total_items": sum(len(v) for v in result.grocery_list.values())},
+                "output": {"total_estimated_cost": result.budget_estimate.get("total_estimated_cost", 0)},
+            })
     except Exception as exc:
         logger.log_error("executor.budget_estimator", str(exc))
 
@@ -315,9 +329,11 @@ def run_executor(plan: dict, constraints: dict, logger: StructuredLogger) -> Exe
             latency_ms=latency,
             success=True,
         )
-        result.tool_calls.append(
-            {"tool": "ics_generator", "blocks": len(result.cooking_blocks)}
-        )
+        result.tool_calls.append({
+            "tool": "ics_generator",
+            "input": {"num_blocks": len(result.cooking_blocks), "days": [b["day"] for b in result.cooking_blocks]},
+            "output": {"ics_size_bytes": len(result.ics_bytes)},
+        })
     except Exception as exc:
         logger.log_error("executor.ics_generator", str(exc))
 

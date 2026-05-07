@@ -13,7 +13,7 @@ const SAMPLES = [
 const MODELS = [
   { id: "ollama-llama3b", name: "Llama 3B" },
   { id: "ollama-granite2b", name: "Granite 2B" },
-  { id: "groq-llama", name: "Llama 70B" },
+  { id: "groq-llama", name: "Groq (Llama 70B)" },
 ];
 
 const DV: Record<string, { val: number; unit: string }> = {
@@ -518,13 +518,8 @@ function TracePanel({ data }: { data: R }) {
       )}
 
       <div>
-        <p className="font-medium text-gray-700 mb-1">2. Executor <span className="font-normal text-gray-400">{data.tool_calls?.length} calls</span></p>
-        <div className="flex gap-1 mb-1.5 flex-wrap">
-          {Array.from((data.tool_calls || []).reduce((m: Map<string, number>, t: R) => m.set(t.tool, (m.get(t.tool) || 0) + 1), new Map()) as Map<string, number>).map(([t, c]: [string, number]) => (
-            <span key={t} className="bg-violet-50 text-violet-600 px-1.5 py-0.5 rounded">{t} x{c}</span>
-          ))}
-        </div>
-        {(data.tool_calls || []).map((tc: R, i: number) => <Fold key={i} label={`#${i+1} ${tc.tool}`}>{JSON.stringify(tc, null, 2)}</Fold>)}
+        <p className="font-medium text-gray-700 mb-1">2. Executor <span className="font-normal text-gray-400">{data.tool_calls?.length} tool calls across 6 pipeline steps</span></p>
+        <ExecutorPipeline toolCalls={data.tool_calls || []} />
       </div>
 
       <div>
@@ -532,6 +527,77 @@ function TracePanel({ data }: { data: R }) {
         {data.critic && <p className={data.critic.valid ? "text-green-600" : "text-red-600"}>{data.critic.valid ? "Approved" : data.critic.issues?.join(", ")}</p>}
       </div>
     </div>
+  );
+}
+
+const PIPELINE_STEPS = [
+  { key: "recipe_search", label: "Recipe Search", desc: "Hybrid RAG retrieval (BM25 + vector) per meal slot" },
+  { key: "recipe_search_fill", label: "Recipe Backfill", desc: "Fallback searches to fill remaining meal slots" },
+  { key: "allergy_checker", label: "Allergy Check", desc: "Ingredient-level allergen scan per recipe" },
+  { key: "nutrition", label: "Nutrition Analysis", desc: "Per-recipe and plan-wide nutrient breakdown" },
+  { key: "grocery_list", label: "Grocery List", desc: "Deduplicated ingredient list grouped by category" },
+  { key: "budget_estimator", label: "Budget Estimate", desc: "Price estimation from USDA ingredient averages" },
+  { key: "ics_generator", label: "Calendar Export", desc: "ICS file generation for cooking schedule" },
+];
+
+function ExecutorPipeline({ toolCalls }: { toolCalls: R[] }) {
+  const grouped = new Map<string, R[]>();
+  for (const tc of toolCalls) {
+    const key = tc.tool || "unknown";
+    if (!grouped.has(key)) grouped.set(key, []);
+    grouped.get(key)!.push(tc);
+  }
+
+  const steps = PIPELINE_STEPS.filter((s) => grouped.has(s.key));
+
+  return (
+    <div className="relative ml-2 mt-2">
+      <div className="absolute left-[5px] top-0 bottom-0 w-px bg-gray-200" />
+      {steps.map((step, si) => {
+        const calls = grouped.get(step.key) || [];
+        return (
+          <div key={step.key} className="relative pl-6 pb-4 last:pb-0">
+            <div className="absolute left-0 top-1 w-[11px] h-[11px] rounded-full border-2 border-green-500 bg-white" />
+            <p className="text-xs font-medium text-gray-800">
+              Step {si + 1}: {step.label}
+              <span className="ml-2 font-normal text-gray-400">
+                {calls.length === 1 ? "1 call" : `${calls.length} calls`}
+              </span>
+            </p>
+            <p className="text-[10px] text-gray-400 mb-1">{step.desc}</p>
+            {calls.map((tc: R, j: number) => {
+              const outName = tc.output?.name || tc.output?.total_estimated_cost;
+              const label = tc.input?.recipe || tc.input?.query
+                ? `${tc.input.recipe || tc.input.query}`
+                : outName ? String(outName) : "";
+              return (
+                <ToolCallDetail key={j} tc={tc} label={label} />
+              );
+            })}
+          </div>
+        );
+      })}
+    </div>
+  );
+}
+
+function ToolCallDetail({ tc, label }: { tc: R; label: string }) {
+  return (
+    <details className="mb-1">
+      <summary className="text-gray-400 cursor-pointer hover:text-gray-600 text-[11px]">
+        {label || tc.tool}
+      </summary>
+      <div className="mt-1 bg-gray-900 rounded-md overflow-auto max-h-52 text-[10px] leading-relaxed">
+        <div className="px-2.5 pt-2 pb-1">
+          <span className="text-green-400 font-medium">INPUT</span>
+          <pre className="text-gray-300 mt-0.5">{JSON.stringify(tc.input, null, 2)}</pre>
+        </div>
+        <div className="px-2.5 pt-1 pb-2 border-t border-gray-700">
+          <span className="text-blue-400 font-medium">OUTPUT</span>
+          <pre className="text-gray-300 mt-0.5">{JSON.stringify(tc.output, null, 2)}</pre>
+        </div>
+      </div>
+    </details>
   );
 }
 
