@@ -1,38 +1,52 @@
 # MealPlanAgent
 
-An AI-powered weekly meal planning agent built for CMPE258. Given your time, dietary, and allergy constraints, it produces a weekly meal plan with recipe citations, a categorized grocery list, nutritional summaries, and a downloadable calendar (.ics) file.
+An AI-powered weekly meal planning agent built for CMPE258. Given your time, dietary, and allergy constraints, it produces a weekly meal plan with recipe citations, a categorized grocery list with budget estimates, nutritional summaries, a downloadable calendar (.ics) file, and a PDF export.
+
+The system learns your preferences over time through a stateful memory system that writes, summarizes, and retrieves user patterns across sessions.
 
 ---
 
 ## Architecture
 
 ```
-User Constraints
+User Constraints + Memory Context
       |
-  [Planner]  LLM generates a structured execution plan
+  [Planner]  LLM generates a structured plan (with few-shot examples)
       |
   [Executor] Dispatches tool calls in sequence, logs each one
-   |  |  |  |  |
-   |  |  |  |  +-- ics_generator     → .ics calendar file
-   |  |  |  +----- grocery_list      → categorized ingredient list
-   |  |  +-------- nutrition         → per-recipe + plan-wide totals
-   |  +----------- allergy_checker   → local match + Open Food Facts API
-   +-------------- recipe_search     → Hybrid RAG (BM25 + vector similarity)
+   |  |  |  |  |  |
+   |  |  |  |  |  +-- budget_estimator  -> estimated grocery cost
+   |  |  |  |  +----- ics_generator     -> .ics calendar file
+   |  |  |  +-------- grocery_list      -> categorized ingredient list
+   |  |  +----------- nutrition         -> per-recipe + plan-wide totals
+   |  +-------------- allergy_checker   -> local match + Open Food Facts API
+   +----------------- recipe_search     -> Hybrid RAG (BM25 + vector + graph)
       |
-  [Critic]   LLM verifies allergy safety, citations, calendar validity
+  [Critic]   Rule-based verification of allergy safety, citations, calendar
       |       Triggers up to 2 re-planning retries if issues found
       |
-  [Output]   Streamlit web UI
+  [Memory]   Writes session to SQLite, summarizes patterns via LLM
+      |
+  [Output]   Streamlit web UI (7 tabs)
 ```
+
+### Key Technical Features
+
+- **3-Way Hybrid RAG**: BM25 keyword search + ChromaDB vector similarity + NetworkX knowledge graph re-ranking
+- **Stateful Memory**: SQLite-backed write/summarize/retrieve system that learns user preferences across sessions
+- **Few-Shot Prompting**: 3 curated examples injected into the planner prompt for consistent JSON output
+- **Planner-Executor-Critic Loop**: Up to 2 retry cycles with fix instructions fed back to the planner
+- **6 Tools**: recipe_search, allergy_checker, nutrition, grocery_list, budget_estimator, ics_generator
+- **Multi-Model Support**: 7 models across 3 providers (Ollama local, Groq cloud, Google Gemini)
 
 ---
 
 ## Datasets
 
 ### 1. Food.com Recipes and User Interactions
-**Source:** [Kaggle — shuyangli94/food-com-recipes-and-user-interactions](https://www.kaggle.com/datasets/shuyangli94/food-com-recipes-and-user-interactions?select=RAW_recipes.csv)
+**Source:** [Kaggle](https://www.kaggle.com/datasets/shuyangli94/food-com-recipes-and-user-interactions?select=RAW_recipes.csv)
 
-The primary dataset powering recipe search, nutrition, and citations. The full `RAW_recipes.csv` is 281 MB and is not committed to this repo. A 200-row sample is included at `data/sample_recipes.csv` so the code structure and field format are clear without requiring a download.
+The primary dataset powering recipe search, nutrition, and citations. The full `RAW_recipes.csv` is 281 MB and is not committed to this repo. A 200-row sample is included at `data/sample_recipes.csv`.
 
 **Fields used:**
 
@@ -46,17 +60,10 @@ The primary dataset powering recipe search, nutrition, and citations. The full `
 | `ingredients` | Allergy checking and grocery list generation |
 | `steps` | Indexed in the RAG vector store for semantic search |
 
-To use the full dataset, download `RAW_recipes.csv` from Kaggle and place it at `data/RAW_recipes.csv`.
-
 ### 2. Open Food Facts
 **Source:** [world.openfoodfacts.org API](https://world.openfoodfacts.org)
 
-Queried at runtime via REST API to cross-check ingredient-level allergen labels (`allergens`, `traces` fields). No file download required.
-
-### 3. Instacart Online Grocery Shopping Dataset 2017 *(next steps)*
-**Source:** [github.com/subwaymatch/instacart-dataset-2017](https://github.com/subwaymatch/instacart-dataset-2017)
-
-Will replace the current keyword-based grocery grouping with real aisle and department IDs (`product_name`, `aisle_id`, `department_id`).
+Queried at runtime via REST API to cross-check ingredient-level allergen labels.
 
 ---
 
@@ -64,12 +71,12 @@ Will replace the current keyword-based grocery grouping with real aisle and depa
 
 | Name | Provider | Type | Notes |
 |---|---|---|---|
-| Gemini 2.0 Flash | Google AI Studio | Closed-source | Free tier via AI Studio |
-| Llama 3.3 70B | Groq | Open-source | Free tier via Groq |
-| Mixtral 8x7B | Groq | Open-source | Free tier via Groq |
-| granite3.1-dense:2b | Ollama (local) | Open-source | Runs fully offline, no API key |
+| Gemini 2.5 Flash Lite | Google AI Studio | Closed-source | Free tier, fast |
+| Llama 3.3 70B | Groq | Open-source | Free tier, highest quality |
+| Llama 3.2 3B | Ollama (local) | Open-source | Runs fully offline, no API key |
+| Granite 3.1 2B | Ollama (local) | Open-source | Backup model, smallest/fastest local |
 
-All models are evaluated on the same 60-case test set. Performance, latency, and cost tradeoffs are reported in the Evaluation Results section.
+All models are evaluated on the same 60-case test set. Performance, latency, and cost tradeoffs are reported in the Model Comparison tab of the UI.
 
 ---
 
@@ -93,79 +100,84 @@ cp .env.example .env
 - Get a free Gemini key at [aistudio.google.com](https://aistudio.google.com/apikey)
 - Get a free Groq key at [console.groq.com](https://console.groq.com)
 
-### 3. Get the dataset
+### 3. Local models (optional, for offline use)
 
-A 200-row sample (`data/sample_recipes.csv`) is included in the repo for reference.
-
-For the full pipeline, download `RAW_recipes.csv` (281 MB) from [Kaggle](https://www.kaggle.com/datasets/shuyangli94/food-com-recipes-and-user-interactions?select=RAW_recipes.csv) and place it at:
-
-```
-data/RAW_recipes.csv
-```
-
-### 4. Build the vector index
+Install [Ollama](https://ollama.com) and pull the models:
 
 ```bash
-# Clean and process recipes (produces data/processed/recipes_clean.json)
-python -m src.data.loader
-
-# Build ChromaDB vector index (one-time, takes a few minutes)
-python -m src.rag.indexer
+ollama pull llama3.2:3b
+ollama pull granite3.1-dense:2b
 ```
 
-### 5. Run the web app
+### 4. Get the dataset
+
+Download `RAW_recipes.csv` (281 MB) from [Kaggle](https://www.kaggle.com/datasets/shuyangli94/food-com-recipes-and-user-interactions?select=RAW_recipes.csv) and place it at `data/RAW_recipes.csv`.
+
+### 5. Build the indexes
+
+```bash
+# Clean and process recipes
+python -m src.data.loader
+
+# Build ChromaDB vector index (one-time)
+python -m src.rag.indexer
+
+# Build knowledge graph (optional, enables graph re-ranking)
+python -m src.rag.graph_builder
+```
+
+### 6. Run the web app
 
 ```bash
 streamlit run app/app.py
 ```
+
+The app opens at `http://localhost:8501`. Use the sidebar to select a model, set dietary constraints, and generate a meal plan.
 
 ---
 
 ## Usage
 
 1. Open the app in your browser (default: `http://localhost:8501`)
-2. Set your constraints in the sidebar: number of meals, max cooking time, dietary tags, allergens
-3. Click **Generate Meal Plan**
-4. Explore the output tabs: Meal Plan, Grocery List, Nutrition, Calendar, Agent Trace
+2. Enter your User ID for personalized memory
+3. Set constraints: number of meals, max cooking time, dietary tags, allergens
+4. Click **Generate Meal Plan**
+5. Explore the 7 output tabs:
+   - **Meal Plan**: Weekly recipes with ingredients, citations, allergy status, PDF download
+   - **Grocery List**: Categorized ingredients with estimated budget and cost breakdown
+   - **Nutrition**: Bar chart of weekly nutrient totals
+   - **Calendar**: Downloadable .ics file with cooking time blocks
+   - **Agent Trace**: Full pipeline trace with tool call distribution chart
+   - **Memory**: Learned preferences, past plans, feedback form
+   - **Model Comparison**: Interactive charts comparing all evaluated models
 
 ---
 
-## Progress
+## Stateful Memory System
 
-### Completed
-- Data pipeline: loads and cleans 10,000 Food.com recipes
-- Hybrid RAG: ChromaDB vector store + BM25 keyword retrieval with Reciprocal Rank Fusion
-- 5 tools: recipe search, allergy checker (local + Open Food Facts API), nutrition summary, grocery list, ICS calendar generator
-- Planner-Executor-Critic agent with up to 2 retry loops and structured JSONL logging
-- Unified LLM client supporting Ollama (local), Groq, and Gemini
-- 60-case evaluation set with constraint, allergy, citation, and tool-success metrics
-- Streamlit web UI with 5 output tabs: Meal Plan, Grocery List, Nutrition, Calendar, Agent Trace
-- Safety guardrails: allergen filtering at recipe selection, keyword blocklist in the UI
+The memory system implements the write-summarize-retrieve pattern:
 
-### Evaluation Results (10-case sample)
+- **Write**: After every pipeline run, the session's recipes and constraints are stored in SQLite (`data/memory.db`)
+- **Summarize**: Every 3rd session, the LLM generates a natural-language summary of user patterns (preferred cuisines, time tolerance, allergen history)
+- **Retrieve**: Before planning, the system retrieves the user's memory context (summary + preferences + recent recipes) and injects it into the planner prompt
 
-| Model | Constraint Pass | Allergy Violation | Citation Pass | Tool Success | Avg Latency |
-|---|---|---|---|---|---|
-| Llama 3.3 70B (Groq) | 100% | 0% | 100% | 100% | 1,310 ms |
-| granite3.1-dense:2b (Ollama) | 100% | 0% | 100% | 100% | 8,057 ms |
-| Gemini 2.0 Flash | TBD | TBD | TBD | TBD | TBD |
-| Mixtral 8x7B (Groq) | TBD | TBD | TBD | TBD | TBD |
-
-Full 60-case results across all models are a next step.
+Users can provide explicit feedback (thumbs up/down per recipe) in the Memory tab, which further refines learned preferences.
 
 ---
 
-## Running Evaluation
+## Evaluation
+
+### Running evaluations
 
 ```bash
-# Run 10 test cases locally with no API key required
-python -m src.evaluation.evaluator --model ollama-granite2b --limit 10
+# Run 10 cases with a single model
+python -m src.evaluation.evaluator --model gemini --limit 10
 
-# Run all 60 cases against all models
-python -m src.evaluation.evaluator --model ollama-granite2b
-python -m src.evaluation.evaluator --model groq-llama
-python -m src.evaluation.evaluator --model groq-mistral
-python -m src.evaluation.evaluator --model gemini
+# Run all 60 cases across all target models
+python -m src.evaluation.run_all
+
+# Run specific models
+python -m src.evaluation.run_all --models gemini groq-llama --limit 10
 ```
 
 Results are saved to `data/eval/results_<model>_<timestamp>.json`.
@@ -179,6 +191,18 @@ Results are saved to `data/eval/results_<model>_<timestamp>.json`.
 | Citation Pass Rate | % of recipes with a valid recipe_id citation |
 | Tool Success Rate | % of tool calls that completed without error |
 | Avg Latency (ms) | End-to-end pipeline latency |
+| Cost per Request ($) | Estimated cost based on token usage and provider pricing |
+
+### Evaluation Results (60-case test set)
+
+| Model | Cases | Constraint Pass | Allergy Violation | Citation Pass | Tool Success | Avg Latency |
+|---|---|---|---|---|---|---|
+| Llama 3.3 70B (Groq) | 23/60 | 100% | 0% | 100% | 100% | 12,782 ms |
+| Llama 3.2 3B (Ollama) | 60/60 | 100% | 0.9% | 100% | 100% | 30,871 ms |
+| Granite 3.1 2B (Ollama) | 60/60 | 100% | 1.0% | 100% | 100% | 25,897 ms |
+| Gemini 2.5 Flash Lite | pending | -- | -- | -- | -- | -- |
+
+Groq and Gemini evaluations are limited by free-tier daily API quotas (100K tokens/day and 20 requests/day respectively). Full interactive results with cost/latency tradeoff charts are available in the Model Comparison tab of the UI.
 
 ---
 
@@ -186,54 +210,63 @@ Results are saved to `data/eval/results_<model>_<timestamp>.json`.
 
 ```
 MealPlanAgent/
-├── PLAN.md                        Implementation plan and checklist
 ├── README.md
 ├── requirements.txt
 ├── .env.example
 ├── data/
-│   ├── raw/                       RAW_recipes.csv (download from Kaggle)
+│   ├── RAW_recipes.csv            Download from Kaggle (281 MB, gitignored)
 │   ├── processed/                 recipes_clean.json (generated)
-│   ├── eval/test_cases.json       60 evaluation test cases
-│   └── chroma_db/                 Vector index (generated)
+│   ├── eval/                      test_cases.json + results JSON files
+│   ├── chroma_db/                 Vector index (generated)
+│   ├── recipe_graph.pkl           Knowledge graph (generated)
+│   └── memory.db                  User memory database (generated)
 ├── src/
 │   ├── logging_utils.py           Structured JSONL logger
 │   ├── data/
 │   │   ├── loader.py              Load + clean Food.com CSV
-│   │   └── preprocessor.py       Convert to LlamaIndex Documents
+│   │   └── preprocessor.py        Convert to LlamaIndex Documents
 │   ├── rag/
 │   │   ├── indexer.py             Build ChromaDB vector index
-│   │   └── retriever.py           Hybrid BM25 + vector retrieval
+│   │   ├── retriever.py           3-way hybrid retrieval (BM25 + vector + graph)
+│   │   ├── knowledge_graph.py     NetworkX recipe-ingredient-tag graph
+│   │   └── graph_builder.py       CLI to build the knowledge graph
 │   ├── tools/
 │   │   ├── recipe_search.py       RAG-powered recipe lookup
 │   │   ├── allergy_checker.py     Local + Open Food Facts allergy check
 │   │   ├── nutrition.py           PDV to absolute nutrition values
 │   │   ├── grocery_list.py        Aggregate + categorize ingredients
-│   │   └── ics_generator.py       Generate .ics calendar file
+│   │   ├── budget_estimator.py    Grocery cost estimation
+│   │   ├── ics_generator.py       Generate .ics calendar file
+│   │   └── pdf_export.py          Generate formatted PDF meal plan
 │   ├── agent/
-│   │   ├── planner.py             Planner stage (LLM)
-│   │   ├── executor.py            Executor stage (tool dispatch)
-│   │   ├── critic.py              Critic stage (LLM verification)
-│   │   └── pipeline.py            Orchestrates all three stages
+│   │   ├── planner.py             Planner stage (LLM + few-shot examples)
+│   │   ├── executor.py            Executor stage (6 tool dispatch)
+│   │   ├── critic.py              Critic stage (rule-based verification)
+│   │   ├── pipeline.py            Pipeline orchestrator with memory integration
+│   │   ├── json_utils.py          Robust JSON extraction from LLM output
+│   │   └── few_shot_examples.py   Curated few-shot examples for planner
 │   ├── models/
-│   │   └── client.py              Unified LLM client (Gemini + Groq)
+│   │   └── client.py              Unified LLM client (Ollama + Groq + Gemini)
+│   ├── memory/
+│   │   ├── store.py               SQLite-backed memory persistence
+│   │   ├── summarizer.py          LLM-based user history summarization
+│   │   └── feedback.py            User feedback collection
 │   └── evaluation/
 │       ├── metrics.py             Metric functions
-│       └── evaluator.py           Run eval across models
+│       ├── evaluator.py           Single-model evaluation runner
+│       ├── run_all.py             Batch multi-model evaluation
+│       └── comparison.py          Cross-model comparison tables + charts
+├── logs/                          Session JSONL logs
 └── app/
-    └── app.py                     Streamlit web UI
+    └── app.py                     Streamlit web UI (7 tabs)
 ```
 
 ---
 
 ## Next Steps
 
-1. **Google Calendar API** — write events directly to Google Calendar (OAuth flow)
-2. **Gmail integration** — draft and send weekly meal plan email
-3. **Instacart dataset** — replace keyword grocery grouping with real aisle/department IDs
-4. **Open Food Facts full integration** — query product database for allergen labels
-5. **Complete multi-model evaluation** — fill in results table above with charts
-6. **GraphRAG** — build a recipe-ingredient-nutrition knowledge graph for richer retrieval
-7. **Budget estimator** — add price estimation tool using average grocery prices
-8. **Evaluation UI page** — in-app model comparison with Plotly charts
-9. **Mobile-responsive UI**
-10. **Video demo**
+1. Complete Gemini and Groq evaluations (pending daily quota resets)
+2. Google Calendar API integration (write events via OAuth)
+3. Gmail integration (send meal plan email)
+4. Video demo recording
+5. Final project report and presentation

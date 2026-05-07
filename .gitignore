@@ -30,6 +30,18 @@ data/processed/
 # ChromaDB index
 data/chroma_db/
 
+# Generated artifacts
+data/memory.db
+data/recipe_graph.pkl
+logs/
+
+# Keep eval results in version control
+!data/eval/
+
+# Internal planning docs (not for submission)
+PLAN.md
+assignment.txt
+
 # Jupyter
 .ipynb_checkpoints/
 *.ipynb

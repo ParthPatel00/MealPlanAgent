@@ -4,12 +4,17 @@ Planner stage.
 Given user constraints, the Planner calls the LLM to produce a structured
 JSON plan describing which meals to prepare, a weekly schedule, and the
 ordered tool-call steps the Executor should follow.
+
+Includes few-shot examples for output format consistency and optional
+memory context from past sessions.
 """
 
 from __future__ import annotations
 
 import json
+from dataclasses import dataclass
 
+from src.agent.few_shot_examples import format_few_shot_prompt
 from src.agent.json_utils import extract_first_json
 from src.models.client import LLMClient
 
@@ -35,28 +40,39 @@ Rules:
 - cook_hour is 24h format (e.g. 18 for 6 pm)
 - max_minutes is per-meal cooking time limit
 - steps should describe what the executor will do (search, check allergens, build grocery list, generate calendar)
+- If memory context is provided, use it to avoid recently served recipes and align with user preferences
 """
 
 
-def run_planner(constraints: dict, client: LLMClient) -> dict:
+@dataclass
+class PlannerTrace:
+    system_prompt: str
+    user_prompt: str
+    raw_response: str
+    plan: dict
+    model: str
+    latency_ms: float
+
+
+def run_planner(
+    constraints: dict,
+    client: LLMClient,
+    memory_context: str = "",
+) -> dict:
     """
     Call the LLM to produce a structured execution plan.
 
-    Args:
-        constraints: Dict with keys like num_meals, max_minutes, tags, allergens,
-                     cook_after_hour, dietary_notes.
-        client: LLMClient instance.
-
     Returns:
         Parsed plan dict matching the schema above.
-
-    Raises:
-        ValueError: If the LLM returns unparseable JSON.
+        Also stores trace on the returned dict as plan["_trace"].
     """
-    user_msg = (
-        f"User constraints:\n{json.dumps(constraints, indent=2)}\n\n"
-        "Generate a meal plan JSON following the schema."
-    )
+    few_shot = format_few_shot_prompt()
+
+    parts = [few_shot, f"User constraints:\n{json.dumps(constraints, indent=2)}"]
+    if memory_context:
+        parts.append(f"\nUser memory (from past sessions):\n{memory_context}")
+    parts.append("\nGenerate a meal plan JSON following the schema.")
+    user_msg = "\n".join(parts)
 
     response = client.chat(prompt=user_msg, system=SYSTEM_PROMPT, temperature=0.1)
 
@@ -65,10 +81,18 @@ def run_planner(constraints: dict, client: LLMClient) -> dict:
     except ValueError as e:
         raise ValueError(f"Planner returned invalid JSON: {e}") from e
 
-    # Ensure required keys exist
     plan.setdefault("meal_queries", [])
     plan.setdefault("allergens", constraints.get("allergens", []))
     plan.setdefault("steps", [])
     plan.setdefault("notes", "")
+
+    plan["_trace"] = PlannerTrace(
+        system_prompt=SYSTEM_PROMPT,
+        user_prompt=user_msg,
+        raw_response=response.text,
+        plan=plan,
+        model=response.model,
+        latency_ms=response.latency_ms,
+    )
 
     return plan

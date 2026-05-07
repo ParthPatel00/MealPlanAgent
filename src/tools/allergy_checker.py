@@ -16,15 +16,40 @@ OFF_API = "https://world.openfoodfacts.org/api/v2/product/{barcode}.json"
 OFF_SEARCH = "https://world.openfoodfacts.org/cgi/search.pl"
 
 
+ALLERGEN_ALIASES: dict[str, list[str]] = {
+    "peanuts": ["peanut", "peanuts", "peanut butter", "peanut oil"],
+    "peanut": ["peanut", "peanuts", "peanut butter", "peanut oil"],
+    "dairy": ["milk", "cream", "butter", "cheese", "yogurt", "whey", "casein", "lactose"],
+    "gluten": ["wheat", "flour", "bread", "pasta", "barley", "rye", "semolina", "couscous"],
+    "nuts": ["almond", "walnut", "pecan", "cashew", "pistachio", "macadamia", "hazelnut", "pine nut"],
+    "tree nuts": ["almond", "walnut", "pecan", "cashew", "pistachio", "macadamia", "hazelnut", "pine nut"],
+    "shellfish": ["shrimp", "crab", "lobster", "mussel", "clam", "oyster", "scallop", "crawfish"],
+    "soy": ["soy", "soybean", "soy sauce", "tofu", "tempeh", "edamame", "miso"],
+    "egg": ["egg", "eggs", "mayo", "mayonnaise", "meringue"],
+    "eggs": ["egg", "eggs", "mayo", "mayonnaise", "meringue"],
+    "fish": ["fish", "anchovy", "sardine", "tuna", "salmon", "cod", "tilapia", "bass"],
+    "sesame": ["sesame", "tahini"],
+    "wheat": ["wheat", "flour", "bread", "pasta", "semolina", "couscous"],
+}
+
+
 def _local_check(
     ingredients: list[str], allergens: list[str]
 ) -> tuple[bool, list[str]]:
-    """String-match allergens against recipe ingredient names."""
+    """Match allergens against recipe ingredients using aliases for safety."""
     violations = []
-    ingredients_str = " ".join(ingredients).lower()
+    ingredients_lower = [ing.lower() for ing in ingredients]
+    ingredients_str = " ".join(ingredients_lower)
+
     for allergen in allergens:
-        if allergen.lower() in ingredients_str:
-            violations.append(allergen)
+        allergen_lower = allergen.lower().rstrip("s")
+        terms = ALLERGEN_ALIASES.get(allergen.lower(), [allergen.lower(), allergen_lower])
+
+        for term in terms:
+            if term in ingredients_str:
+                violations.append(allergen)
+                break
+
     return len(violations) == 0, violations
 
 

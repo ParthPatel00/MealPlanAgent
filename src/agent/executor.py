@@ -12,6 +12,7 @@ from dataclasses import dataclass, field
 
 from src.logging_utils import StructuredLogger
 from src.tools.allergy_checker import allergy_checker
+from src.tools.budget_estimator import estimate_grocery_cost
 from src.tools.grocery_list import build_grocery_list
 from src.tools.ics_generator import generate_ics
 from src.tools.nutrition import summarize_plan_nutrition, summarize_recipe_nutrition
@@ -24,6 +25,7 @@ class ExecutorResult:
     allergy_reports: list[dict] = field(default_factory=list)
     grocery_list: dict[str, list[str]] = field(default_factory=dict)
     nutrition_summary: dict = field(default_factory=dict)
+    budget_estimate: dict = field(default_factory=dict)
     ics_bytes: bytes = b""
     cooking_blocks: list[dict] = field(default_factory=list)
     tool_calls: list[dict] = field(default_factory=list)
@@ -268,7 +270,29 @@ def run_executor(plan: dict, constraints: dict, logger: StructuredLogger) -> Exe
         logger.log_error("executor.grocery_list", str(exc))
 
     # ------------------------------------------------------------------
-    # Step 5: ICS calendar file
+    # Step 5: Budget estimate
+    # ------------------------------------------------------------------
+    t0 = time.time()
+    try:
+        if result.grocery_list:
+            result.budget_estimate = estimate_grocery_cost(result.grocery_list)
+            latency = (time.time() - t0) * 1000
+
+            logger.log_tool_call(
+                tool_name="budget_estimator",
+                inputs={"num_categories": len(result.grocery_list)},
+                output={"total": result.budget_estimate.get("total_estimated_cost", 0)},
+                latency_ms=latency,
+                success=True,
+            )
+            result.tool_calls.append(
+                {"tool": "budget_estimator", "total": result.budget_estimate.get("total_estimated_cost", 0)}
+            )
+    except Exception as exc:
+        logger.log_error("executor.budget_estimator", str(exc))
+
+    # ------------------------------------------------------------------
+    # Step 6: ICS calendar file
     # ------------------------------------------------------------------
     t0 = time.time()
     try:

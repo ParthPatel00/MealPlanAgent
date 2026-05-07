@@ -25,14 +25,16 @@ def run_eval(
     model_name: str,
     cases_path: Path = Path("data/eval/test_cases.json"),
     limit: int | None = None,
+    delay_between: float = 0.0,
 ) -> dict:
     """
     Run evaluation cases against a model and return aggregated results.
 
     Args:
-        model_name: "gemini", "groq-llama", or "groq-mistral".
+        model_name: "gemini", "groq-llama", "ollama-llama3b", or "ollama-granite2b".
         cases_path: Path to test_cases.json.
         limit: If set, only run the first `limit` cases (for quick testing).
+        delay_between: Seconds to wait between cases (for rate-limited APIs).
 
     Returns:
         Dict with per-case scores and aggregate metrics.
@@ -47,7 +49,9 @@ def run_eval(
     latencies = []
     errors = []
 
-    for case in cases:
+    for i, case in enumerate(cases):
+        if i > 0 and delay_between > 0:
+            time.sleep(delay_between)
         print(f"  Case {case['id']}/{len(cases)} — {case['constraints'].get('tags', [])}")
         t0 = time.time()
         try:
@@ -59,7 +63,12 @@ def run_eval(
             per_case_scores.append(scored)
         except Exception as exc:
             latency = (time.time() - t0) * 1000
-            print(f"    ERROR: {exc}")
+            exc_str = str(exc).lower()
+            is_rate_limit = any(kw in exc_str for kw in ["429", "rate", "quota", "exhausted", "limit"])
+            if is_rate_limit:
+                print(f"    RATE LIMITED: {str(exc)[:80]}")
+            else:
+                print(f"    ERROR: {exc}")
             errors.append({"id": case["id"], "error": str(exc)})
             per_case_scores.append(
                 {"id": case["id"], "error": str(exc), "latency_ms": round(latency, 1)}
@@ -90,16 +99,16 @@ def run_eval(
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
-    parser.add_argument("--model", default="ollama-granite2b",
-                        choices=["gemini", "groq-llama", "groq-mistral",
-                                 "ollama-granite2b", "ollama-granite8b",
-                                 "ollama-qwen7b", "ollama-qwen1b"])
+    parser.add_argument("--model", default="gemini",
+                        choices=["gemini", "groq-llama", "ollama-llama3b", "ollama-granite2b"])
     parser.add_argument("--cases", default="data/eval/test_cases.json")
     parser.add_argument("--limit", type=int, default=None, help="Run only first N cases")
+    parser.add_argument("--delay", type=float, default=0.0, help="Seconds between cases (for rate-limited APIs)")
     args = parser.parse_args()
 
     run_eval(
         model_name=args.model,
         cases_path=Path(args.cases),
+        delay_between=args.delay,
         limit=args.limit,
     )

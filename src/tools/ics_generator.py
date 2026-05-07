@@ -51,12 +51,13 @@ def generate_ics(
         meal_name = block.get("meal_name", "Meal")
         day_str = block.get("day", "Monday")
         cook_hour = int(block.get("cook_hour", 18))
+        cook_minute = int(block.get("cook_minute", 0))
         duration = int(block.get("duration_minutes", 30))
 
         event_date = next_weekday(day_str)
         start_dt = datetime(
             event_date.year, event_date.month, event_date.day,
-            cook_hour, 0, 0, tzinfo=timezone.utc
+            cook_hour, cook_minute, 0, tzinfo=timezone.utc
         )
         end_dt = start_dt + timedelta(minutes=duration)
 
@@ -69,6 +70,11 @@ def generate_ics(
         cal.add_component(event)
 
     return cal.to_ical()
+
+
+def generate_ics_bytes(cooking_blocks: list[dict]) -> bytes:
+    """Alias for generate_ics for API compatibility."""
+    return generate_ics(cooking_blocks)
 
 
 def save_ics(cooking_blocks: list[dict], path: str = "meal_plan.ics") -> str:

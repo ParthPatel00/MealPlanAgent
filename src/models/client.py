@@ -1,14 +1,12 @@
 """
 Unified LLM client supporting:
-  - ollama-granite2b  : granite3.1-dense:2b  (local, no API key)
-  - ollama-granite8b  : granite3.1-dense:8b  (local, no API key)
-  - ollama-qwen7b     : qwen2.5-coder:7b     (local, no API key)
-  - gemini            : Gemini 2.0 Flash      (free via AI Studio)
-  - groq-llama        : Llama 3.1 70B on Groq (free tier)
-  - groq-mistral      : Mixtral 8x7B on Groq  (free tier, open-source)
+  - gemini            : Gemini 2.0 Flash      (Google, closed-source, free tier)
+  - groq-llama        : Llama 3.3 70B         (Groq, open-source, free tier)
+  - ollama-llama3b    : Llama 3.2 3B          (local, open-source, no API key)
+  - ollama-granite2b  : granite3.1-dense:2b   (local, open-source, backup)
 
 Usage:
-    client = LLMClient("ollama-granite2b")
+    client = LLMClient("gemini")
     result = client.chat("Plan a 5-meal week under 30 min each.")
     print(result.text)
 """
@@ -23,21 +21,20 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-# Model identifiers
 OLLAMA_MODELS = {
+    "ollama-llama3b":   "llama3.2:3b",
     "ollama-granite2b": "granite3.1-dense:2b",
-    "ollama-granite8b": "granite3.1-dense:8b",
-    "ollama-qwen7b":    "qwen2.5-coder:7b",
-    "ollama-qwen1b":    "qwen2.5-coder:1.5b",
 }
 
 CLOUD_MODELS = {
-    "gemini":       "gemini-2.0-flash",
-    "groq-llama":   "llama-3.3-70b-versatile",   # llama-3.1-70b-versatile decommissioned
-    "groq-mistral": "mixtral-8x7b-32768",
+    "gemini":       "gemini-2.5-flash-lite",
+    "groq-llama":   "llama-3.3-70b-versatile",
 }
 
 ALL_MODELS = {**OLLAMA_MODELS, **CLOUD_MODELS}
+
+GEMINI_MAX_RETRIES = 5
+GEMINI_RETRY_BASE_DELAY = 30
 
 
 @dataclass
@@ -54,7 +51,7 @@ class LLMResponse:
 class LLMClient:
     """Uniform `.chat()` interface over local Ollama and cloud providers."""
 
-    def __init__(self, model_name: str = "ollama-granite2b"):
+    def __init__(self, model_name: str = "gemini"):
         if model_name not in ALL_MODELS:
             raise ValueError(
                 f"Unknown model '{model_name}'. Choose from: {list(ALL_MODELS)}"
@@ -100,7 +97,7 @@ class LLMClient:
         else:
             return self._chat_groq(prompt, system, temperature, max_tokens, t0)
 
-    # ── Ollama ────────────────────────────────────────────────────────────
+    # -- Ollama --
     def _chat_ollama(
         self, prompt: str, system: str, temperature: float, max_tokens: int, t0: float
     ) -> LLMResponse:
@@ -122,30 +119,52 @@ class LLMClient:
             latency_ms=latency,
         )
 
-    # ── Gemini ────────────────────────────────────────────────────────────
+    # -- Gemini (with 429 retry) --
     def _chat_gemini(
         self, prompt: str, system: str, temperature: float, max_tokens: int, t0: float
     ) -> LLMResponse:
         full_prompt = f"{system}\n\n{prompt}".strip() if system else prompt
-        response = self._gemini_model.generate_content(
-            full_prompt,
-            generation_config=self._genai.GenerationConfig(
-                temperature=temperature,
-                max_output_tokens=max_tokens,
-            ),
-        )
-        latency = (time.time() - t0) * 1000
-        text = response.text if hasattr(response, "text") else ""
-        usage = getattr(response, "usage_metadata", None)
-        return LLMResponse(
-            text=text,
-            model=self.model_id,
-            prompt_tokens=getattr(usage, "prompt_token_count", 0) or 0,
-            completion_tokens=getattr(usage, "candidates_token_count", 0) or 0,
-            latency_ms=latency,
-        )
 
-    # ── Groq ──────────────────────────────────────────────────────────────
+        last_exc = None
+        for attempt in range(GEMINI_MAX_RETRIES):
+            try:
+                response = self._gemini_model.generate_content(
+                    full_prompt,
+                    generation_config=self._genai.GenerationConfig(
+                        temperature=temperature,
+                        max_output_tokens=max_tokens,
+                    ),
+                )
+                latency = (time.time() - t0) * 1000
+                text = response.text if hasattr(response, "text") else ""
+                usage = getattr(response, "usage_metadata", None)
+                return LLMResponse(
+                    text=text,
+                    model=self.model_id,
+                    prompt_tokens=getattr(usage, "prompt_token_count", 0) or 0,
+                    completion_tokens=getattr(usage, "candidates_token_count", 0) or 0,
+                    latency_ms=latency,
+                )
+            except Exception as exc:
+                last_exc = exc
+                exc_str = str(exc).lower()
+                is_rate_limit = any(kw in exc_str for kw in ["429", "resource", "quota", "rate", "exhausted"])
+                if is_rate_limit:
+                    if "perday" in exc_str.replace(" ", "").replace("_", ""):
+                        print(f"  Gemini daily quota exhausted. Giving up.")
+                        break
+                    delay = GEMINI_RETRY_BASE_DELAY * (2 ** attempt)
+                    if delay > 120:
+                        print(f"  Gemini quota exhausted after {attempt + 1} retries. Giving up.")
+                        break
+                    print(f"  Gemini rate limited (attempt {attempt + 1}/{GEMINI_MAX_RETRIES}), waiting {delay}s...")
+                    time.sleep(delay)
+                else:
+                    raise
+
+        raise last_exc  # type: ignore[misc]
+
+    # -- Groq (with 429 retry) --
     def _chat_groq(
         self, prompt: str, system: str, temperature: float, max_tokens: int, t0: float
     ) -> LLMResponse:
@@ -154,19 +173,36 @@ class LLMClient:
             messages.append({"role": "system", "content": system})
         messages.append({"role": "user", "content": prompt})
 
-        response = self._groq.chat.completions.create(
-            model=self.model_id,
-            messages=messages,
-            temperature=temperature,
-            max_tokens=max_tokens,
-        )
-        latency = (time.time() - t0) * 1000
-        text = response.choices[0].message.content or ""
-        usage = response.usage
-        return LLMResponse(
-            text=text,
-            model=self.model_id,
-            prompt_tokens=usage.prompt_tokens if usage else 0,
-            completion_tokens=usage.completion_tokens if usage else 0,
-            latency_ms=latency,
-        )
+        last_exc = None
+        for attempt in range(GEMINI_MAX_RETRIES):
+            try:
+                response = self._groq.chat.completions.create(
+                    model=self.model_id,
+                    messages=messages,
+                    temperature=temperature,
+                    max_tokens=max_tokens,
+                )
+                latency = (time.time() - t0) * 1000
+                text = response.choices[0].message.content or ""
+                usage = response.usage
+                return LLMResponse(
+                    text=text,
+                    model=self.model_id,
+                    prompt_tokens=usage.prompt_tokens if usage else 0,
+                    completion_tokens=usage.completion_tokens if usage else 0,
+                    latency_ms=latency,
+                )
+            except Exception as exc:
+                last_exc = exc
+                exc_str = str(exc).lower()
+                if "429" in exc_str or "rate" in exc_str or "limit" in exc_str:
+                    delay = GEMINI_RETRY_BASE_DELAY * (2 ** attempt)
+                    if delay > 60:
+                        print(f"  Groq daily limit reached. Giving up.")
+                        break
+                    print(f"  Groq rate limited (attempt {attempt + 1}), waiting {delay}s...")
+                    time.sleep(delay)
+                else:
+                    raise
+
+        raise last_exc  # type: ignore[misc]

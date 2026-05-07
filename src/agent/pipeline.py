@@ -1,7 +1,8 @@
 """
-Agent pipeline: Planner → Executor → Critic (with retry).
+Agent pipeline: Planner -> Executor -> Critic (with retry).
 
-Orchestrates all three stages and returns a final AgentResult.
+Orchestrates all three stages, integrates stateful memory, and returns
+a final AgentResult.
 """
 
 from __future__ import annotations
@@ -12,6 +13,8 @@ from src.agent.critic import CriticResult, run_critic
 from src.agent.executor import ExecutorResult, run_executor
 from src.agent.planner import run_planner
 from src.logging_utils import StructuredLogger
+from src.memory.store import write_memory
+from src.memory.summarizer import build_memory_context
 from src.models.client import LLMClient
 
 MAX_RETRIES = 2
@@ -23,6 +26,7 @@ class AgentResult:
     recipes: list[dict] = field(default_factory=list)
     grocery_list: dict[str, list[str]] = field(default_factory=dict)
     nutrition_summary: dict = field(default_factory=dict)
+    budget_estimate: dict = field(default_factory=dict)
     ics_bytes: bytes = b""
     cooking_blocks: list[dict] = field(default_factory=list)
 
@@ -34,11 +38,17 @@ class AgentResult:
     session_id: str = ""
     log_path: str = ""
     retries: int = 0
+    memory_context: str = ""
+    planner_trace: object = None
 
 
-def run_pipeline(constraints: dict, model_name: str = "gemini") -> AgentResult:
+def run_pipeline(
+    constraints: dict,
+    model_name: str = "gemini",
+    user_id: str = "default_user",
+) -> AgentResult:
     """
-    Run the full Planner-Executor-Critic pipeline.
+    Run the full Planner-Executor-Critic pipeline with memory integration.
 
     Args:
         constraints: User constraints dict. Expected keys:
@@ -48,24 +58,26 @@ def run_pipeline(constraints: dict, model_name: str = "gemini") -> AgentResult:
             - allergens (list[str]): Allergen list, e.g. ["peanuts", "gluten"]
             - cook_after_hour (int): Earliest cooking start hour (24h)
             - dietary_notes (str): Free-text notes
-        model_name: One of "gemini", "groq-llama", "groq-mistral".
+        model_name: One of the supported model names.
+        user_id: User identifier for memory retrieval/storage.
 
     Returns:
         AgentResult with all outputs and audit info.
     """
     client = LLMClient(model_name)
 
+    memory_ctx = build_memory_context(user_id, client)
+
     with StructuredLogger() as logger:
         logger.log_user_input(constraints)
 
         # ---- Planner ----
-        plan = run_planner(constraints, client)
-        # Guarantee the plan has exactly num_meals queries; pad with generic if short
+        plan = run_planner(constraints, client, memory_context=memory_ctx)
         num_meals = constraints.get("num_meals", 5)
         tags = constraints.get("tags", [])
         cook_hour = constraints.get("cook_after_hour", 18)
         max_min = constraints.get("max_minutes", 60)
-        weekdays = ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"]
+        weekdays = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]
         while len(plan.get("meal_queries", [])) < num_meals:
             slot = len(plan["meal_queries"])
             tag_str = " ".join(tags) if tags else "healthy"
@@ -96,16 +108,18 @@ def run_pipeline(constraints: dict, model_name: str = "gemini") -> AgentResult:
                 break
 
             if attempt < MAX_RETRIES:
-                # Inject fix instructions into constraints for re-planning
                 retries += 1
                 constraints["_fix_instructions"] = critic_result.fix_instructions
-                plan = run_planner(constraints, client)
+                plan = run_planner(constraints, client, memory_context=memory_ctx)
                 logger.log_planner_output(plan)
+
+        planner_trace = plan.get("_trace")
 
         result = AgentResult(
             recipes=executor_result.recipes if executor_result else [],
             grocery_list=executor_result.grocery_list if executor_result else {},
             nutrition_summary=executor_result.nutrition_summary if executor_result else {},
+            budget_estimate=executor_result.budget_estimate if executor_result else {},
             ics_bytes=executor_result.ics_bytes if executor_result else b"",
             cooking_blocks=executor_result.cooking_blocks if executor_result else [],
             plan=plan,
@@ -115,14 +129,29 @@ def run_pipeline(constraints: dict, model_name: str = "gemini") -> AgentResult:
             session_id=logger.session_id,
             log_path=logger.get_log_path(),
             retries=retries,
+            memory_context=memory_ctx,
+            planner_trace=planner_trace,
         )
+
+        # ---- Write to memory ----
+        try:
+            write_memory(
+                user_id=user_id,
+                session_id=logger.session_id,
+                recipes=result.recipes,
+                constraints=constraints,
+            )
+        except Exception:
+            pass
 
         logger.log_final_output(
             {
                 "num_recipes": len(result.recipes),
                 "grocery_categories": list(result.grocery_list.keys()),
+                "budget_total": result.budget_estimate.get("total_estimated_cost"),
                 "critic_valid": critic_result.valid if critic_result else None,
                 "retries": retries,
+                "memory_used": bool(memory_ctx),
             }
         )
 

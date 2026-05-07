@@ -1,5 +1,6 @@
 """
-Hybrid retriever: BM25 keyword search + vector cosine similarity.
+Hybrid retriever: BM25 keyword search + vector cosine similarity + optional
+knowledge graph re-ranking (3-way fusion).
 
 Merges both result sets (Reciprocal Rank Fusion) and returns top-k
 recipes with citation metadata.
@@ -18,6 +19,7 @@ from llama_index.core.retrievers import VectorIndexRetriever
 from llama_index.retrievers.bm25 import BM25Retriever  # type: ignore[import-untyped]
 
 from src.rag.indexer import load_index
+from src.rag.knowledge_graph import graph_rerank, load_graph
 
 load_dotenv()
 
@@ -51,13 +53,14 @@ def _reciprocal_rank_fusion(
 
 
 class HybridRetriever:
-    """BM25 + vector retrieval with RRF merging."""
+    """BM25 + vector retrieval with RRF merging and optional graph re-ranking."""
 
     def __init__(self, top_k: int = TOP_K):
         self.top_k = top_k
         self._index = None
         self._vector_retriever = None
         self._bm25_retriever = None
+        self._graph = load_graph()
 
     def _ensure_loaded(self) -> None:
         if self._index is not None:
@@ -79,8 +82,13 @@ class HybridRetriever:
             nodes=bm25_nodes, similarity_top_k=self.top_k * 2
         )
 
-    def retrieve(self, query: str) -> list[RecipeHit]:
-        """Return top-k RecipeHit objects for the given query."""
+    def retrieve(
+        self,
+        query: str,
+        preferred_ingredients: list[str] | None = None,
+        preferred_tags: list[str] | None = None,
+    ) -> list[RecipeHit]:
+        """Return top-k RecipeHit objects using BM25 + vector + optional graph re-ranking."""
         self._ensure_loaded()
 
         query_bundle = QueryBundle(query_str=query)
@@ -89,16 +97,14 @@ class HybridRetriever:
 
         ranked = _reciprocal_rank_fusion(vector_hits, bm25_hits)
 
-        # Build a node_id -> node map from both result sets
         node_map = {n.node.node_id: n.node for n in vector_hits + bm25_hits}
 
         results: list[RecipeHit] = []
-        for node_id, score in ranked[: self.top_k]:
+        for node_id, score in ranked[: self.top_k * 2]:
             node = node_map.get(node_id)
             if node is None:
                 continue
             meta = node.metadata
-            # Deserialize JSON-encoded list/dict fields stored for ChromaDB compatibility
             tags = json.loads(meta["tags_json"]) if "tags_json" in meta else meta.get("tags", [])
             ingredients = json.loads(meta["ingredients_json"]) if "ingredients_json" in meta else meta.get("ingredients", [])
             nutrition = json.loads(meta["nutrition_json"]) if "nutrition_json" in meta else meta.get("nutrition", {})
@@ -114,7 +120,16 @@ class HybridRetriever:
                     text=node.text,
                 )
             )
-        return results
+
+        if self._graph is not None:
+            results = graph_rerank(
+                self._graph,
+                results,
+                preferred_ingredients=preferred_ingredients,
+                preferred_tags=preferred_tags,
+            )
+
+        return results[: self.top_k]
 
 
 # Singleton for use across the app
