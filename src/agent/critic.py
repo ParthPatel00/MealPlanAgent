@@ -1,7 +1,7 @@
 """
 Critic stage.
 
-Fully rule-based checks — deterministic Python, no LLM required:
+Fully rule-based checks, deterministic Python, no LLM required:
   1. At least one recipe was found
   2. No allergy violations (all reports have safe=True)
   3. Every recipe has a valid citation (recipe_id present)
@@ -37,7 +37,7 @@ def run_critic(executor_result: ExecutorResult, client=None) -> CriticResult:  #
 
     Args:
         executor_result: ExecutorResult from the Executor stage.
-        client: Unused — kept for API compatibility with the pipeline.
+        client: Unused, kept for API compatibility with the pipeline.
 
     Returns:
         CriticResult. valid=True only when all checks pass.

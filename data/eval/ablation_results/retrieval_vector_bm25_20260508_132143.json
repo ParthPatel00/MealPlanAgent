@@ -1,0 +1,1592 @@
+{
+  "config": {
+    "name": "vector_bm25",
+    "use_vector": true,
+    "use_bm25": true,
+    "use_kg": false,
+    "top_k": 10,
+    "rrf_k": 60,
+    "kg_boost_weight": 0.1,
+    "embed_model": "sentence-transformers/all-MiniLM-L6-v2"
+  },
+  "timestamp": "2026-05-08T20:21:43.105739+00:00",
+  "num_queries": 40,
+  "aggregate": {
+    "mean_ap": 0.1324039765268057,
+    "mean_f1@10": 0.21377974099341338,
+    "mean_f1@20": 0.21377974099341338,
+    "mean_f1@5": 0.12809524251496723,
+    "mean_mrr": 0.5020833333333333,
+    "mean_ndcg@10": 0.23397897916752797,
+    "mean_ndcg@20": 0.17214910801293554,
+    "mean_ndcg@5": 0.16686480347410637,
+    "mean_precision@10": 0.41500000000000004,
+    "mean_precision@20": 0.41500000000000004,
+    "mean_precision@5": 0.365,
+    "mean_recall@10": 0.24098832436969647,
+    "mean_recall@20": 0.24098832436969647,
+    "mean_recall@5": 0.11372293124604176
+  },
+  "by_query_type": {
+    "ingredient_single": {
+      "mean_ap": 0.19337466931216932,
+      "mean_f1@10": 0.28361241932670506,
+      "mean_f1@20": 0.28361241932670506,
+      "mean_f1@5": 0.2163510101010101,
+      "mean_mrr": 0.3333333333333333,
+      "mean_precision@10": 0.275,
+      "mean_precision@20": 0.275,
+      "mean_precision@5": 0.25,
+      "mean_recall@10": 0.4485576923076923,
+      "mean_recall@20": 0.4485576923076923,
+      "mean_recall@5": 0.24711538461538463
+    },
+    "kg_graded": {
+      "mean_ap": 0.006172123015873016,
+      "mean_f1@10": 0.026190476190476188,
+      "mean_f1@20": 0.026190476190476188,
+      "mean_f1@5": 0.00853658536585366,
+      "mean_mrr": 0.28125,
+      "mean_ndcg@10": 0.23397897916752797,
+      "mean_ndcg@20": 0.17214910801293554,
+      "mean_ndcg@5": 0.16686480347410637,
+      "mean_precision@10": 0.275,
+      "mean_precision@20": 0.275,
+      "mean_precision@5": 0.175,
+      "mean_recall@10": 0.01375,
+      "mean_recall@20": 0.01375,
+      "mean_recall@5": 0.004375
+    },
+    "natural_language": {
+      "mean_ap": 0.010488863448514903,
+      "mean_f1@10": 0.04196155941454881,
+      "mean_f1@20": 0.04196155941454881,
+      "mean_f1@5": 0.014825636768777017,
+      "mean_mrr": 0.3333333333333333,
+      "mean_precision@10": 0.23750000000000002,
+      "mean_precision@20": 0.23750000000000002,
+      "mean_precision@5": 0.2,
+      "mean_recall@10": 0.025660005510229473,
+      "mean_recall@20": 0.025660005510229473,
+      "mean_recall@5": 0.00772431966440925
+    },
+    "tag_pair": {
+      "mean_ap": 0.32963531626592946,
+      "mean_f1@10": 0.4912478121558675,
+      "mean_f1@20": 0.4912478121558675,
+      "mean_f1@5": 0.28777070103323693,
+      "mean_mrr": 0.625,
+      "mean_precision@10": 0.55,
+      "mean_precision@20": 0.55,
+      "mean_precision@5": 0.475,
+      "mean_recall@10": 0.5590143108525462,
+      "mean_recall@20": 0.5590143108525462,
+      "mean_recall@5": 0.24199548409107233
+    },
+    "tag_single": {
+      "mean_ap": 0.12234891059154174,
+      "mean_f1@10": 0.2258864378794692,
+      "mean_f1@20": 0.2258864378794692,
+      "mean_f1@5": 0.11299227930595838,
+      "mean_mrr": 0.9375,
+      "mean_precision@10": 0.7375,
+      "mean_precision@20": 0.7375,
+      "mean_precision@5": 0.725,
+      "mean_recall@10": 0.15795961317801435,
+      "mean_recall@20": 0.15795961317801435,
+      "mean_recall@5": 0.06740446785934265
+    }
+  },
+  "avg_latency_ms": 117.57,
+  "total_latency_s": 4.7,
+  "per_query": [
+    {
+      "query": "recipes with sweet pickle juice",
+      "query_type": "ingredient_single",
+      "retrieved_ids": [
+        392314,
+        156896,
+        217129,
+        32378,
+        111045,
+        222079,
+        472955,
+        396232,
+        102832,
+        392314
+      ],
+      "num_relevant": 3,
+      "num_retrieved_relevant": 3,
+      "metrics": {
+        "precision@5": 0.4,
+        "recall@5": 0.6666666666666666,
+        "f1@5": 0.5,
+        "precision@10": 0.3,
+        "recall@10": 1.0,
+        "f1@10": 0.4615384615384615,
+        "precision@20": 0.3,
+        "recall@20": 1.0,
+        "f1@20": 0.4615384615384615,
+        "mrr": 0.5,
+        "ap": 0.4583333333333333
+      },
+      "latency_ms": 3721.14,
+      "source_breakdown": {
+        "vector+bm25": 2,
+        "bm25": 4,
+        "vector": 4
+      }
+    },
+    {
+      "query": "recipes with buns",
+      "query_type": "ingredient_single",
+      "retrieved_ids": [
+        195736,
+        35173,
+        366310,
+        504948,
+        179987,
+        108608,
+        100340,
+        159046,
+        314611,
+        374517
+      ],
+      "num_relevant": 7,
+      "num_retrieved_relevant": 0,
+      "metrics": {
+        "precision@5": 0.0,
+        "recall@5": 0.0,
+        "f1@5": 0.0,
+        "precision@10": 0.0,
+        "recall@10": 0.0,
+        "f1@10": 0.0,
+        "precision@20": 0.0,
+        "recall@20": 0.0,
+        "f1@20": 0.0,
+        "mrr": 0.0,
+        "ap": 0.0
+      },
+      "latency_ms": 26.56,
+      "source_breakdown": {
+        "vector": 4,
+        "bm25": 5,
+        "vector+bm25": 1
+      }
+    },
+    {
+      "query": "recipes with bread",
+      "query_type": "ingredient_single",
+      "retrieved_ids": [
+        285666,
+        226379,
+        464684,
+        348652,
+        91751,
+        457170,
+        230084,
+        139185,
+        467326,
+        95177
+      ],
+      "num_relevant": 59,
+      "num_retrieved_relevant": 0,
+      "metrics": {
+        "precision@5": 0.0,
+        "recall@5": 0.0,
+        "f1@5": 0.0,
+        "precision@10": 0.0,
+        "recall@10": 0.0,
+        "f1@10": 0.0,
+        "precision@20": 0.0,
+        "recall@20": 0.0,
+        "f1@20": 0.0,
+        "mrr": 0.0,
+        "ap": 0.0
+      },
+      "latency_ms": 25.87,
+      "source_breakdown": {
+        "vector": 4,
+        "bm25": 5,
+        "vector+bm25": 1
+      }
+    },
+    {
+      "query": "recipes with parchment paper",
+      "query_type": "ingredient_single",
+      "retrieved_ids": [
+        402119,
+        123582,
+        266143,
+        391156,
+        131586,
+        362770,
+        73843,
+        227880,
+        472439,
+        284687
+      ],
+      "num_relevant": 3,
+      "num_retrieved_relevant": 1,
+      "metrics": {
+        "precision@5": 0.2,
+        "recall@5": 0.3333333333333333,
+        "f1@5": 0.25,
+        "precision@10": 0.1,
+        "recall@10": 0.3333333333333333,
+        "f1@10": 0.15384615384615383,
+        "precision@20": 0.1,
+        "recall@20": 0.3333333333333333,
+        "f1@20": 0.15384615384615383,
+        "mrr": 0.25,
+        "ap": 0.08333333333333333
+      },
+      "latency_ms": 25.38,
+      "source_breakdown": {
+        "vector": 5,
+        "bm25": 5
+      }
+    },
+    {
+      "query": "recipes with chocolate ice cream",
+      "query_type": "ingredient_single",
+      "retrieved_ids": [
+        16975,
+        70971,
+        285730,
+        300355,
+        67108,
+        283556,
+        70971,
+        306723,
+        31984,
+        289671
+      ],
+      "num_relevant": 8,
+      "num_retrieved_relevant": 2,
+      "metrics": {
+        "precision@5": 0.0,
+        "recall@5": 0.0,
+        "f1@5": 0.0,
+        "precision@10": 0.2,
+        "recall@10": 0.25,
+        "f1@10": 0.22222222222222224,
+        "precision@20": 0.2,
+        "recall@20": 0.25,
+        "f1@20": 0.22222222222222224,
+        "mrr": 0.16666666666666666,
+        "ap": 0.04583333333333334
+      },
+      "latency_ms": 28.71,
+      "source_breakdown": {
+        "vector+bm25": 4,
+        "vector": 3,
+        "bm25": 3
+      }
+    },
+    {
+      "query": "recipes with fresh chives",
+      "query_type": "ingredient_single",
+      "retrieved_ids": [
+        159527,
+        305318,
+        479555,
+        159527,
+        375362,
+        512375,
+        303666,
+        190648,
+        303666,
+        42702
+      ],
+      "num_relevant": 39,
+      "num_retrieved_relevant": 6,
+      "metrics": {
+        "precision@5": 0.6,
+        "recall@5": 0.07692307692307693,
+        "f1@5": 0.13636363636363635,
+        "precision@10": 0.8,
+        "recall@10": 0.20512820512820512,
+        "f1@10": 0.326530612244898,
+        "precision@20": 0.8,
+        "recall@20": 0.20512820512820512,
+        "f1@20": 0.326530612244898,
+        "mrr": 1.0,
+        "ap": 0.1656084656084656
+      },
+      "latency_ms": 29.73,
+      "source_breakdown": {
+        "vector+bm25": 4,
+        "bm25": 4,
+        "vector": 2
+      }
+    },
+    {
+      "query": "recipes with herbes de provence",
+      "query_type": "ingredient_single",
+      "retrieved_ids": [
+        436201,
+        330876,
+        116062,
+        146389,
+        14192,
+        468798,
+        190648,
+        375703,
+        286020,
+        241630
+      ],
+      "num_relevant": 4,
+      "num_retrieved_relevant": 4,
+      "metrics": {
+        "precision@5": 0.4,
+        "recall@5": 0.5,
+        "f1@5": 0.4444444444444445,
+        "precision@10": 0.4,
+        "recall@10": 1.0,
+        "f1@10": 0.5714285714285715,
+        "precision@20": 0.4,
+        "recall@20": 1.0,
+        "f1@20": 0.5714285714285715,
+        "mrr": 0.5,
+        "ap": 0.5
+      },
+      "latency_ms": 25.47,
+      "source_breakdown": {
+        "vector": 5,
+        "bm25": 5
+      }
+    },
+    {
+      "query": "recipes with blackberries",
+      "query_type": "ingredient_single",
+      "retrieved_ids": [
+        259017,
+        259017,
+        286292,
+        88999,
+        363469,
+        504333,
+        13379,
+        363469,
+        88999,
+        286292
+      ],
+      "num_relevant": 5,
+      "num_retrieved_relevant": 2,
+      "metrics": {
+        "precision@5": 0.4,
+        "recall@5": 0.4,
+        "f1@5": 0.4000000000000001,
+        "precision@10": 0.4,
+        "recall@10": 0.8,
+        "f1@10": 0.5333333333333333,
+        "precision@20": 0.4,
+        "recall@20": 0.8,
+        "f1@20": 0.5333333333333333,
+        "mrr": 0.25,
+        "ap": 0.29388888888888887
+      },
+      "latency_ms": 26.32,
+      "source_breakdown": {
+        "vector+bm25": 8,
+        "bm25": 1,
+        "vector": 1
+      }
+    },
+    {
+      "query": "asian sesame chicken with boneless skinless chicken breast halves, crushed red pepper flakes, distilled white vinegar, egg",
+      "query_type": "kg_graded",
+      "retrieved_ids": [
+        44353,
+        44353,
+        41847,
+        41847,
+        338410,
+        354021,
+        253160,
+        323742,
+        495324,
+        57310
+      ],
+      "num_relevant": 200,
+      "num_retrieved_relevant": 0,
+      "metrics": {
+        "precision@5": 0.0,
+        "recall@5": 0.0,
+        "f1@5": 0.0,
+        "precision@10": 0.0,
+        "recall@10": 0.0,
+        "f1@10": 0.0,
+        "precision@20": 0.0,
+        "recall@20": 0.0,
+        "f1@20": 0.0,
+        "mrr": 0.0,
+        "ap": 0.0,
+        "ndcg@5": 0.0,
+        "ndcg@10": 0.0,
+        "ndcg@20": 0.0
+      },
+      "latency_ms": 24.96,
+      "source_breakdown": {
+        "vector+bm25": 5,
+        "vector": 3,
+        "bm25": 2
+      }
+    },
+    {
+      "query": "asparagus scones with all-purpose flour, baking powder, baking soda, butter",
+      "query_type": "kg_graded",
+      "retrieved_ids": [
+        300330,
+        300330,
+        270982,
+        500227,
+        382166,
+        276319,
+        228070,
+        395326,
+        422897,
+        127194
+      ],
+      "num_relevant": 200,
+      "num_retrieved_relevant": 3,
+      "metrics": {
+        "precision@5": 0.2,
+        "recall@5": 0.005,
+        "f1@5": 0.00975609756097561,
+        "precision@10": 0.3,
+        "recall@10": 0.015,
+        "f1@10": 0.02857142857142857,
+        "precision@20": 0.3,
+        "recall@20": 0.015,
+        "f1@20": 0.02857142857142857,
+        "mrr": 0.25,
+        "ap": 0.004416666666666667,
+        "ndcg@5": 0.14606834984270645,
+        "ndcg@10": 0.23680742154717782,
+        "ndcg@20": 0.15282777773953798
+      },
+      "latency_ms": 22.68,
+      "source_breakdown": {
+        "vector+bm25": 2,
+        "vector": 4,
+        "bm25": 4
+      }
+    },
+    {
+      "query": "african curry powder with cayenne, dried garlic, ground coriander, ground cumin",
+      "query_type": "kg_graded",
+      "retrieved_ids": [
+        367586,
+        457168,
+        376660,
+        155437,
+        457168,
+        161309,
+        182833,
+        169561,
+        137434,
+        362224
+      ],
+      "num_relevant": 200,
+      "num_retrieved_relevant": 6,
+      "metrics": {
+        "precision@5": 0.6,
+        "recall@5": 0.015,
+        "f1@5": 0.029268292682926828,
+        "precision@10": 0.6,
+        "recall@10": 0.03,
+        "f1@10": 0.05714285714285714,
+        "precision@20": 0.6,
+        "recall@20": 0.03,
+        "f1@20": 0.05714285714285714,
+        "mrr": 1.0,
+        "ap": 0.022321428571428572,
+        "ndcg@5": 0.6548086577531306,
+        "ndcg@10": 0.549863664646596,
+        "ndcg@20": 0.39945791153071525
+      },
+      "latency_ms": 24.38,
+      "source_breakdown": {
+        "vector+bm25": 6,
+        "bm25": 4
+      }
+    },
+    {
+      "query": "apricot bran honey cakes with apricot nectar, baking soda, brown sugar, butter",
+      "query_type": "kg_graded",
+      "retrieved_ids": [
+        190934,
+        190934,
+        316174,
+        278208,
+        86884,
+        85949,
+        137565,
+        86884,
+        278208,
+        48774
+      ],
+      "num_relevant": 200,
+      "num_retrieved_relevant": 1,
+      "metrics": {
+        "precision@5": 0.2,
+        "recall@5": 0.005,
+        "f1@5": 0.00975609756097561,
+        "precision@10": 0.1,
+        "recall@10": 0.005,
+        "f1@10": 0.009523809523809523,
+        "precision@20": 0.1,
+        "recall@20": 0.005,
+        "f1@20": 0.009523809523809523,
+        "mrr": 0.3333333333333333,
+        "ap": 0.0016666666666666666,
+        "ndcg@5": 0.16958010263680803,
+        "ndcg@10": 0.11004588314904007,
+        "ndcg@20": 0.07102001981682865
+      },
+      "latency_ms": 24.46,
+      "source_breakdown": {
+        "vector+bm25": 9,
+        "bm25": 1
+      }
+    },
+    {
+      "query": "apple and cranberry stuffing with apples, butter, celery ribs, chicken broth",
+      "query_type": "kg_graded",
+      "retrieved_ids": [
+        266615,
+        266615,
+        193732,
+        196118,
+        196118,
+        31146,
+        113161,
+        86412,
+        86412,
+        193732
+      ],
+      "num_relevant": 200,
+      "num_retrieved_relevant": 3,
+      "metrics": {
+        "precision@5": 0.0,
+        "recall@5": 0.0,
+        "f1@5": 0.0,
+        "precision@10": 0.4,
+        "recall@10": 0.02,
+        "f1@10": 0.03809523809523809,
+        "precision@20": 0.4,
+        "recall@20": 0.02,
+        "f1@20": 0.03809523809523809,
+        "mrr": 0.16666666666666666,
+        "ap": 0.0063591269841269836,
+        "ndcg@5": 0.0,
+        "ndcg@10": 0.2874476364692017,
+        "ndcg@20": 0.18550931896920614
+      },
+      "latency_ms": 24.78,
+      "source_breakdown": {
+        "vector+bm25": 10
+      }
+    },
+    {
+      "query": "aqua thunder with banana liqueur, blue curacao, lemon juice, midori melon liqueur",
+      "query_type": "kg_graded",
+      "retrieved_ids": [
+        313445,
+        173982,
+        118361,
+        250787,
+        118115,
+        172729,
+        139507,
+        279155,
+        174274,
+        315660
+      ],
+      "num_relevant": 200,
+      "num_retrieved_relevant": 5,
+      "metrics": {
+        "precision@5": 0.2,
+        "recall@5": 0.005,
+        "f1@5": 0.00975609756097561,
+        "precision@10": 0.5,
+        "recall@10": 0.025,
+        "f1@10": 0.047619047619047616,
+        "precision@20": 0.5,
+        "recall@20": 0.025,
+        "f1@20": 0.047619047619047616,
+        "mrr": 0.25,
+        "ap": 0.01005952380952381,
+        "ndcg@5": 0.2065539701415984,
+        "ndcg@10": 0.427041389626891,
+        "ndcg@20": 0.36998639484645957
+      },
+      "latency_ms": 25.49,
+      "source_breakdown": {
+        "vector": 4,
+        "bm25": 5,
+        "vector+bm25": 1
+      }
+    },
+    {
+      "query": "american potato salad with celery, dry mustard, hard-boiled eggs, mayonnaise",
+      "query_type": "kg_graded",
+      "retrieved_ids": [
+        283299,
+        283299,
+        109312,
+        65810,
+        432057,
+        109312,
+        298507,
+        168741,
+        463168,
+        432057
+      ],
+      "num_relevant": 200,
+      "num_retrieved_relevant": 3,
+      "metrics": {
+        "precision@5": 0.2,
+        "recall@5": 0.005,
+        "f1@5": 0.00975609756097561,
+        "precision@10": 0.3,
+        "recall@10": 0.015,
+        "f1@10": 0.02857142857142857,
+        "precision@20": 0.3,
+        "recall@20": 0.015,
+        "f1@20": 0.02857142857142857,
+        "mrr": 0.25,
+        "ap": 0.0045535714285714285,
+        "ndcg@5": 0.1579073474186074,
+        "ndcg@10": 0.2606258379013171,
+        "ndcg@20": 0.19839144120073668
+      },
+      "latency_ms": 24.29,
+      "source_breakdown": {
+        "vector+bm25": 7,
+        "bm25": 2,
+        "vector": 1
+      }
+    },
+    {
+      "query": "1 2 3 jambalaya with beef broth, chicken broth, cooked chicken, creole seasoning",
+      "query_type": "kg_graded",
+      "retrieved_ids": [
+        397287,
+        207897,
+        466060,
+        243008,
+        413288,
+        413288,
+        207897,
+        95978,
+        243008,
+        466060
+      ],
+      "num_relevant": 200,
+      "num_retrieved_relevant": 0,
+      "metrics": {
+        "precision@5": 0.0,
+        "recall@5": 0.0,
+        "f1@5": 0.0,
+        "precision@10": 0.0,
+        "recall@10": 0.0,
+        "f1@10": 0.0,
+        "precision@20": 0.0,
+        "recall@20": 0.0,
+        "f1@20": 0.0,
+        "mrr": 0.0,
+        "ap": 0.0,
+        "ndcg@5": 0.0,
+        "ndcg@10": 0.0,
+        "ndcg@20": 0.0
+      },
+      "latency_ms": 26.41,
+      "source_breakdown": {
+        "vector": 1,
+        "vector+bm25": 9
+      }
+    },
+    {
+      "query": "Quick low-sodium lunch under 15 minutes",
+      "query_type": "natural_language",
+      "retrieved_ids": [
+        533190,
+        191497,
+        266312,
+        13362,
+        410833,
+        284518,
+        310777,
+        249613,
+        116772,
+        1317
+      ],
+      "num_relevant": 144,
+      "num_retrieved_relevant": 4,
+      "metrics": {
+        "precision@5": 0.4,
+        "recall@5": 0.013888888888888888,
+        "f1@5": 0.026845637583892617,
+        "precision@10": 0.4,
+        "recall@10": 0.027777777777777776,
+        "f1@10": 0.051948051948051945,
+        "precision@20": 0.4,
+        "recall@20": 0.027777777777777776,
+        "f1@20": 0.051948051948051945,
+        "mrr": 0.5,
+        "ap": 0.013888888888888888
+      },
+      "latency_ms": 24.04,
+      "source_breakdown": {
+        "vector": 5,
+        "bm25": 5
+      }
+    },
+    {
+      "query": "Healthy low-calorie dinner ideas with shrimp, chicken",
+      "query_type": "natural_language",
+      "retrieved_ids": [
+        68598,
+        226395,
+        54168,
+        445026,
+        30756,
+        413288,
+        531143,
+        35452,
+        297671,
+        131616
+      ],
+      "num_relevant": 15,
+      "num_retrieved_relevant": 1,
+      "metrics": {
+        "precision@5": 0.0,
+        "recall@5": 0.0,
+        "f1@5": 0.0,
+        "precision@10": 0.1,
+        "recall@10": 0.06666666666666667,
+        "f1@10": 0.08,
+        "precision@20": 0.1,
+        "recall@20": 0.06666666666666667,
+        "f1@20": 0.08,
+        "mrr": 0.16666666666666666,
+        "ap": 0.01111111111111111
+      },
+      "latency_ms": 24.8,
+      "source_breakdown": {
+        "vector": 5,
+        "bm25": 5
+      }
+    },
+    {
+      "query": "Quick low-calorie breakfast under 20 minutes",
+      "query_type": "natural_language",
+      "retrieved_ids": [
+        303749,
+        324363,
+        533190,
+        317235,
+        391298,
+        108162,
+        238453,
+        224452,
+        304363,
+        450610
+      ],
+      "num_relevant": 94,
+      "num_retrieved_relevant": 5,
+      "metrics": {
+        "precision@5": 0.4,
+        "recall@5": 0.02127659574468085,
+        "f1@5": 0.04040404040404041,
+        "precision@10": 0.5,
+        "recall@10": 0.05319148936170213,
+        "f1@10": 0.09615384615384615,
+        "precision@20": 0.5,
+        "recall@20": 0.05319148936170213,
+        "f1@20": 0.09615384615384615,
+        "mrr": 0.5,
+        "ap": 0.026595744680851064
+      },
+      "latency_ms": 25.88,
+      "source_breakdown": {
+        "vector": 5,
+        "bm25": 5
+      }
+    },
+    {
+      "query": "Healthy high-protein dinner ideas with chicken",
+      "query_type": "natural_language",
+      "retrieved_ids": [
+        226319,
+        275131,
+        141385,
+        502749,
+        291896,
+        260531,
+        12486,
+        20624,
+        166531,
+        78039
+      ],
+      "num_relevant": 6,
+      "num_retrieved_relevant": 0,
+      "metrics": {
+        "precision@5": 0.0,
+        "recall@5": 0.0,
+        "f1@5": 0.0,
+        "precision@10": 0.0,
+        "recall@10": 0.0,
+        "f1@10": 0.0,
+        "precision@20": 0.0,
+        "recall@20": 0.0,
+        "f1@20": 0.0,
+        "mrr": 0.0,
+        "ap": 0.0
+      },
+      "latency_ms": 27.17,
+      "source_breakdown": {
+        "vector": 5,
+        "bm25": 5
+      }
+    },
+    {
+      "query": "Easy southern-united-states lunch with chicken, beef",
+      "query_type": "natural_language",
+      "retrieved_ids": [
+        177373,
+        76490,
+        13362,
+        31236,
+        466766,
+        33853,
+        21875,
+        34930,
+        30362,
+        335058
+      ],
+      "num_relevant": 3,
+      "num_retrieved_relevant": 0,
+      "metrics": {
+        "precision@5": 0.0,
+        "recall@5": 0.0,
+        "f1@5": 0.0,
+        "precision@10": 0.0,
+        "recall@10": 0.0,
+        "f1@10": 0.0,
+        "precision@20": 0.0,
+        "recall@20": 0.0,
+        "f1@20": 0.0,
+        "mrr": 0.0,
+        "ap": 0.0
+      },
+      "latency_ms": 24.94,
+      "source_breakdown": {
+        "vector": 3,
+        "vector+bm25": 5,
+        "bm25": 2
+      }
+    },
+    {
+      "query": "Quick vegetarian lunch under 45 minutes",
+      "query_type": "natural_language",
+      "retrieved_ids": [
+        216276,
+        103114,
+        109818,
+        261215,
+        307331,
+        69170,
+        533190,
+        209972,
+        148563,
+        431648
+      ],
+      "num_relevant": 228,
+      "num_retrieved_relevant": 5,
+      "metrics": {
+        "precision@5": 0.4,
+        "recall@5": 0.008771929824561403,
+        "f1@5": 0.017167381974248927,
+        "precision@10": 0.5,
+        "recall@10": 0.021929824561403508,
+        "f1@10": 0.04201680672268908,
+        "precision@20": 0.5,
+        "recall@20": 0.021929824561403508,
+        "f1@20": 0.04201680672268908,
+        "mrr": 1.0,
+        "ap": 0.015350877192982455
+      },
+      "latency_ms": 24.41,
+      "source_breakdown": {
+        "vector": 5,
+        "bm25": 5
+      }
+    },
+    {
+      "query": "Simple lunch for weeknight cooking with turkey",
+      "query_type": "natural_language",
+      "retrieved_ids": [
+        490284,
+        510088,
+        44942,
+        47811,
+        267626,
+        380259,
+        507154,
+        74816,
+        420931,
+        332770
+      ],
+      "num_relevant": 4,
+      "num_retrieved_relevant": 0,
+      "metrics": {
+        "precision@5": 0.0,
+        "recall@5": 0.0,
+        "f1@5": 0.0,
+        "precision@10": 0.0,
+        "recall@10": 0.0,
+        "f1@10": 0.0,
+        "precision@20": 0.0,
+        "recall@20": 0.0,
+        "f1@20": 0.0,
+        "mrr": 0.0,
+        "ap": 0.0
+      },
+      "latency_ms": 24.17,
+      "source_breakdown": {
+        "vector": 3,
+        "bm25": 3,
+        "vector+bm25": 4
+      }
+    },
+    {
+      "query": "Quick low-calorie lunch under 60 minutes",
+      "query_type": "natural_language",
+      "retrieved_ids": [
+        116772,
+        249613,
+        533190,
+        71550,
+        266312,
+        359483,
+        228147,
+        261215,
+        391298,
+        284518
+      ],
+      "num_relevant": 112,
+      "num_retrieved_relevant": 4,
+      "metrics": {
+        "precision@5": 0.4,
+        "recall@5": 0.017857142857142856,
+        "f1@5": 0.034188034188034185,
+        "precision@10": 0.4,
+        "recall@10": 0.03571428571428571,
+        "f1@10": 0.06557377049180328,
+        "precision@20": 0.4,
+        "recall@20": 0.03571428571428571,
+        "f1@20": 0.06557377049180328,
+        "mrr": 0.5,
+        "ap": 0.016964285714285713
+      },
+      "latency_ms": 22.88,
+      "source_breakdown": {
+        "vector": 5,
+        "bm25": 5
+      }
+    },
+    {
+      "query": "cajun shrimp recipes",
+      "query_type": "tag_pair",
+      "retrieved_ids": [
+        332884,
+        332884,
+        54168,
+        8131,
+        531143,
+        209742,
+        8131,
+        214981,
+        297671,
+        413288
+      ],
+      "num_relevant": 7,
+      "num_retrieved_relevant": 5,
+      "metrics": {
+        "precision@5": 0.6,
+        "recall@5": 0.42857142857142855,
+        "f1@5": 0.5,
+        "precision@10": 0.7,
+        "recall@10": 1.0,
+        "f1@10": 0.8235294117647058,
+        "precision@20": 0.7,
+        "recall@20": 1.0,
+        "f1@20": 0.8235294117647058,
+        "mrr": 1.0,
+        "ap": 0.7972789115646258
+      },
+      "latency_ms": 19.22,
+      "source_breakdown": {
+        "vector+bm25": 4,
+        "vector": 3,
+        "bm25": 3
+      }
+    },
+    {
+      "query": "tropical-fruit pineapple recipes",
+      "query_type": "tag_pair",
+      "retrieved_ids": [
+        383260,
+        118313,
+        501210,
+        2945,
+        108162,
+        8827,
+        356655,
+        32024,
+        226246,
+        501210
+      ],
+      "num_relevant": 96,
+      "num_retrieved_relevant": 7,
+      "metrics": {
+        "precision@5": 0.8,
+        "recall@5": 0.041666666666666664,
+        "f1@5": 0.07920792079207921,
+        "precision@10": 0.8,
+        "recall@10": 0.08333333333333333,
+        "f1@10": 0.1509433962264151,
+        "precision@20": 0.8,
+        "recall@20": 0.08333333333333333,
+        "f1@20": 0.1509433962264151,
+        "mrr": 0.5,
+        "ap": 0.06335565476190476
+      },
+      "latency_ms": 22.67,
+      "source_breakdown": {
+        "vector": 4,
+        "bm25": 4,
+        "vector+bm25": 2
+      }
+    },
+    {
+      "query": "grains from-scratch recipes",
+      "query_type": "tag_pair",
+      "retrieved_ids": [
+        371917,
+        472957,
+        117427,
+        444171,
+        140610,
+        377872,
+        188541,
+        497150,
+        221942,
+        450047
+      ],
+      "num_relevant": 7,
+      "num_retrieved_relevant": 4,
+      "metrics": {
+        "precision@5": 0.2,
+        "recall@5": 0.14285714285714285,
+        "f1@5": 0.16666666666666666,
+        "precision@10": 0.4,
+        "recall@10": 0.5714285714285714,
+        "f1@10": 0.47058823529411764,
+        "precision@20": 0.4,
+        "recall@20": 0.5714285714285714,
+        "f1@20": 0.47058823529411764,
+        "mrr": 0.5,
+        "ap": 0.22976190476190478
+      },
+      "latency_ms": 25.26,
+      "source_breakdown": {
+        "vector": 5,
+        "bm25": 4,
+        "vector+bm25": 1
+      }
+    },
+    {
+      "query": "high-protein pork-loins recipes",
+      "query_type": "tag_pair",
+      "retrieved_ids": [
+        322713,
+        462729,
+        497554,
+        107643,
+        216880,
+        209690,
+        462729,
+        141108,
+        334984,
+        236164
+      ],
+      "num_relevant": 17,
+      "num_retrieved_relevant": 7,
+      "metrics": {
+        "precision@5": 0.6,
+        "recall@5": 0.17647058823529413,
+        "f1@5": 0.2727272727272727,
+        "precision@10": 0.8,
+        "recall@10": 0.47058823529411764,
+        "f1@10": 0.5925925925925927,
+        "precision@20": 0.8,
+        "recall@20": 0.47058823529411764,
+        "f1@20": 0.5925925925925927,
+        "mrr": 0.5,
+        "ap": 0.3122782446311858
+      },
+      "latency_ms": 24.78,
+      "source_breakdown": {
+        "vector": 2,
+        "vector+bm25": 5,
+        "bm25": 3
+      }
+    },
+    {
+      "query": "soups-stews onions recipes",
+      "query_type": "tag_pair",
+      "retrieved_ids": [
+        138275,
+        103153,
+        391390,
+        434512,
+        274988,
+        120364,
+        516687,
+        145429,
+        239647,
+        285743
+      ],
+      "num_relevant": 26,
+      "num_retrieved_relevant": 2,
+      "metrics": {
+        "precision@5": 0.2,
+        "recall@5": 0.038461538461538464,
+        "f1@5": 0.06451612903225806,
+        "precision@10": 0.2,
+        "recall@10": 0.07692307692307693,
+        "f1@10": 0.1111111111111111,
+        "precision@20": 0.2,
+        "recall@20": 0.07692307692307693,
+        "f1@20": 0.1111111111111111,
+        "mrr": 1.0,
+        "ap": 0.04615384615384615
+      },
+      "latency_ms": 26.66,
+      "source_breakdown": {
+        "vector": 4,
+        "bm25": 5,
+        "vector+bm25": 1
+      }
+    },
+    {
+      "query": "sauces mango recipes",
+      "query_type": "tag_pair",
+      "retrieved_ids": [
+        276576,
+        106183,
+        70134,
+        280255,
+        280255,
+        512016,
+        28731,
+        398060,
+        118865,
+        205189
+      ],
+      "num_relevant": 5,
+      "num_retrieved_relevant": 4,
+      "metrics": {
+        "precision@5": 0.6,
+        "recall@5": 0.6,
+        "f1@5": 0.6,
+        "precision@10": 0.5,
+        "recall@10": 1.0,
+        "f1@10": 0.6666666666666666,
+        "precision@20": 0.5,
+        "recall@20": 1.0,
+        "f1@20": 0.6666666666666666,
+        "mrr": 0.5,
+        "ap": 0.5533333333333333
+      },
+      "latency_ms": 24.44,
+      "source_breakdown": {
+        "vector+bm25": 8,
+        "bm25": 2
+      }
+    },
+    {
+      "query": "small-appliance hand-formed-cookies recipes",
+      "query_type": "tag_pair",
+      "retrieved_ids": [
+        312259,
+        86973,
+        491905,
+        82467,
+        70648,
+        241578,
+        70278,
+        15069,
+        401089,
+        55809
+      ],
+      "num_relevant": 7,
+      "num_retrieved_relevant": 5,
+      "metrics": {
+        "precision@5": 0.4,
+        "recall@5": 0.2857142857142857,
+        "f1@5": 0.3333333333333333,
+        "precision@10": 0.5,
+        "recall@10": 0.7142857142857143,
+        "f1@10": 0.588235294117647,
+        "precision@20": 0.5,
+        "recall@20": 0.7142857142857143,
+        "f1@20": 0.588235294117647,
+        "mrr": 0.5,
+        "ap": 0.35714285714285715
+      },
+      "latency_ms": 30.71,
+      "source_breakdown": {
+        "vector": 4,
+        "bm25": 5,
+        "vector+bm25": 1
+      }
+    },
+    {
+      "query": "small-appliance australian recipes",
+      "query_type": "tag_pair",
+      "retrieved_ids": [
+        387861,
+        255293,
+        134696,
+        146939,
+        269655,
+        278332,
+        346250,
+        146074,
+        504987,
+        261680
+      ],
+      "num_relevant": 9,
+      "num_retrieved_relevant": 5,
+      "metrics": {
+        "precision@5": 0.4,
+        "recall@5": 0.2222222222222222,
+        "f1@5": 0.2857142857142857,
+        "precision@10": 0.5,
+        "recall@10": 0.5555555555555556,
+        "f1@10": 0.5263157894736842,
+        "precision@20": 0.5,
+        "recall@20": 0.5555555555555556,
+        "f1@20": 0.5263157894736842,
+        "mrr": 0.5,
+        "ap": 0.2777777777777778
+      },
+      "latency_ms": 26.19,
+      "source_breakdown": {
+        "vector+bm25": 2,
+        "bm25": 5,
+        "vector": 3
+      }
+    },
+    {
+      "query": "brown-bag recipes",
+      "query_type": "tag_single",
+      "retrieved_ids": [
+        356932,
+        287791,
+        186762,
+        107606,
+        167432,
+        444934,
+        62703,
+        197496,
+        342698,
+        114431
+      ],
+      "num_relevant": 147,
+      "num_retrieved_relevant": 1,
+      "metrics": {
+        "precision@5": 0.2,
+        "recall@5": 0.006802721088435374,
+        "f1@5": 0.013157894736842105,
+        "precision@10": 0.1,
+        "recall@10": 0.006802721088435374,
+        "f1@10": 0.012738853503184714,
+        "precision@20": 0.1,
+        "recall@20": 0.006802721088435374,
+        "f1@20": 0.012738853503184714,
+        "mrr": 1.0,
+        "ap": 0.006802721088435374
+      },
+      "latency_ms": 28.4,
+      "source_breakdown": {
+        "vector": 5,
+        "bm25": 5
+      }
+    },
+    {
+      "query": "hand-formed-cookies recipes",
+      "query_type": "tag_single",
+      "retrieved_ids": [
+        312259,
+        80114,
+        491905,
+        519547,
+        70648,
+        177191,
+        147631,
+        23329,
+        352034,
+        440896
+      ],
+      "num_relevant": 96,
+      "num_retrieved_relevant": 8,
+      "metrics": {
+        "precision@5": 0.8,
+        "recall@5": 0.041666666666666664,
+        "f1@5": 0.07920792079207921,
+        "precision@10": 0.8,
+        "recall@10": 0.08333333333333333,
+        "f1@10": 0.1509433962264151,
+        "precision@20": 0.8,
+        "recall@20": 0.08333333333333333,
+        "f1@20": 0.1509433962264151,
+        "mrr": 1.0,
+        "ap": 0.07203621031746031
+      },
+      "latency_ms": 24.75,
+      "source_breakdown": {
+        "vector+bm25": 1,
+        "bm25": 5,
+        "vector": 4
+      }
+    },
+    {
+      "query": "dips recipes",
+      "query_type": "tag_single",
+      "retrieved_ids": [
+        196226,
+        358626,
+        42522,
+        42522,
+        31280,
+        324047,
+        284273,
+        230565,
+        154834,
+        95389
+      ],
+      "num_relevant": 220,
+      "num_retrieved_relevant": 9,
+      "metrics": {
+        "precision@5": 1.0,
+        "recall@5": 0.022727272727272728,
+        "f1@5": 0.044444444444444446,
+        "precision@10": 1.0,
+        "recall@10": 0.045454545454545456,
+        "f1@10": 0.08695652173913045,
+        "precision@20": 1.0,
+        "recall@20": 0.045454545454545456,
+        "f1@20": 0.08695652173913045,
+        "mrr": 1.0,
+        "ap": 0.045454545454545456
+      },
+      "latency_ms": 27.39,
+      "source_breakdown": {
+        "vector": 4,
+        "bm25": 4,
+        "vector+bm25": 2
+      }
+    },
+    {
+      "query": "chutneys recipes",
+      "query_type": "tag_single",
+      "retrieved_ids": [
+        172783,
+        259581,
+        425566,
+        126313,
+        26219,
+        512016,
+        512016,
+        328187,
+        392339,
+        177147
+      ],
+      "num_relevant": 19,
+      "num_retrieved_relevant": 7,
+      "metrics": {
+        "precision@5": 0.6,
+        "recall@5": 0.15789473684210525,
+        "f1@5": 0.25,
+        "precision@10": 0.8,
+        "recall@10": 0.42105263157894735,
+        "f1@10": 0.5517241379310345,
+        "precision@20": 0.8,
+        "recall@20": 0.42105263157894735,
+        "f1@20": 0.5517241379310345,
+        "mrr": 1.0,
+        "ap": 0.33203842940685047
+      },
+      "latency_ms": 22.98,
+      "source_breakdown": {
+        "vector+bm25": 8,
+        "vector": 1,
+        "bm25": 1
+      }
+    },
+    {
+      "query": "beans recipes",
+      "query_type": "tag_single",
+      "retrieved_ids": [
+        46636,
+        239766,
+        239766,
+        268124,
+        67547,
+        187438,
+        407659,
+        67686,
+        201020,
+        349570
+      ],
+      "num_relevant": 294,
+      "num_retrieved_relevant": 9,
+      "metrics": {
+        "precision@5": 1.0,
+        "recall@5": 0.017006802721088437,
+        "f1@5": 0.03344481605351171,
+        "precision@10": 1.0,
+        "recall@10": 0.034013605442176874,
+        "f1@10": 0.06578947368421054,
+        "precision@20": 1.0,
+        "recall@20": 0.034013605442176874,
+        "f1@20": 0.06578947368421054,
+        "mrr": 1.0,
+        "ap": 0.034013605442176874
+      },
+      "latency_ms": 20.13,
+      "source_breakdown": {
+        "vector+bm25": 5,
+        "bm25": 2,
+        "vector": 3
+      }
+    },
+    {
+      "query": "wings recipes",
+      "query_type": "tag_single",
+      "retrieved_ids": [
+        44076,
+        77820,
+        473477,
+        420305,
+        14341,
+        421164,
+        21875,
+        154149,
+        455193,
+        154374
+      ],
+      "num_relevant": 25,
+      "num_retrieved_relevant": 9,
+      "metrics": {
+        "precision@5": 0.8,
+        "recall@5": 0.16,
+        "f1@5": 0.26666666666666666,
+        "precision@10": 0.9,
+        "recall@10": 0.36,
+        "f1@10": 0.5142857142857143,
+        "precision@20": 0.9,
+        "recall@20": 0.36,
+        "f1@20": 0.5142857142857143,
+        "mrr": 1.0,
+        "ap": 0.3161746031746031
+      },
+      "latency_ms": 25.95,
+      "source_breakdown": {
+        "vector+bm25": 7,
+        "vector": 1,
+        "bm25": 2
+      }
+    },
+    {
+      "query": "canadian recipes",
+      "query_type": "tag_single",
+      "retrieved_ids": [
+        265565,
+        117494,
+        18770,
+        265565,
+        171427,
+        37313,
+        155054,
+        346232,
+        39234,
+        101606
+      ],
+      "num_relevant": 227,
+      "num_retrieved_relevant": 7,
+      "metrics": {
+        "precision@5": 1.0,
+        "recall@5": 0.022026431718061675,
+        "f1@5": 0.04310344827586207,
+        "precision@10": 0.8,
+        "recall@10": 0.03524229074889868,
+        "f1@10": 0.06751054852320676,
+        "precision@20": 0.8,
+        "recall@20": 0.03524229074889868,
+        "f1@20": 0.06751054852320676,
+        "mrr": 1.0,
+        "ap": 0.03338228095937347
+      },
+      "latency_ms": 25.04,
+      "source_breakdown": {
+        "vector+bm25": 3,
+        "bm25": 3,
+        "vector": 4
+      }
+    },
+    {
+      "query": "flat-shapes recipes",
+      "query_type": "tag_single",
+      "retrieved_ids": [
+        66161,
+        346705,
+        143050,
+        301202,
+        161690,
+        230796,
+        367576,
+        377539,
+        388418,
+        146813
+      ],
+      "num_relevant": 18,
+      "num_retrieved_relevant": 5,
+      "metrics": {
+        "precision@5": 0.4,
+        "recall@5": 0.1111111111111111,
+        "f1@5": 0.1739130434782609,
+        "precision@10": 0.5,
+        "recall@10": 0.2777777777777778,
+        "f1@10": 0.35714285714285715,
+        "precision@20": 0.5,
+        "recall@20": 0.2777777777777778,
+        "f1@20": 0.35714285714285715,
+        "mrr": 0.5,
+        "ap": 0.1388888888888889
+      },
+      "latency_ms": 23.29,
+      "source_breakdown": {
+        "vector": 5,
+        "bm25": 5
+      }
+    }
+  ]
+}

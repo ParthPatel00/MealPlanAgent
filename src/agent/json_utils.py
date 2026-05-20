@@ -68,4 +68,4 @@ def extract_first_json(text: str) -> dict:
                         f"Found JSON-like block but it failed to parse: {e}\n{candidate[:500]}"
                     ) from e
 
-    raise ValueError(f"Unbalanced braces — could not extract JSON from:\n{text[:500]}")
+    raise ValueError(f"Unbalanced braces, could not extract JSON from:\n{text[:500]}")

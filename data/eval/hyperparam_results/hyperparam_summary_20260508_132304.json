@@ -1,0 +1,371 @@
+{
+  "timestamp": "2026-05-08T20:23:04.830968+00:00",
+  "sweeps": {
+    "top_k": [
+      {
+        "config_name": "top_k_5",
+        "config": {
+          "name": "top_k_5",
+          "use_vector": true,
+          "use_bm25": true,
+          "use_kg": true,
+          "top_k": 5,
+          "rrf_k": 60,
+          "kg_boost_weight": 0.1,
+          "embed_model": "sentence-transformers/all-MiniLM-L6-v2"
+        },
+        "metrics": {
+          "mean_precision@5": 0.575,
+          "mean_precision@10": 0.575,
+          "mean_recall@10": 0.2123,
+          "mean_recall@20": 0.2123,
+          "mean_mrr": 0.6667,
+          "mean_ap": 0.2107,
+          "mean_ndcg@10": 0.2338
+        },
+        "avg_latency_ms": 114.94,
+        "num_queries": 40
+      },
+      {
+        "config_name": "top_k_10",
+        "config": {
+          "name": "top_k_10",
+          "use_vector": true,
+          "use_bm25": true,
+          "use_kg": true,
+          "top_k": 10,
+          "rrf_k": 60,
+          "kg_boost_weight": 0.1,
+          "embed_model": "sentence-transformers/all-MiniLM-L6-v2"
+        },
+        "metrics": {
+          "mean_precision@5": 0.655,
+          "mean_precision@10": 0.5675,
+          "mean_recall@10": 0.3377,
+          "mean_recall@20": 0.3377,
+          "mean_mrr": 0.6875,
+          "mean_ap": 0.3324,
+          "mean_ndcg@10": 0.4384
+        },
+        "avg_latency_ms": 115.14,
+        "num_queries": 40
+      },
+      {
+        "config_name": "top_k_20",
+        "config": {
+          "name": "top_k_20",
+          "use_vector": true,
+          "use_bm25": true,
+          "use_kg": true,
+          "top_k": 20,
+          "rrf_k": 60,
+          "kg_boost_weight": 0.1,
+          "embed_model": "sentence-transformers/all-MiniLM-L6-v2"
+        },
+        "metrics": {
+          "mean_precision@5": 0.695,
+          "mean_precision@10": 0.63,
+          "mean_recall@10": 0.3747,
+          "mean_recall@20": 0.4624,
+          "mean_mrr": 0.7146,
+          "mean_ap": 0.4386,
+          "mean_ndcg@10": 0.4919
+        },
+        "avg_latency_ms": 116.26,
+        "num_queries": 40
+      },
+      {
+        "config_name": "top_k_50",
+        "config": {
+          "name": "top_k_50",
+          "use_vector": true,
+          "use_bm25": true,
+          "use_kg": true,
+          "top_k": 50,
+          "rrf_k": 60,
+          "kg_boost_weight": 0.1,
+          "embed_model": "sentence-transformers/all-MiniLM-L6-v2"
+        },
+        "metrics": {
+          "mean_precision@5": 0.715,
+          "mean_precision@10": 0.6925,
+          "mean_recall@10": 0.429,
+          "mean_recall@20": 0.5226,
+          "mean_mrr": 0.7159,
+          "mean_ap": 0.6089,
+          "mean_ndcg@10": 0.5988
+        },
+        "avg_latency_ms": 138.66,
+        "num_queries": 40
+      }
+    ],
+    "rrf_k": [
+      {
+        "config_name": "rrf_k_10",
+        "config": {
+          "name": "rrf_k_10",
+          "use_vector": true,
+          "use_bm25": true,
+          "use_kg": true,
+          "top_k": 10,
+          "rrf_k": 10,
+          "kg_boost_weight": 0.1,
+          "embed_model": "sentence-transformers/all-MiniLM-L6-v2"
+        },
+        "metrics": {
+          "mean_precision@5": 0.62,
+          "mean_precision@10": 0.545,
+          "mean_recall@10": 0.3365,
+          "mean_recall@20": 0.3365,
+          "mean_mrr": 0.68,
+          "mean_ap": 0.3314,
+          "mean_ndcg@10": 0.3723
+        },
+        "avg_latency_ms": 108.62,
+        "num_queries": 40
+      },
+      {
+        "config_name": "rrf_k_30",
+        "config": {
+          "name": "rrf_k_30",
+          "use_vector": true,
+          "use_bm25": true,
+          "use_kg": true,
+          "top_k": 10,
+          "rrf_k": 30,
+          "kg_boost_weight": 0.1,
+          "embed_model": "sentence-transformers/all-MiniLM-L6-v2"
+        },
+        "metrics": {
+          "mean_precision@5": 0.655,
+          "mean_precision@10": 0.5675,
+          "mean_recall@10": 0.3377,
+          "mean_recall@20": 0.3377,
+          "mean_mrr": 0.6875,
+          "mean_ap": 0.3324,
+          "mean_ndcg@10": 0.4384
+        },
+        "avg_latency_ms": 124.93,
+        "num_queries": 40
+      },
+      {
+        "config_name": "rrf_k_60",
+        "config": {
+          "name": "rrf_k_60",
+          "use_vector": true,
+          "use_bm25": true,
+          "use_kg": true,
+          "top_k": 10,
+          "rrf_k": 60,
+          "kg_boost_weight": 0.1,
+          "embed_model": "sentence-transformers/all-MiniLM-L6-v2"
+        },
+        "metrics": {
+          "mean_precision@5": 0.655,
+          "mean_precision@10": 0.5675,
+          "mean_recall@10": 0.3377,
+          "mean_recall@20": 0.3377,
+          "mean_mrr": 0.6875,
+          "mean_ap": 0.3324,
+          "mean_ndcg@10": 0.4384
+        },
+        "avg_latency_ms": 118.9,
+        "num_queries": 40
+      },
+      {
+        "config_name": "rrf_k_100",
+        "config": {
+          "name": "rrf_k_100",
+          "use_vector": true,
+          "use_bm25": true,
+          "use_kg": true,
+          "top_k": 10,
+          "rrf_k": 100,
+          "kg_boost_weight": 0.1,
+          "embed_model": "sentence-transformers/all-MiniLM-L6-v2"
+        },
+        "metrics": {
+          "mean_precision@5": 0.655,
+          "mean_precision@10": 0.5675,
+          "mean_recall@10": 0.3377,
+          "mean_recall@20": 0.3377,
+          "mean_mrr": 0.6875,
+          "mean_ap": 0.3324,
+          "mean_ndcg@10": 0.4384
+        },
+        "avg_latency_ms": 111.09,
+        "num_queries": 40
+      },
+      {
+        "config_name": "rrf_k_200",
+        "config": {
+          "name": "rrf_k_200",
+          "use_vector": true,
+          "use_bm25": true,
+          "use_kg": true,
+          "top_k": 10,
+          "rrf_k": 200,
+          "kg_boost_weight": 0.1,
+          "embed_model": "sentence-transformers/all-MiniLM-L6-v2"
+        },
+        "metrics": {
+          "mean_precision@5": 0.655,
+          "mean_precision@10": 0.5675,
+          "mean_recall@10": 0.3377,
+          "mean_recall@20": 0.3377,
+          "mean_mrr": 0.6875,
+          "mean_ap": 0.3324,
+          "mean_ndcg@10": 0.4384
+        },
+        "avg_latency_ms": 126.49,
+        "num_queries": 40
+      }
+    ],
+    "kg_boost": [
+      {
+        "config_name": "kg_boost_0.00",
+        "config": {
+          "name": "kg_boost_0.00",
+          "use_vector": true,
+          "use_bm25": true,
+          "use_kg": true,
+          "top_k": 10,
+          "rrf_k": 60,
+          "kg_boost_weight": 0.0,
+          "embed_model": "sentence-transformers/all-MiniLM-L6-v2"
+        },
+        "metrics": {
+          "mean_precision@5": 0.365,
+          "mean_precision@10": 0.415,
+          "mean_recall@10": 0.241,
+          "mean_recall@20": 0.241,
+          "mean_mrr": 0.5021,
+          "mean_ap": 0.1324,
+          "mean_ndcg@10": 0.234
+        },
+        "avg_latency_ms": 117.79,
+        "num_queries": 40
+      },
+      {
+        "config_name": "kg_boost_0.05",
+        "config": {
+          "name": "kg_boost_0.05",
+          "use_vector": true,
+          "use_bm25": true,
+          "use_kg": true,
+          "top_k": 10,
+          "rrf_k": 60,
+          "kg_boost_weight": 0.05,
+          "embed_model": "sentence-transformers/all-MiniLM-L6-v2"
+        },
+        "metrics": {
+          "mean_precision@5": 0.655,
+          "mean_precision@10": 0.5675,
+          "mean_recall@10": 0.3377,
+          "mean_recall@20": 0.3377,
+          "mean_mrr": 0.6875,
+          "mean_ap": 0.3324,
+          "mean_ndcg@10": 0.4384
+        },
+        "avg_latency_ms": 110.19,
+        "num_queries": 40
+      },
+      {
+        "config_name": "kg_boost_0.10",
+        "config": {
+          "name": "kg_boost_0.10",
+          "use_vector": true,
+          "use_bm25": true,
+          "use_kg": true,
+          "top_k": 10,
+          "rrf_k": 60,
+          "kg_boost_weight": 0.1,
+          "embed_model": "sentence-transformers/all-MiniLM-L6-v2"
+        },
+        "metrics": {
+          "mean_precision@5": 0.655,
+          "mean_precision@10": 0.5675,
+          "mean_recall@10": 0.3377,
+          "mean_recall@20": 0.3377,
+          "mean_mrr": 0.6875,
+          "mean_ap": 0.3324,
+          "mean_ndcg@10": 0.4384
+        },
+        "avg_latency_ms": 121.88,
+        "num_queries": 40
+      },
+      {
+        "config_name": "kg_boost_0.20",
+        "config": {
+          "name": "kg_boost_0.20",
+          "use_vector": true,
+          "use_bm25": true,
+          "use_kg": true,
+          "top_k": 10,
+          "rrf_k": 60,
+          "kg_boost_weight": 0.2,
+          "embed_model": "sentence-transformers/all-MiniLM-L6-v2"
+        },
+        "metrics": {
+          "mean_precision@5": 0.655,
+          "mean_precision@10": 0.5675,
+          "mean_recall@10": 0.3377,
+          "mean_recall@20": 0.3377,
+          "mean_mrr": 0.6875,
+          "mean_ap": 0.3324,
+          "mean_ndcg@10": 0.4384
+        },
+        "avg_latency_ms": 111.86,
+        "num_queries": 40
+      },
+      {
+        "config_name": "kg_boost_0.50",
+        "config": {
+          "name": "kg_boost_0.50",
+          "use_vector": true,
+          "use_bm25": true,
+          "use_kg": true,
+          "top_k": 10,
+          "rrf_k": 60,
+          "kg_boost_weight": 0.5,
+          "embed_model": "sentence-transformers/all-MiniLM-L6-v2"
+        },
+        "metrics": {
+          "mean_precision@5": 0.655,
+          "mean_precision@10": 0.5675,
+          "mean_recall@10": 0.3377,
+          "mean_recall@20": 0.3377,
+          "mean_mrr": 0.6875,
+          "mean_ap": 0.3324,
+          "mean_ndcg@10": 0.4384
+        },
+        "avg_latency_ms": 100.05,
+        "num_queries": 40
+      },
+      {
+        "config_name": "kg_boost_1.00",
+        "config": {
+          "name": "kg_boost_1.00",
+          "use_vector": true,
+          "use_bm25": true,
+          "use_kg": true,
+          "top_k": 10,
+          "rrf_k": 60,
+          "kg_boost_weight": 1.0,
+          "embed_model": "sentence-transformers/all-MiniLM-L6-v2"
+        },
+        "metrics": {
+          "mean_precision@5": 0.655,
+          "mean_precision@10": 0.5675,
+          "mean_recall@10": 0.3377,
+          "mean_recall@20": 0.3377,
+          "mean_mrr": 0.6875,
+          "mean_ap": 0.3324,
+          "mean_ndcg@10": 0.4384
+        },
+        "avg_latency_ms": 122.54,
+        "num_queries": 40
+      }
+    ]
+  }
+}

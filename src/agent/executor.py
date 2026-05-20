@@ -14,7 +14,6 @@ from src.logging_utils import StructuredLogger
 from src.tools.allergy_checker import allergy_checker
 from src.tools.budget_estimator import estimate_grocery_cost
 from src.tools.grocery_list import build_grocery_list
-from src.tools.ics_generator import generate_ics
 from src.tools.nutrition import summarize_plan_nutrition, summarize_recipe_nutrition
 from src.tools.recipe_search import recipe_search
 
@@ -26,7 +25,6 @@ class ExecutorResult:
     grocery_list: dict[str, list[str]] = field(default_factory=dict)
     nutrition_summary: dict = field(default_factory=dict)
     budget_estimate: dict = field(default_factory=dict)
-    ics_bytes: bytes = b""
     cooking_blocks: list[dict] = field(default_factory=list)
     tool_calls: list[dict] = field(default_factory=list)
 
@@ -75,6 +73,9 @@ def run_executor(plan: dict, constraints: dict, logger: StructuredLogger) -> Exe
                 query=meal_req.get("query", ""),
                 max_minutes=meal_req.get("max_minutes", max_minutes),
                 forbidden_ingredients=allergens,
+                preferred_ingredients=meal_req.get("preferred_ingredients"),
+                preferred_tags=meal_req.get("preferred_tags"),
+                calorie_target=constraints.get("calorie_target_per_meal"),
                 top_k=5,
             )
 
@@ -149,7 +150,7 @@ def run_executor(plan: dict, constraints: dict, logger: StructuredLogger) -> Exe
     }
 
     # ------------------------------------------------------------------
-    # Step 1c: Fill phase — if fewer recipes than requested, do broad
+    # Step 1c: Fill phase. If fewer recipes than requested, do broad
     # fallback searches to reach the target count.
     # ------------------------------------------------------------------
     num_meals = constraints.get("num_meals", len(plan.get("meal_queries", [])))
@@ -306,35 +307,16 @@ def run_executor(plan: dict, constraints: dict, logger: StructuredLogger) -> Exe
         logger.log_error("executor.budget_estimator", str(exc))
 
     # ------------------------------------------------------------------
-    # Step 6: ICS calendar file
+    # Step 6: Build cooking blocks for scheduling display
     # ------------------------------------------------------------------
-    t0 = time.time()
-    try:
-        result.cooking_blocks = [
-            {
-                "meal_name": r["name"],
-                "day": r.get("_day", "Monday"),
-                "cook_hour": r.get("_cook_hour", 18),
-                "duration_minutes": r.get("minutes", 30),
-            }
-            for r in result.recipes
-        ]
-        result.ics_bytes = generate_ics(result.cooking_blocks)
-        latency = (time.time() - t0) * 1000
-
-        logger.log_tool_call(
-            tool_name="ics_generator",
-            inputs={"num_blocks": len(result.cooking_blocks)},
-            output={"ics_size_bytes": len(result.ics_bytes)},
-            latency_ms=latency,
-            success=True,
-        )
-        result.tool_calls.append({
-            "tool": "ics_generator",
-            "input": {"num_blocks": len(result.cooking_blocks), "days": [b["day"] for b in result.cooking_blocks]},
-            "output": {"ics_size_bytes": len(result.ics_bytes)},
-        })
-    except Exception as exc:
-        logger.log_error("executor.ics_generator", str(exc))
+    result.cooking_blocks = [
+        {
+            "meal_name": r["name"],
+            "day": r.get("_day", "Monday"),
+            "cook_hour": r.get("_cook_hour", 18),
+            "duration_minutes": r.get("minutes", 30),
+        }
+        for r in result.recipes
+    ]
 
     return result

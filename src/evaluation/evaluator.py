@@ -52,7 +52,7 @@ def run_eval(
     for i, case in enumerate(cases):
         if i > 0 and delay_between > 0:
             time.sleep(delay_between)
-        print(f"  Case {case['id']}/{len(cases)} — {case['constraints'].get('tags', [])}")
+        print(f"  Case {case['id']}/{len(cases)} - {case['constraints'].get('tags', [])}")
         t0 = time.time()
         try:
             result = run_pipeline(case["constraints"], model_name=model_name)

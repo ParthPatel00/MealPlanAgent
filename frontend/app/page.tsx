@@ -103,7 +103,7 @@ export default function Page() {
           {messages.length === 0 && !loading && (
             <div className="pt-[20vh] text-center">
               <h2 className="text-2xl font-semibold text-gray-800 mb-2">What should we cook this week?</h2>
-              <p className="text-sm text-gray-400 mb-8">Describe your meals and I&apos;ll plan recipes, grocery lists, nutrition, and a calendar.</p>
+              <p className="text-sm text-gray-400 mb-8">Describe your meals and I&apos;ll plan recipes, grocery lists, nutrition, and a schedule.</p>
               <div className="flex flex-wrap justify-center gap-2">
                 {SAMPLES.map((s, i) => (
                   <button
@@ -440,27 +440,8 @@ function NutritionPanel({ data }: { data: R }) {
 function SchedulePanel({ data }: { data: R }) {
   const [hour, setHour] = useState(18);
   const [min, setMin] = useState(0);
-  const [dl, setDl] = useState(false);
   const blocks = data.cooking_blocks || [];
   if (!blocks.length) return <p className="text-sm text-gray-400">No schedule.</p>;
-
-  const download = async () => {
-    setDl(true);
-    try {
-      const r = await fetch(`${API}/api/generate-ics`, {
-        method: "POST", headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ cooking_blocks: blocks, cook_hour: hour, cook_minute: min }),
-      });
-      const d = await r.json();
-      if (d.ics_base64) {
-        const b = Uint8Array.from(atob(d.ics_base64), (c) => c.charCodeAt(0));
-        const url = URL.createObjectURL(new Blob([b], { type: "text/calendar" }));
-        Object.assign(document.createElement("a"), { href: url, download: "meal_plan.ics" }).click();
-        URL.revokeObjectURL(url);
-      }
-    } catch (e) { alert(`Error: ${e}`); }
-    setDl(false);
-  };
 
   const hStr = `${hour % 12 || 12}:${min.toString().padStart(2, "0")} ${hour >= 12 ? "PM" : "AM"}`;
 
@@ -474,9 +455,6 @@ function SchedulePanel({ data }: { data: R }) {
         <select value={min} onChange={(e) => setMin(+e.target.value)} className="text-sm border border-gray-200 rounded-md px-2 py-1 bg-white">
           {[0, 15, 30, 45].map((m) => <option key={m} value={m}>:{m.toString().padStart(2, "0")}</option>)}
         </select>
-        <button onClick={download} disabled={dl} className="ml-2 px-3 py-1 bg-green-600 text-white text-xs rounded-md font-medium hover:bg-green-700 disabled:opacity-40 transition">
-          {dl ? "..." : "Download .ics"}
-        </button>
       </div>
       <div className="space-y-0.5">
         {blocks.map((b: R, i: number) => (
@@ -537,7 +515,6 @@ const PIPELINE_STEPS = [
   { key: "nutrition", label: "Nutrition Analysis", desc: "Per-recipe and plan-wide nutrient breakdown" },
   { key: "grocery_list", label: "Grocery List", desc: "Deduplicated ingredient list grouped by category" },
   { key: "budget_estimator", label: "Budget Estimate", desc: "Price estimation from USDA ingredient averages" },
-  { key: "ics_generator", label: "Calendar Export", desc: "ICS file generation for cooking schedule" },
 ];
 
 function ExecutorPipeline({ toolCalls }: { toolCalls: R[] }) {

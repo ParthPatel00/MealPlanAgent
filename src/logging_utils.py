@@ -5,12 +5,12 @@ Every agent run writes log entries to logs/session_<id>.jsonl.
 Each entry has a `type` field so downstream analysis can filter by stage.
 
 Entry types:
-    UserInput       — raw user constraints
-    PlannerOutput   — structured plan from Planner
-    ToolCall        — single tool invocation with input/output/latency
-    CriticCheck     — critic verdict and issues list
-    FinalOutput     — complete AgentResult summary
-    Error           — unexpected exception during a stage
+    UserInput        - raw user constraints
+    PlannerOutput    - structured plan from Planner
+    ToolCall         - single tool invocation with input/output/latency
+    CriticCheck      - critic verdict and issues list
+    FinalOutput      - complete AgentResult summary
+    Error            - unexpected exception during a stage
 """
 
 from __future__ import annotations

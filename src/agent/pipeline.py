@@ -27,7 +27,6 @@ class AgentResult:
     grocery_list: dict[str, list[str]] = field(default_factory=dict)
     nutrition_summary: dict = field(default_factory=dict)
     budget_estimate: dict = field(default_factory=dict)
-    ics_bytes: bytes = b""
     cooking_blocks: list[dict] = field(default_factory=list)
 
     # Audit
@@ -120,7 +119,6 @@ def run_pipeline(
             grocery_list=executor_result.grocery_list if executor_result else {},
             nutrition_summary=executor_result.nutrition_summary if executor_result else {},
             budget_estimate=executor_result.budget_estimate if executor_result else {},
-            ics_bytes=executor_result.ics_bytes if executor_result else b"",
             cooking_blocks=executor_result.cooking_blocks if executor_result else [],
             plan=plan,
             critic=critic_result,

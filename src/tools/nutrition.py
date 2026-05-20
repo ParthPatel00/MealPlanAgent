@@ -9,7 +9,7 @@ from __future__ import annotations
 
 # Approximate absolute values per 100% PDV (FDA standard, 2000 cal diet)
 PDV_REFERENCE = {
-    "calories_pdv": 2000,      # kcal  (stored differently — see note)
+    "calories_pdv": 2000,      # kcal  (stored differently, see note)
     "total_fat_pdv": 78,       # g
     "sugar_pdv": 50,           # g
     "sodium_pdv": 2300,        # mg
@@ -34,7 +34,7 @@ def pdv_to_absolute(nutrition: dict) -> dict:
     """
     Convert PDV percentages to approximate absolute values.
     Food.com stores calories directly as kcal (not PDV), so calories_pdv
-    is already the raw calorie count — no conversion needed.
+    is already the raw calorie count, no conversion needed.
     """
     result = {}
     for key, ref in PDV_REFERENCE.items():

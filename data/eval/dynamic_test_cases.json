@@ -1,0 +1,6601 @@
+{
+  "metadata": {
+    "total": 205,
+    "by_complexity": {
+      "simple": 70,
+      "medium": 70,
+      "complex": 60,
+      "edge_case": 5
+    },
+    "seed": 42
+  },
+  "scenarios": [
+    {
+      "complexity": "simple",
+      "constraints": {
+        "num_meals": 3,
+        "max_minutes": 30,
+        "tags": [
+          "gluten-free"
+        ],
+        "allergens": [],
+        "cook_after_hour": 18,
+        "dietary_notes": "",
+        "ingredients_on_hand": [],
+        "cuisine_preferences": [],
+        "calorie_target_per_meal": null
+      },
+      "nl_input": "I need 3 meals. that are gluten-free. under 30 minutes.",
+      "expected": {
+        "min_meals": 3,
+        "required_tags": [
+          "gluten-free"
+        ]
+      },
+      "id": 1
+    },
+    {
+      "complexity": "simple",
+      "constraints": {
+        "num_meals": 5,
+        "max_minutes": 30,
+        "tags": [],
+        "allergens": [],
+        "cook_after_hour": 18,
+        "dietary_notes": "",
+        "ingredients_on_hand": [],
+        "cuisine_preferences": [
+          "japanese"
+        ],
+        "calorie_target_per_meal": null
+      },
+      "nl_input": "make me 5 dinners. preferably japanese style. quick, 30 min max.",
+      "expected": {
+        "min_meals": 5,
+        "preferred_cuisine": "japanese"
+      },
+      "id": 2
+    },
+    {
+      "complexity": "simple",
+      "constraints": {
+        "num_meals": 3,
+        "max_minutes": 30,
+        "tags": [
+          "vegan"
+        ],
+        "allergens": [],
+        "cook_after_hour": 18,
+        "dietary_notes": "",
+        "ingredients_on_hand": [],
+        "cuisine_preferences": [],
+        "calorie_target_per_meal": null
+      },
+      "nl_input": "plan 3 meals. that are vegan. under 30 minutes.",
+      "expected": {
+        "min_meals": 3,
+        "required_tags": [
+          "vegan"
+        ]
+      },
+      "id": 3
+    },
+    {
+      "complexity": "simple",
+      "constraints": {
+        "num_meals": 5,
+        "max_minutes": 30,
+        "tags": [],
+        "allergens": [],
+        "cook_after_hour": 18,
+        "dietary_notes": "",
+        "ingredients_on_hand": [],
+        "cuisine_preferences": [
+          "french"
+        ],
+        "calorie_target_per_meal": null
+      },
+      "nl_input": "plan 5 meals. I'm in the mood for french. quick, 30 min max.",
+      "expected": {
+        "min_meals": 5,
+        "preferred_cuisine": "french"
+      },
+      "id": 4
+    },
+    {
+      "complexity": "simple",
+      "constraints": {
+        "num_meals": 3,
+        "max_minutes": 30,
+        "tags": [
+          "gluten-free"
+        ],
+        "allergens": [],
+        "cook_after_hour": 18,
+        "dietary_notes": "",
+        "ingredients_on_hand": [],
+        "cuisine_preferences": [],
+        "calorie_target_per_meal": null
+      },
+      "nl_input": "I need 3 meals. gluten-free only. quick, 30 min max.",
+      "expected": {
+        "min_meals": 3,
+        "required_tags": [
+          "gluten-free"
+        ]
+      },
+      "id": 5
+    },
+    {
+      "complexity": "simple",
+      "constraints": {
+        "num_meals": 3,
+        "max_minutes": 30,
+        "tags": [],
+        "allergens": [],
+        "cook_after_hour": 18,
+        "dietary_notes": "",
+        "ingredients_on_hand": [],
+        "cuisine_preferences": [
+          "mexican"
+        ],
+        "calorie_target_per_meal": null
+      },
+      "nl_input": "plan 3 meals. preferably mexican style. quick, 30 min max.",
+      "expected": {
+        "min_meals": 3,
+        "preferred_cuisine": "mexican"
+      },
+      "id": 6
+    },
+    {
+      "complexity": "simple",
+      "constraints": {
+        "num_meals": 4,
+        "max_minutes": 30,
+        "tags": [
+          "low-carb"
+        ],
+        "allergens": [],
+        "cook_after_hour": 18,
+        "dietary_notes": "",
+        "ingredients_on_hand": [],
+        "cuisine_preferences": [],
+        "calorie_target_per_meal": null
+      },
+      "nl_input": "I need 4 meals. low-carb only. under 30 minutes.",
+      "expected": {
+        "min_meals": 4,
+        "required_tags": [
+          "low-carb"
+        ]
+      },
+      "id": 7
+    },
+    {
+      "complexity": "simple",
+      "constraints": {
+        "num_meals": 3,
+        "max_minutes": 30,
+        "tags": [],
+        "allergens": [],
+        "cook_after_hour": 18,
+        "dietary_notes": "",
+        "ingredients_on_hand": [],
+        "cuisine_preferences": [],
+        "calorie_target_per_meal": null
+      },
+      "nl_input": "I need 3 meals. under 30 minutes.",
+      "expected": {
+        "min_meals": 3
+      },
+      "id": 8
+    },
+    {
+      "complexity": "simple",
+      "constraints": {
+        "num_meals": 5,
+        "max_minutes": 30,
+        "tags": [],
+        "allergens": [],
+        "cook_after_hour": 18,
+        "dietary_notes": "",
+        "ingredients_on_hand": [],
+        "cuisine_preferences": [],
+        "calorie_target_per_meal": null
+      },
+      "nl_input": "I need 5 meals. under 30 minutes.",
+      "expected": {
+        "min_meals": 5,
+        "max_minutes": 30
+      },
+      "id": 9
+    },
+    {
+      "complexity": "simple",
+      "constraints": {
+        "num_meals": 3,
+        "max_minutes": 30,
+        "tags": [
+          "gluten-free"
+        ],
+        "allergens": [],
+        "cook_after_hour": 18,
+        "dietary_notes": "",
+        "ingredients_on_hand": [],
+        "cuisine_preferences": [],
+        "calorie_target_per_meal": null
+      },
+      "nl_input": "plan 3 meals. gluten-free only. under 30 minutes.",
+      "expected": {
+        "min_meals": 3,
+        "required_tags": [
+          "gluten-free"
+        ]
+      },
+      "id": 10
+    },
+    {
+      "complexity": "simple",
+      "constraints": {
+        "num_meals": 3,
+        "max_minutes": 30,
+        "tags": [],
+        "allergens": [],
+        "cook_after_hour": 18,
+        "dietary_notes": "",
+        "ingredients_on_hand": [],
+        "cuisine_preferences": [
+          "french"
+        ],
+        "calorie_target_per_meal": null
+      },
+      "nl_input": "I need 3 meals. I'm in the mood for french. quick, 30 min max.",
+      "expected": {
+        "min_meals": 3,
+        "preferred_cuisine": "french"
+      },
+      "id": 11
+    },
+    {
+      "complexity": "simple",
+      "constraints": {
+        "num_meals": 4,
+        "max_minutes": 30,
+        "tags": [],
+        "allergens": [],
+        "cook_after_hour": 18,
+        "dietary_notes": "",
+        "ingredients_on_hand": [],
+        "cuisine_preferences": [
+          "mexican"
+        ],
+        "calorie_target_per_meal": null
+      },
+      "nl_input": "plan 4 meals. I'm in the mood for mexican. under 30 minutes.",
+      "expected": {
+        "min_meals": 4,
+        "preferred_cuisine": "mexican"
+      },
+      "id": 12
+    },
+    {
+      "complexity": "simple",
+      "constraints": {
+        "num_meals": 5,
+        "max_minutes": 30,
+        "tags": [],
+        "allergens": [],
+        "cook_after_hour": 18,
+        "dietary_notes": "",
+        "ingredients_on_hand": [],
+        "cuisine_preferences": [
+          "greek"
+        ],
+        "calorie_target_per_meal": null
+      },
+      "nl_input": "plan 5 meals. I'm in the mood for greek. quick, 30 min max.",
+      "expected": {
+        "min_meals": 5,
+        "preferred_cuisine": "greek"
+      },
+      "id": 13
+    },
+    {
+      "complexity": "simple",
+      "constraints": {
+        "num_meals": 5,
+        "max_minutes": 30,
+        "tags": [],
+        "allergens": [],
+        "cook_after_hour": 18,
+        "dietary_notes": "",
+        "ingredients_on_hand": [],
+        "cuisine_preferences": [],
+        "calorie_target_per_meal": null
+      },
+      "nl_input": "make me 5 dinners. under 30 minutes.",
+      "expected": {
+        "min_meals": 5,
+        "max_minutes": 30
+      },
+      "id": 14
+    },
+    {
+      "complexity": "simple",
+      "constraints": {
+        "num_meals": 3,
+        "max_minutes": 15,
+        "tags": [],
+        "allergens": [],
+        "cook_after_hour": 18,
+        "dietary_notes": "",
+        "ingredients_on_hand": [],
+        "cuisine_preferences": [],
+        "calorie_target_per_meal": null
+      },
+      "nl_input": "plan 3 meals. quick, 15 min max.",
+      "expected": {
+        "min_meals": 3,
+        "max_minutes": 15
+      },
+      "id": 15
+    },
+    {
+      "complexity": "simple",
+      "constraints": {
+        "num_meals": 3,
+        "max_minutes": 30,
+        "tags": [],
+        "allergens": [],
+        "cook_after_hour": 18,
+        "dietary_notes": "",
+        "ingredients_on_hand": [],
+        "cuisine_preferences": [],
+        "calorie_target_per_meal": null
+      },
+      "nl_input": "plan 3 meals. quick, 30 min max.",
+      "expected": {
+        "min_meals": 3
+      },
+      "id": 16
+    },
+    {
+      "complexity": "simple",
+      "constraints": {
+        "num_meals": 5,
+        "max_minutes": 30,
+        "tags": [],
+        "allergens": [],
+        "cook_after_hour": 18,
+        "dietary_notes": "",
+        "ingredients_on_hand": [],
+        "cuisine_preferences": [
+          "italian"
+        ],
+        "calorie_target_per_meal": null
+      },
+      "nl_input": "I need 5 meals. I'm in the mood for italian. under 30 minutes.",
+      "expected": {
+        "min_meals": 5,
+        "preferred_cuisine": "italian"
+      },
+      "id": 17
+    },
+    {
+      "complexity": "simple",
+      "constraints": {
+        "num_meals": 3,
+        "max_minutes": 15,
+        "tags": [],
+        "allergens": [],
+        "cook_after_hour": 18,
+        "dietary_notes": "",
+        "ingredients_on_hand": [],
+        "cuisine_preferences": [],
+        "calorie_target_per_meal": null
+      },
+      "nl_input": "make me 3 dinners. quick, 15 min max.",
+      "expected": {
+        "min_meals": 3,
+        "max_minutes": 15
+      },
+      "id": 18
+    },
+    {
+      "complexity": "simple",
+      "constraints": {
+        "num_meals": 5,
+        "max_minutes": 30,
+        "tags": [],
+        "allergens": [],
+        "cook_after_hour": 18,
+        "dietary_notes": "",
+        "ingredients_on_hand": [],
+        "cuisine_preferences": [],
+        "calorie_target_per_meal": null
+      },
+      "nl_input": "I need 5 meals. under 30 minutes.",
+      "expected": {
+        "min_meals": 5
+      },
+      "id": 19
+    },
+    {
+      "complexity": "simple",
+      "constraints": {
+        "num_meals": 5,
+        "max_minutes": 30,
+        "tags": [],
+        "allergens": [],
+        "cook_after_hour": 18,
+        "dietary_notes": "",
+        "ingredients_on_hand": [],
+        "cuisine_preferences": [
+          "italian"
+        ],
+        "calorie_target_per_meal": null
+      },
+      "nl_input": "plan 5 meals. preferably italian style. under 30 minutes.",
+      "expected": {
+        "min_meals": 5,
+        "preferred_cuisine": "italian"
+      },
+      "id": 20
+    },
+    {
+      "complexity": "simple",
+      "constraints": {
+        "num_meals": 5,
+        "max_minutes": 30,
+        "tags": [],
+        "allergens": [],
+        "cook_after_hour": 18,
+        "dietary_notes": "",
+        "ingredients_on_hand": [],
+        "cuisine_preferences": [
+          "chinese"
+        ],
+        "calorie_target_per_meal": null
+      },
+      "nl_input": "make me 5 dinners. I'm in the mood for chinese. under 30 minutes.",
+      "expected": {
+        "min_meals": 5,
+        "preferred_cuisine": "chinese"
+      },
+      "id": 21
+    },
+    {
+      "complexity": "simple",
+      "constraints": {
+        "num_meals": 7,
+        "max_minutes": 30,
+        "tags": [],
+        "allergens": [],
+        "cook_after_hour": 18,
+        "dietary_notes": "",
+        "ingredients_on_hand": [],
+        "cuisine_preferences": [],
+        "calorie_target_per_meal": null
+      },
+      "nl_input": "I need 7 meals. quick, 30 min max.",
+      "expected": {
+        "min_meals": 7
+      },
+      "id": 22
+    },
+    {
+      "complexity": "simple",
+      "constraints": {
+        "num_meals": 5,
+        "max_minutes": 30,
+        "tags": [
+          "gluten-free"
+        ],
+        "allergens": [],
+        "cook_after_hour": 18,
+        "dietary_notes": "",
+        "ingredients_on_hand": [],
+        "cuisine_preferences": [],
+        "calorie_target_per_meal": null
+      },
+      "nl_input": "plan 5 meals. gluten-free only. quick, 30 min max.",
+      "expected": {
+        "min_meals": 5,
+        "required_tags": [
+          "gluten-free"
+        ]
+      },
+      "id": 23
+    },
+    {
+      "complexity": "simple",
+      "constraints": {
+        "num_meals": 4,
+        "max_minutes": 30,
+        "tags": [
+          "high-protein"
+        ],
+        "allergens": [],
+        "cook_after_hour": 18,
+        "dietary_notes": "",
+        "ingredients_on_hand": [],
+        "cuisine_preferences": [],
+        "calorie_target_per_meal": null
+      },
+      "nl_input": "plan 4 meals. high-protein only. under 30 minutes.",
+      "expected": {
+        "min_meals": 4,
+        "required_tags": [
+          "high-protein"
+        ]
+      },
+      "id": 24
+    },
+    {
+      "complexity": "simple",
+      "constraints": {
+        "num_meals": 5,
+        "max_minutes": 15,
+        "tags": [],
+        "allergens": [],
+        "cook_after_hour": 18,
+        "dietary_notes": "",
+        "ingredients_on_hand": [],
+        "cuisine_preferences": [],
+        "calorie_target_per_meal": null
+      },
+      "nl_input": "make me 5 dinners. under 15 minutes.",
+      "expected": {
+        "min_meals": 5,
+        "max_minutes": 15
+      },
+      "id": 25
+    },
+    {
+      "complexity": "simple",
+      "constraints": {
+        "num_meals": 5,
+        "max_minutes": 30,
+        "tags": [],
+        "allergens": [],
+        "cook_after_hour": 18,
+        "dietary_notes": "",
+        "ingredients_on_hand": [],
+        "cuisine_preferences": [],
+        "calorie_target_per_meal": null
+      },
+      "nl_input": "make me 5 dinners. under 30 minutes.",
+      "expected": {
+        "min_meals": 5,
+        "max_minutes": 30
+      },
+      "id": 26
+    },
+    {
+      "complexity": "simple",
+      "constraints": {
+        "num_meals": 4,
+        "max_minutes": 30,
+        "tags": [],
+        "allergens": [],
+        "cook_after_hour": 18,
+        "dietary_notes": "",
+        "ingredients_on_hand": [],
+        "cuisine_preferences": [
+          "chinese"
+        ],
+        "calorie_target_per_meal": null
+      },
+      "nl_input": "make me 4 dinners. preferably chinese style. quick, 30 min max.",
+      "expected": {
+        "min_meals": 4,
+        "preferred_cuisine": "chinese"
+      },
+      "id": 27
+    },
+    {
+      "complexity": "simple",
+      "constraints": {
+        "num_meals": 3,
+        "max_minutes": 30,
+        "tags": [],
+        "allergens": [],
+        "cook_after_hour": 18,
+        "dietary_notes": "",
+        "ingredients_on_hand": [],
+        "cuisine_preferences": [],
+        "calorie_target_per_meal": null
+      },
+      "nl_input": "I need 3 meals. quick, 30 min max.",
+      "expected": {
+        "min_meals": 3
+      },
+      "id": 28
+    },
+    {
+      "complexity": "simple",
+      "constraints": {
+        "num_meals": 3,
+        "max_minutes": 30,
+        "tags": [],
+        "allergens": [],
+        "cook_after_hour": 18,
+        "dietary_notes": "",
+        "ingredients_on_hand": [],
+        "cuisine_preferences": [
+          "greek"
+        ],
+        "calorie_target_per_meal": null
+      },
+      "nl_input": "make me 3 dinners. preferably greek style. under 30 minutes.",
+      "expected": {
+        "min_meals": 3,
+        "preferred_cuisine": "greek"
+      },
+      "id": 29
+    },
+    {
+      "complexity": "simple",
+      "constraints": {
+        "num_meals": 7,
+        "max_minutes": 30,
+        "tags": [],
+        "allergens": [],
+        "cook_after_hour": 18,
+        "dietary_notes": "",
+        "ingredients_on_hand": [],
+        "cuisine_preferences": [],
+        "calorie_target_per_meal": null
+      },
+      "nl_input": "plan 7 meals. under 30 minutes.",
+      "expected": {
+        "min_meals": 7
+      },
+      "id": 30
+    },
+    {
+      "complexity": "simple",
+      "constraints": {
+        "num_meals": 3,
+        "max_minutes": 30,
+        "tags": [],
+        "allergens": [],
+        "cook_after_hour": 18,
+        "dietary_notes": "",
+        "ingredients_on_hand": [],
+        "cuisine_preferences": [],
+        "calorie_target_per_meal": null
+      },
+      "nl_input": "I need 3 meals. quick, 30 min max.",
+      "expected": {
+        "min_meals": 3
+      },
+      "id": 31
+    },
+    {
+      "complexity": "simple",
+      "constraints": {
+        "num_meals": 5,
+        "max_minutes": 30,
+        "tags": [],
+        "allergens": [],
+        "cook_after_hour": 18,
+        "dietary_notes": "",
+        "ingredients_on_hand": [],
+        "cuisine_preferences": [
+          "greek"
+        ],
+        "calorie_target_per_meal": null
+      },
+      "nl_input": "make me 5 dinners. I'm in the mood for greek. quick, 30 min max.",
+      "expected": {
+        "min_meals": 5,
+        "preferred_cuisine": "greek"
+      },
+      "id": 32
+    },
+    {
+      "complexity": "simple",
+      "constraints": {
+        "num_meals": 4,
+        "max_minutes": 30,
+        "tags": [],
+        "allergens": [],
+        "cook_after_hour": 18,
+        "dietary_notes": "",
+        "ingredients_on_hand": [],
+        "cuisine_preferences": [],
+        "calorie_target_per_meal": null
+      },
+      "nl_input": "I need 4 meals. under 30 minutes.",
+      "expected": {
+        "min_meals": 4,
+        "max_minutes": 30
+      },
+      "id": 33
+    },
+    {
+      "complexity": "simple",
+      "constraints": {
+        "num_meals": 3,
+        "max_minutes": 30,
+        "tags": [],
+        "allergens": [],
+        "cook_after_hour": 18,
+        "dietary_notes": "",
+        "ingredients_on_hand": [],
+        "cuisine_preferences": [
+          "japanese"
+        ],
+        "calorie_target_per_meal": null
+      },
+      "nl_input": "I need 3 meals. preferably japanese style. under 30 minutes.",
+      "expected": {
+        "min_meals": 3,
+        "preferred_cuisine": "japanese"
+      },
+      "id": 34
+    },
+    {
+      "complexity": "simple",
+      "constraints": {
+        "num_meals": 3,
+        "max_minutes": 30,
+        "tags": [],
+        "allergens": [],
+        "cook_after_hour": 18,
+        "dietary_notes": "",
+        "ingredients_on_hand": [],
+        "cuisine_preferences": [
+          "japanese"
+        ],
+        "calorie_target_per_meal": null
+      },
+      "nl_input": "make me 3 dinners. preferably japanese style. under 30 minutes.",
+      "expected": {
+        "min_meals": 3,
+        "preferred_cuisine": "japanese"
+      },
+      "id": 35
+    },
+    {
+      "complexity": "simple",
+      "constraints": {
+        "num_meals": 3,
+        "max_minutes": 30,
+        "tags": [
+          "low-carb"
+        ],
+        "allergens": [],
+        "cook_after_hour": 18,
+        "dietary_notes": "",
+        "ingredients_on_hand": [],
+        "cuisine_preferences": [],
+        "calorie_target_per_meal": null
+      },
+      "nl_input": "I need 3 meals. that are low-carb. under 30 minutes.",
+      "expected": {
+        "min_meals": 3,
+        "required_tags": [
+          "low-carb"
+        ]
+      },
+      "id": 36
+    },
+    {
+      "complexity": "simple",
+      "constraints": {
+        "num_meals": 5,
+        "max_minutes": 20,
+        "tags": [],
+        "allergens": [],
+        "cook_after_hour": 18,
+        "dietary_notes": "",
+        "ingredients_on_hand": [],
+        "cuisine_preferences": [],
+        "calorie_target_per_meal": null
+      },
+      "nl_input": "plan 5 meals. under 20 minutes.",
+      "expected": {
+        "min_meals": 5,
+        "max_minutes": 20
+      },
+      "id": 37
+    },
+    {
+      "complexity": "simple",
+      "constraints": {
+        "num_meals": 5,
+        "max_minutes": 30,
+        "tags": [],
+        "allergens": [],
+        "cook_after_hour": 18,
+        "dietary_notes": "",
+        "ingredients_on_hand": [],
+        "cuisine_preferences": [],
+        "calorie_target_per_meal": null
+      },
+      "nl_input": "I need 5 meals. under 30 minutes.",
+      "expected": {
+        "min_meals": 5
+      },
+      "id": 38
+    },
+    {
+      "complexity": "simple",
+      "constraints": {
+        "num_meals": 3,
+        "max_minutes": 30,
+        "tags": [
+          "gluten-free"
+        ],
+        "allergens": [],
+        "cook_after_hour": 18,
+        "dietary_notes": "",
+        "ingredients_on_hand": [],
+        "cuisine_preferences": [],
+        "calorie_target_per_meal": null
+      },
+      "nl_input": "I need 3 meals. gluten-free only. quick, 30 min max.",
+      "expected": {
+        "min_meals": 3,
+        "required_tags": [
+          "gluten-free"
+        ]
+      },
+      "id": 39
+    },
+    {
+      "complexity": "simple",
+      "constraints": {
+        "num_meals": 7,
+        "max_minutes": 30,
+        "tags": [],
+        "allergens": [],
+        "cook_after_hour": 18,
+        "dietary_notes": "",
+        "ingredients_on_hand": [],
+        "cuisine_preferences": [],
+        "calorie_target_per_meal": null
+      },
+      "nl_input": "plan 7 meals. under 30 minutes.",
+      "expected": {
+        "min_meals": 7
+      },
+      "id": 40
+    },
+    {
+      "complexity": "simple",
+      "constraints": {
+        "num_meals": 4,
+        "max_minutes": 30,
+        "tags": [
+          "gluten-free"
+        ],
+        "allergens": [],
+        "cook_after_hour": 18,
+        "dietary_notes": "",
+        "ingredients_on_hand": [],
+        "cuisine_preferences": [],
+        "calorie_target_per_meal": null
+      },
+      "nl_input": "I need 4 meals. that are gluten-free. under 30 minutes.",
+      "expected": {
+        "min_meals": 4,
+        "required_tags": [
+          "gluten-free"
+        ]
+      },
+      "id": 41
+    },
+    {
+      "complexity": "simple",
+      "constraints": {
+        "num_meals": 3,
+        "max_minutes": 30,
+        "tags": [],
+        "allergens": [],
+        "cook_after_hour": 18,
+        "dietary_notes": "",
+        "ingredients_on_hand": [],
+        "cuisine_preferences": [
+          "italian"
+        ],
+        "calorie_target_per_meal": null
+      },
+      "nl_input": "plan 3 meals. I'm in the mood for italian. under 30 minutes.",
+      "expected": {
+        "min_meals": 3,
+        "preferred_cuisine": "italian"
+      },
+      "id": 42
+    },
+    {
+      "complexity": "simple",
+      "constraints": {
+        "num_meals": 4,
+        "max_minutes": 15,
+        "tags": [],
+        "allergens": [],
+        "cook_after_hour": 18,
+        "dietary_notes": "",
+        "ingredients_on_hand": [],
+        "cuisine_preferences": [],
+        "calorie_target_per_meal": null
+      },
+      "nl_input": "plan 4 meals. quick, 15 min max.",
+      "expected": {
+        "min_meals": 4,
+        "max_minutes": 15
+      },
+      "id": 43
+    },
+    {
+      "complexity": "simple",
+      "constraints": {
+        "num_meals": 3,
+        "max_minutes": 30,
+        "tags": [
+          "gluten-free"
+        ],
+        "allergens": [],
+        "cook_after_hour": 18,
+        "dietary_notes": "",
+        "ingredients_on_hand": [],
+        "cuisine_preferences": [],
+        "calorie_target_per_meal": null
+      },
+      "nl_input": "make me 3 dinners. that are gluten-free. under 30 minutes.",
+      "expected": {
+        "min_meals": 3,
+        "required_tags": [
+          "gluten-free"
+        ]
+      },
+      "id": 44
+    },
+    {
+      "complexity": "simple",
+      "constraints": {
+        "num_meals": 3,
+        "max_minutes": 30,
+        "tags": [],
+        "allergens": [],
+        "cook_after_hour": 18,
+        "dietary_notes": "",
+        "ingredients_on_hand": [],
+        "cuisine_preferences": [
+          "french"
+        ],
+        "calorie_target_per_meal": null
+      },
+      "nl_input": "I need 3 meals. I'm in the mood for french. under 30 minutes.",
+      "expected": {
+        "min_meals": 3,
+        "preferred_cuisine": "french"
+      },
+      "id": 45
+    },
+    {
+      "complexity": "simple",
+      "constraints": {
+        "num_meals": 3,
+        "max_minutes": 30,
+        "tags": [],
+        "allergens": [],
+        "cook_after_hour": 18,
+        "dietary_notes": "",
+        "ingredients_on_hand": [],
+        "cuisine_preferences": [],
+        "calorie_target_per_meal": null
+      },
+      "nl_input": "I need 3 meals. under 30 minutes.",
+      "expected": {
+        "min_meals": 3
+      },
+      "id": 46
+    },
+    {
+      "complexity": "simple",
+      "constraints": {
+        "num_meals": 5,
+        "max_minutes": 30,
+        "tags": [],
+        "allergens": [],
+        "cook_after_hour": 18,
+        "dietary_notes": "",
+        "ingredients_on_hand": [],
+        "cuisine_preferences": [],
+        "calorie_target_per_meal": null
+      },
+      "nl_input": "I need 5 meals. quick, 30 min max.",
+      "expected": {
+        "min_meals": 5
+      },
+      "id": 47
+    },
+    {
+      "complexity": "simple",
+      "constraints": {
+        "num_meals": 3,
+        "max_minutes": 30,
+        "tags": [],
+        "allergens": [],
+        "cook_after_hour": 18,
+        "dietary_notes": "",
+        "ingredients_on_hand": [],
+        "cuisine_preferences": [],
+        "calorie_target_per_meal": null
+      },
+      "nl_input": "I need 3 meals. under 30 minutes.",
+      "expected": {
+        "min_meals": 3
+      },
+      "id": 48
+    },
+    {
+      "complexity": "simple",
+      "constraints": {
+        "num_meals": 5,
+        "max_minutes": 30,
+        "tags": [
+          "gluten-free"
+        ],
+        "allergens": [],
+        "cook_after_hour": 18,
+        "dietary_notes": "",
+        "ingredients_on_hand": [],
+        "cuisine_preferences": [],
+        "calorie_target_per_meal": null
+      },
+      "nl_input": "make me 5 dinners. that are gluten-free. quick, 30 min max.",
+      "expected": {
+        "min_meals": 5,
+        "required_tags": [
+          "gluten-free"
+        ]
+      },
+      "id": 49
+    },
+    {
+      "complexity": "simple",
+      "constraints": {
+        "num_meals": 3,
+        "max_minutes": 30,
+        "tags": [
+          "low-fat"
+        ],
+        "allergens": [],
+        "cook_after_hour": 18,
+        "dietary_notes": "",
+        "ingredients_on_hand": [],
+        "cuisine_preferences": [],
+        "calorie_target_per_meal": null
+      },
+      "nl_input": "I need 3 meals. that are low-fat. under 30 minutes.",
+      "expected": {
+        "min_meals": 3,
+        "required_tags": [
+          "low-fat"
+        ]
+      },
+      "id": 50
+    },
+    {
+      "complexity": "simple",
+      "constraints": {
+        "num_meals": 3,
+        "max_minutes": 30,
+        "tags": [
+          "vegan"
+        ],
+        "allergens": [],
+        "cook_after_hour": 18,
+        "dietary_notes": "",
+        "ingredients_on_hand": [],
+        "cuisine_preferences": [],
+        "calorie_target_per_meal": null
+      },
+      "nl_input": "make me 3 dinners. that are vegan. under 30 minutes.",
+      "expected": {
+        "min_meals": 3,
+        "required_tags": [
+          "vegan"
+        ]
+      },
+      "id": 51
+    },
+    {
+      "complexity": "simple",
+      "constraints": {
+        "num_meals": 7,
+        "max_minutes": 30,
+        "tags": [],
+        "allergens": [],
+        "cook_after_hour": 18,
+        "dietary_notes": "",
+        "ingredients_on_hand": [],
+        "cuisine_preferences": [],
+        "calorie_target_per_meal": null
+      },
+      "nl_input": "plan 7 meals. under 30 minutes.",
+      "expected": {
+        "min_meals": 7
+      },
+      "id": 52
+    },
+    {
+      "complexity": "simple",
+      "constraints": {
+        "num_meals": 4,
+        "max_minutes": 30,
+        "tags": [
+          "gluten-free"
+        ],
+        "allergens": [],
+        "cook_after_hour": 18,
+        "dietary_notes": "",
+        "ingredients_on_hand": [],
+        "cuisine_preferences": [],
+        "calorie_target_per_meal": null
+      },
+      "nl_input": "make me 4 dinners. gluten-free only. quick, 30 min max.",
+      "expected": {
+        "min_meals": 4,
+        "required_tags": [
+          "gluten-free"
+        ]
+      },
+      "id": 53
+    },
+    {
+      "complexity": "simple",
+      "constraints": {
+        "num_meals": 5,
+        "max_minutes": 30,
+        "tags": [],
+        "allergens": [],
+        "cook_after_hour": 18,
+        "dietary_notes": "",
+        "ingredients_on_hand": [],
+        "cuisine_preferences": [
+          "mexican"
+        ],
+        "calorie_target_per_meal": null
+      },
+      "nl_input": "plan 5 meals. I'm in the mood for mexican. quick, 30 min max.",
+      "expected": {
+        "min_meals": 5,
+        "preferred_cuisine": "mexican"
+      },
+      "id": 54
+    },
+    {
+      "complexity": "simple",
+      "constraints": {
+        "num_meals": 5,
+        "max_minutes": 30,
+        "tags": [],
+        "allergens": [],
+        "cook_after_hour": 18,
+        "dietary_notes": "",
+        "ingredients_on_hand": [],
+        "cuisine_preferences": [
+          "indian"
+        ],
+        "calorie_target_per_meal": null
+      },
+      "nl_input": "I need 5 meals. I'm in the mood for indian. under 30 minutes.",
+      "expected": {
+        "min_meals": 5,
+        "preferred_cuisine": "indian"
+      },
+      "id": 55
+    },
+    {
+      "complexity": "simple",
+      "constraints": {
+        "num_meals": 4,
+        "max_minutes": 30,
+        "tags": [
+          "low-fat"
+        ],
+        "allergens": [],
+        "cook_after_hour": 18,
+        "dietary_notes": "",
+        "ingredients_on_hand": [],
+        "cuisine_preferences": [],
+        "calorie_target_per_meal": null
+      },
+      "nl_input": "make me 4 dinners. that are low-fat. under 30 minutes.",
+      "expected": {
+        "min_meals": 4,
+        "required_tags": [
+          "low-fat"
+        ]
+      },
+      "id": 56
+    },
+    {
+      "complexity": "simple",
+      "constraints": {
+        "num_meals": 5,
+        "max_minutes": 30,
+        "tags": [],
+        "allergens": [],
+        "cook_after_hour": 18,
+        "dietary_notes": "",
+        "ingredients_on_hand": [],
+        "cuisine_preferences": [
+          "indian"
+        ],
+        "calorie_target_per_meal": null
+      },
+      "nl_input": "plan 5 meals. I'm in the mood for indian. under 30 minutes.",
+      "expected": {
+        "min_meals": 5,
+        "preferred_cuisine": "indian"
+      },
+      "id": 57
+    },
+    {
+      "complexity": "simple",
+      "constraints": {
+        "num_meals": 4,
+        "max_minutes": 30,
+        "tags": [],
+        "allergens": [],
+        "cook_after_hour": 18,
+        "dietary_notes": "",
+        "ingredients_on_hand": [],
+        "cuisine_preferences": [
+          "indian"
+        ],
+        "calorie_target_per_meal": null
+      },
+      "nl_input": "plan 4 meals. I'm in the mood for indian. quick, 30 min max.",
+      "expected": {
+        "min_meals": 4,
+        "preferred_cuisine": "indian"
+      },
+      "id": 58
+    },
+    {
+      "complexity": "simple",
+      "constraints": {
+        "num_meals": 5,
+        "max_minutes": 30,
+        "tags": [
+          "low-carb"
+        ],
+        "allergens": [],
+        "cook_after_hour": 18,
+        "dietary_notes": "",
+        "ingredients_on_hand": [],
+        "cuisine_preferences": [],
+        "calorie_target_per_meal": null
+      },
+      "nl_input": "make me 5 dinners. low-carb only. under 30 minutes.",
+      "expected": {
+        "min_meals": 5,
+        "required_tags": [
+          "low-carb"
+        ]
+      },
+      "id": 59
+    },
+    {
+      "complexity": "simple",
+      "constraints": {
+        "num_meals": 4,
+        "max_minutes": 30,
+        "tags": [],
+        "allergens": [],
+        "cook_after_hour": 18,
+        "dietary_notes": "",
+        "ingredients_on_hand": [],
+        "cuisine_preferences": [
+          "japanese"
+        ],
+        "calorie_target_per_meal": null
+      },
+      "nl_input": "plan 4 meals. preferably japanese style. quick, 30 min max.",
+      "expected": {
+        "min_meals": 4,
+        "preferred_cuisine": "japanese"
+      },
+      "id": 60
+    },
+    {
+      "complexity": "simple",
+      "constraints": {
+        "num_meals": 5,
+        "max_minutes": 15,
+        "tags": [],
+        "allergens": [],
+        "cook_after_hour": 18,
+        "dietary_notes": "",
+        "ingredients_on_hand": [],
+        "cuisine_preferences": [],
+        "calorie_target_per_meal": null
+      },
+      "nl_input": "make me 5 dinners. quick, 15 min max.",
+      "expected": {
+        "min_meals": 5,
+        "max_minutes": 15
+      },
+      "id": 61
+    },
+    {
+      "complexity": "simple",
+      "constraints": {
+        "num_meals": 5,
+        "max_minutes": 30,
+        "tags": [],
+        "allergens": [],
+        "cook_after_hour": 18,
+        "dietary_notes": "",
+        "ingredients_on_hand": [],
+        "cuisine_preferences": [
+          "indian"
+        ],
+        "calorie_target_per_meal": null
+      },
+      "nl_input": "make me 5 dinners. I'm in the mood for indian. quick, 30 min max.",
+      "expected": {
+        "min_meals": 5,
+        "preferred_cuisine": "indian"
+      },
+      "id": 62
+    },
+    {
+      "complexity": "simple",
+      "constraints": {
+        "num_meals": 3,
+        "max_minutes": 30,
+        "tags": [
+          "gluten-free"
+        ],
+        "allergens": [],
+        "cook_after_hour": 18,
+        "dietary_notes": "",
+        "ingredients_on_hand": [],
+        "cuisine_preferences": [],
+        "calorie_target_per_meal": null
+      },
+      "nl_input": "I need 3 meals. gluten-free only. under 30 minutes.",
+      "expected": {
+        "min_meals": 3,
+        "required_tags": [
+          "gluten-free"
+        ]
+      },
+      "id": 63
+    },
+    {
+      "complexity": "simple",
+      "constraints": {
+        "num_meals": 4,
+        "max_minutes": 30,
+        "tags": [
+          "low-carb"
+        ],
+        "allergens": [],
+        "cook_after_hour": 18,
+        "dietary_notes": "",
+        "ingredients_on_hand": [],
+        "cuisine_preferences": [],
+        "calorie_target_per_meal": null
+      },
+      "nl_input": "plan 4 meals. low-carb only. under 30 minutes.",
+      "expected": {
+        "min_meals": 4,
+        "required_tags": [
+          "low-carb"
+        ]
+      },
+      "id": 64
+    },
+    {
+      "complexity": "simple",
+      "constraints": {
+        "num_meals": 7,
+        "max_minutes": 30,
+        "tags": [],
+        "allergens": [],
+        "cook_after_hour": 18,
+        "dietary_notes": "",
+        "ingredients_on_hand": [],
+        "cuisine_preferences": [],
+        "calorie_target_per_meal": null
+      },
+      "nl_input": "I need 7 meals. under 30 minutes.",
+      "expected": {
+        "min_meals": 7
+      },
+      "id": 65
+    },
+    {
+      "complexity": "simple",
+      "constraints": {
+        "num_meals": 3,
+        "max_minutes": 30,
+        "tags": [
+          "gluten-free"
+        ],
+        "allergens": [],
+        "cook_after_hour": 18,
+        "dietary_notes": "",
+        "ingredients_on_hand": [],
+        "cuisine_preferences": [],
+        "calorie_target_per_meal": null
+      },
+      "nl_input": "plan 3 meals. that are gluten-free. quick, 30 min max.",
+      "expected": {
+        "min_meals": 3,
+        "required_tags": [
+          "gluten-free"
+        ]
+      },
+      "id": 66
+    },
+    {
+      "complexity": "simple",
+      "constraints": {
+        "num_meals": 4,
+        "max_minutes": 30,
+        "tags": [],
+        "allergens": [],
+        "cook_after_hour": 18,
+        "dietary_notes": "",
+        "ingredients_on_hand": [],
+        "cuisine_preferences": [
+          "chinese"
+        ],
+        "calorie_target_per_meal": null
+      },
+      "nl_input": "plan 4 meals. I'm in the mood for chinese. quick, 30 min max.",
+      "expected": {
+        "min_meals": 4,
+        "preferred_cuisine": "chinese"
+      },
+      "id": 67
+    },
+    {
+      "complexity": "simple",
+      "constraints": {
+        "num_meals": 4,
+        "max_minutes": 30,
+        "tags": [
+          "vegetarian"
+        ],
+        "allergens": [],
+        "cook_after_hour": 18,
+        "dietary_notes": "",
+        "ingredients_on_hand": [],
+        "cuisine_preferences": [],
+        "calorie_target_per_meal": null
+      },
+      "nl_input": "make me 4 dinners. that are vegetarian. under 30 minutes.",
+      "expected": {
+        "min_meals": 4,
+        "required_tags": [
+          "vegetarian"
+        ]
+      },
+      "id": 68
+    },
+    {
+      "complexity": "simple",
+      "constraints": {
+        "num_meals": 5,
+        "max_minutes": 20,
+        "tags": [],
+        "allergens": [],
+        "cook_after_hour": 18,
+        "dietary_notes": "",
+        "ingredients_on_hand": [],
+        "cuisine_preferences": [],
+        "calorie_target_per_meal": null
+      },
+      "nl_input": "make me 5 dinners. under 20 minutes.",
+      "expected": {
+        "min_meals": 5,
+        "max_minutes": 20
+      },
+      "id": 69
+    },
+    {
+      "complexity": "simple",
+      "constraints": {
+        "num_meals": 3,
+        "max_minutes": 30,
+        "tags": [],
+        "allergens": [],
+        "cook_after_hour": 18,
+        "dietary_notes": "",
+        "ingredients_on_hand": [],
+        "cuisine_preferences": [
+          "chinese"
+        ],
+        "calorie_target_per_meal": null
+      },
+      "nl_input": "I need 3 meals. preferably chinese style. under 30 minutes.",
+      "expected": {
+        "min_meals": 3,
+        "preferred_cuisine": "chinese"
+      },
+      "id": 70
+    },
+    {
+      "complexity": "medium",
+      "constraints": {
+        "num_meals": 5,
+        "max_minutes": 60,
+        "tags": [
+          "low-calorie"
+        ],
+        "allergens": [
+          "peanuts",
+          "wheat"
+        ],
+        "cook_after_hour": 19,
+        "dietary_notes": "",
+        "ingredients_on_hand": [
+          "tofu",
+          "turkey",
+          "shrimp"
+        ],
+        "cuisine_preferences": [],
+        "calorie_target_per_meal": null
+      },
+      "nl_input": "I have tofu, turkey, shrimp at home. I need 5 meals. that are low-calorie. under 60 minutes each. no peanuts, wheat.",
+      "expected": {
+        "min_meals": 5,
+        "max_minutes": 60,
+        "required_tags": [
+          "low-calorie"
+        ],
+        "forbidden_allergens": [
+          "peanuts",
+          "wheat"
+        ],
+        "preferred_ingredients": [
+          "tofu",
+          "turkey",
+          "shrimp"
+        ]
+      },
+      "id": 71
+    },
+    {
+      "complexity": "medium",
+      "constraints": {
+        "num_meals": 5,
+        "max_minutes": 45,
+        "tags": [
+          "vegan"
+        ],
+        "allergens": [
+          "soy"
+        ],
+        "cook_after_hour": 18,
+        "dietary_notes": "",
+        "ingredients_on_hand": [
+          "tuna"
+        ],
+        "cuisine_preferences": [
+          "greek"
+        ],
+        "calorie_target_per_meal": null
+      },
+      "nl_input": "I need to use up my tuna. I need 5 meals. vegan only. preferably greek style. under 45 minutes each. avoid soy.",
+      "expected": {
+        "min_meals": 5,
+        "max_minutes": 45,
+        "required_tags": [
+          "vegan"
+        ],
+        "forbidden_allergens": [
+          "soy"
+        ],
+        "preferred_ingredients": [
+          "tuna"
+        ],
+        "preferred_cuisine": "greek"
+      },
+      "id": 72
+    },
+    {
+      "complexity": "medium",
+      "constraints": {
+        "num_meals": 5,
+        "max_minutes": 45,
+        "tags": [],
+        "allergens": [],
+        "cook_after_hour": 18,
+        "dietary_notes": "",
+        "ingredients_on_hand": [],
+        "cuisine_preferences": [],
+        "calorie_target_per_meal": null
+      },
+      "nl_input": "I need 5 meals. under 45 minutes each.",
+      "expected": {
+        "min_meals": 5,
+        "max_minutes": 45
+      },
+      "id": 73
+    },
+    {
+      "complexity": "medium",
+      "constraints": {
+        "num_meals": 5,
+        "max_minutes": 30,
+        "tags": [],
+        "allergens": [
+          "gluten",
+          "dairy"
+        ],
+        "cook_after_hour": 18,
+        "dietary_notes": "",
+        "ingredients_on_hand": [
+          "tofu",
+          "beef",
+          "salmon"
+        ],
+        "cuisine_preferences": [],
+        "calorie_target_per_meal": null
+      },
+      "nl_input": "I need to use up my tofu, beef, salmon. make me 5 dinners. under 30 minutes. I'm allergic to gluten, dairy.",
+      "expected": {
+        "min_meals": 5,
+        "max_minutes": 30,
+        "forbidden_allergens": [
+          "gluten",
+          "dairy"
+        ],
+        "preferred_ingredients": [
+          "tofu",
+          "beef",
+          "salmon"
+        ]
+      },
+      "id": 74
+    },
+    {
+      "complexity": "medium",
+      "constraints": {
+        "num_meals": 3,
+        "max_minutes": 30,
+        "tags": [
+          "vegan"
+        ],
+        "allergens": [
+          "eggs"
+        ],
+        "cook_after_hour": 18,
+        "dietary_notes": "",
+        "ingredients_on_hand": [],
+        "cuisine_preferences": [
+          "chinese"
+        ],
+        "calorie_target_per_meal": null
+      },
+      "nl_input": "plan 3 meals. that are vegan. I'm in the mood for chinese. quick, 30 min max. I'm allergic to eggs.",
+      "expected": {
+        "min_meals": 3,
+        "max_minutes": 30,
+        "required_tags": [
+          "vegan"
+        ],
+        "forbidden_allergens": [
+          "eggs"
+        ],
+        "preferred_cuisine": "chinese"
+      },
+      "id": 75
+    },
+    {
+      "complexity": "medium",
+      "constraints": {
+        "num_meals": 5,
+        "max_minutes": 60,
+        "tags": [],
+        "allergens": [],
+        "cook_after_hour": 19,
+        "dietary_notes": "",
+        "ingredients_on_hand": [],
+        "cuisine_preferences": [],
+        "calorie_target_per_meal": null
+      },
+      "nl_input": "plan 5 meals. under 60 minutes each.",
+      "expected": {
+        "min_meals": 5,
+        "max_minutes": 60
+      },
+      "id": 76
+    },
+    {
+      "complexity": "medium",
+      "constraints": {
+        "num_meals": 5,
+        "max_minutes": 45,
+        "tags": [],
+        "allergens": [],
+        "cook_after_hour": 12,
+        "dietary_notes": "",
+        "ingredients_on_hand": [
+          "beef",
+          "chicken",
+          "shrimp"
+        ],
+        "cuisine_preferences": [
+          "greek"
+        ],
+        "calorie_target_per_meal": null
+      },
+      "nl_input": "I have beef, chicken, shrimp at home. I need 5 meals. preferably greek style. under 45 minutes each.",
+      "expected": {
+        "min_meals": 5,
+        "max_minutes": 45,
+        "preferred_ingredients": [
+          "beef",
+          "chicken",
+          "shrimp"
+        ],
+        "preferred_cuisine": "greek"
+      },
+      "id": 77
+    },
+    {
+      "complexity": "medium",
+      "constraints": {
+        "num_meals": 5,
+        "max_minutes": 45,
+        "tags": [],
+        "allergens": [
+          "shellfish",
+          "wheat"
+        ],
+        "cook_after_hour": 19,
+        "dietary_notes": "",
+        "ingredients_on_hand": [],
+        "cuisine_preferences": [],
+        "calorie_target_per_meal": null
+      },
+      "nl_input": "I need 5 meals. under 45 minutes each. I'm allergic to shellfish, wheat.",
+      "expected": {
+        "min_meals": 5,
+        "max_minutes": 45,
+        "forbidden_allergens": [
+          "shellfish",
+          "wheat"
+        ]
+      },
+      "id": 78
+    },
+    {
+      "complexity": "medium",
+      "constraints": {
+        "num_meals": 4,
+        "max_minutes": 60,
+        "tags": [
+          "vegan"
+        ],
+        "allergens": [],
+        "cook_after_hour": 18,
+        "dietary_notes": "",
+        "ingredients_on_hand": [
+          "shrimp",
+          "tofu"
+        ],
+        "cuisine_preferences": [],
+        "calorie_target_per_meal": null
+      },
+      "nl_input": "I have shrimp, tofu at home. plan 4 meals. that are vegan. under 60 minutes each.",
+      "expected": {
+        "min_meals": 4,
+        "max_minutes": 60,
+        "required_tags": [
+          "vegan"
+        ],
+        "preferred_ingredients": [
+          "shrimp",
+          "tofu"
+        ]
+      },
+      "id": 79
+    },
+    {
+      "complexity": "medium",
+      "constraints": {
+        "num_meals": 5,
+        "max_minutes": 45,
+        "tags": [],
+        "allergens": [
+          "gluten",
+          "dairy"
+        ],
+        "cook_after_hour": 19,
+        "dietary_notes": "",
+        "ingredients_on_hand": [],
+        "cuisine_preferences": [
+          "french"
+        ],
+        "calorie_target_per_meal": null
+      },
+      "nl_input": "I need 5 meals. I'm in the mood for french. under 45 minutes each. I'm allergic to gluten, dairy.",
+      "expected": {
+        "min_meals": 5,
+        "max_minutes": 45,
+        "forbidden_allergens": [
+          "gluten",
+          "dairy"
+        ],
+        "preferred_cuisine": "french"
+      },
+      "id": 80
+    },
+    {
+      "complexity": "medium",
+      "constraints": {
+        "num_meals": 4,
+        "max_minutes": 45,
+        "tags": [],
+        "allergens": [],
+        "cook_after_hour": 17,
+        "dietary_notes": "",
+        "ingredients_on_hand": [],
+        "cuisine_preferences": [
+          "japanese"
+        ],
+        "calorie_target_per_meal": null
+      },
+      "nl_input": "plan 4 meals. I'm in the mood for japanese. under 45 minutes each.",
+      "expected": {
+        "min_meals": 4,
+        "max_minutes": 45,
+        "preferred_cuisine": "japanese"
+      },
+      "id": 81
+    },
+    {
+      "complexity": "medium",
+      "constraints": {
+        "num_meals": 3,
+        "max_minutes": 30,
+        "tags": [],
+        "allergens": [],
+        "cook_after_hour": 12,
+        "dietary_notes": "",
+        "ingredients_on_hand": [],
+        "cuisine_preferences": [],
+        "calorie_target_per_meal": null
+      },
+      "nl_input": "plan 3 meals. quick, 30 min max.",
+      "expected": {
+        "min_meals": 3,
+        "max_minutes": 30
+      },
+      "id": 82
+    },
+    {
+      "complexity": "medium",
+      "constraints": {
+        "num_meals": 4,
+        "max_minutes": 60,
+        "tags": [
+          "high-protein"
+        ],
+        "allergens": [],
+        "cook_after_hour": 12,
+        "dietary_notes": "",
+        "ingredients_on_hand": [
+          "pork"
+        ],
+        "cuisine_preferences": [],
+        "calorie_target_per_meal": null
+      },
+      "nl_input": "Using pork. I need 4 meals. high-protein only. under 60 minutes each.",
+      "expected": {
+        "min_meals": 4,
+        "max_minutes": 60,
+        "required_tags": [
+          "high-protein"
+        ],
+        "preferred_ingredients": [
+          "pork"
+        ]
+      },
+      "id": 83
+    },
+    {
+      "complexity": "medium",
+      "constraints": {
+        "num_meals": 4,
+        "max_minutes": 60,
+        "tags": [],
+        "allergens": [
+          "soy"
+        ],
+        "cook_after_hour": 19,
+        "dietary_notes": "",
+        "ingredients_on_hand": [
+          "salmon",
+          "tofu"
+        ],
+        "cuisine_preferences": [
+          "french"
+        ],
+        "calorie_target_per_meal": null
+      },
+      "nl_input": "I need to use up my salmon, tofu. plan 4 meals. I'm in the mood for french. under 60 minutes each. avoid soy.",
+      "expected": {
+        "min_meals": 4,
+        "max_minutes": 60,
+        "forbidden_allergens": [
+          "soy"
+        ],
+        "preferred_ingredients": [
+          "salmon",
+          "tofu"
+        ],
+        "preferred_cuisine": "french"
+      },
+      "id": 84
+    },
+    {
+      "complexity": "medium",
+      "constraints": {
+        "num_meals": 3,
+        "max_minutes": 45,
+        "tags": [
+          "vegan"
+        ],
+        "allergens": [],
+        "cook_after_hour": 18,
+        "dietary_notes": "",
+        "ingredients_on_hand": [
+          "pork",
+          "turkey",
+          "tofu"
+        ],
+        "cuisine_preferences": [],
+        "calorie_target_per_meal": null
+      },
+      "nl_input": "I have pork, turkey, tofu at home. make me 3 dinners. vegan only. under 45 minutes each.",
+      "expected": {
+        "min_meals": 3,
+        "max_minutes": 45,
+        "required_tags": [
+          "vegan"
+        ],
+        "preferred_ingredients": [
+          "pork",
+          "turkey",
+          "tofu"
+        ]
+      },
+      "id": 85
+    },
+    {
+      "complexity": "medium",
+      "constraints": {
+        "num_meals": 4,
+        "max_minutes": 60,
+        "tags": [],
+        "allergens": [],
+        "cook_after_hour": 12,
+        "dietary_notes": "",
+        "ingredients_on_hand": [
+          "chicken"
+        ],
+        "cuisine_preferences": [],
+        "calorie_target_per_meal": null
+      },
+      "nl_input": "Using chicken. I need 4 meals. under 60 minutes each.",
+      "expected": {
+        "min_meals": 4,
+        "max_minutes": 60,
+        "preferred_ingredients": [
+          "chicken"
+        ]
+      },
+      "id": 86
+    },
+    {
+      "complexity": "medium",
+      "constraints": {
+        "num_meals": 4,
+        "max_minutes": 60,
+        "tags": [
+          "low-carb"
+        ],
+        "allergens": [
+          "eggs"
+        ],
+        "cook_after_hour": 18,
+        "dietary_notes": "",
+        "ingredients_on_hand": [
+          "salmon",
+          "beef"
+        ],
+        "cuisine_preferences": [],
+        "calorie_target_per_meal": null
+      },
+      "nl_input": "I have salmon, beef at home. I need 4 meals. that are low-carb. under 60 minutes each. no eggs.",
+      "expected": {
+        "min_meals": 4,
+        "max_minutes": 60,
+        "required_tags": [
+          "low-carb"
+        ],
+        "forbidden_allergens": [
+          "eggs"
+        ],
+        "preferred_ingredients": [
+          "salmon",
+          "beef"
+        ]
+      },
+      "id": 87
+    },
+    {
+      "complexity": "medium",
+      "constraints": {
+        "num_meals": 3,
+        "max_minutes": 45,
+        "tags": [
+          "vegan"
+        ],
+        "allergens": [],
+        "cook_after_hour": 18,
+        "dietary_notes": "",
+        "ingredients_on_hand": [
+          "beef",
+          "tuna",
+          "chicken"
+        ],
+        "cuisine_preferences": [],
+        "calorie_target_per_meal": null
+      },
+      "nl_input": "Using beef, tuna, chicken. plan 3 meals. vegan only. under 45 minutes each.",
+      "expected": {
+        "min_meals": 3,
+        "max_minutes": 45,
+        "required_tags": [
+          "vegan"
+        ],
+        "preferred_ingredients": [
+          "beef",
+          "tuna",
+          "chicken"
+        ]
+      },
+      "id": 88
+    },
+    {
+      "complexity": "medium",
+      "constraints": {
+        "num_meals": 4,
+        "max_minutes": 45,
+        "tags": [
+          "low-fat"
+        ],
+        "allergens": [],
+        "cook_after_hour": 12,
+        "dietary_notes": "",
+        "ingredients_on_hand": [
+          "shrimp"
+        ],
+        "cuisine_preferences": [],
+        "calorie_target_per_meal": null
+      },
+      "nl_input": "I need to use up my shrimp. plan 4 meals. low-fat only. under 45 minutes each.",
+      "expected": {
+        "min_meals": 4,
+        "max_minutes": 45,
+        "required_tags": [
+          "low-fat"
+        ],
+        "preferred_ingredients": [
+          "shrimp"
+        ]
+      },
+      "id": 89
+    },
+    {
+      "complexity": "medium",
+      "constraints": {
+        "num_meals": 3,
+        "max_minutes": 45,
+        "tags": [],
+        "allergens": [],
+        "cook_after_hour": 12,
+        "dietary_notes": "",
+        "ingredients_on_hand": [
+          "beef",
+          "turkey",
+          "pork"
+        ],
+        "cuisine_preferences": [],
+        "calorie_target_per_meal": null
+      },
+      "nl_input": "I have beef, turkey, pork at home. make me 3 dinners. under 45 minutes each.",
+      "expected": {
+        "min_meals": 3,
+        "max_minutes": 45,
+        "preferred_ingredients": [
+          "beef",
+          "turkey",
+          "pork"
+        ]
+      },
+      "id": 90
+    },
+    {
+      "complexity": "medium",
+      "constraints": {
+        "num_meals": 5,
+        "max_minutes": 30,
+        "tags": [],
+        "allergens": [
+          "gluten"
+        ],
+        "cook_after_hour": 19,
+        "dietary_notes": "",
+        "ingredients_on_hand": [
+          "shrimp",
+          "pork"
+        ],
+        "cuisine_preferences": [
+          "greek"
+        ],
+        "calorie_target_per_meal": null
+      },
+      "nl_input": "I need to use up my shrimp, pork. make me 5 dinners. I'm in the mood for greek. under 30 minutes. no gluten.",
+      "expected": {
+        "min_meals": 5,
+        "max_minutes": 30,
+        "forbidden_allergens": [
+          "gluten"
+        ],
+        "preferred_ingredients": [
+          "shrimp",
+          "pork"
+        ],
+        "preferred_cuisine": "greek"
+      },
+      "id": 91
+    },
+    {
+      "complexity": "medium",
+      "constraints": {
+        "num_meals": 5,
+        "max_minutes": 30,
+        "tags": [
+          "low-fat"
+        ],
+        "allergens": [
+          "eggs",
+          "dairy"
+        ],
+        "cook_after_hour": 12,
+        "dietary_notes": "",
+        "ingredients_on_hand": [
+          "pork",
+          "chicken",
+          "shrimp"
+        ],
+        "cuisine_preferences": [],
+        "calorie_target_per_meal": null
+      },
+      "nl_input": "I need to use up my pork, chicken, shrimp. make me 5 dinners. low-fat only. under 30 minutes. avoid eggs, dairy.",
+      "expected": {
+        "min_meals": 5,
+        "max_minutes": 30,
+        "required_tags": [
+          "low-fat"
+        ],
+        "forbidden_allergens": [
+          "eggs",
+          "dairy"
+        ],
+        "preferred_ingredients": [
+          "pork",
+          "chicken",
+          "shrimp"
+        ]
+      },
+      "id": 92
+    },
+    {
+      "complexity": "medium",
+      "constraints": {
+        "num_meals": 3,
+        "max_minutes": 60,
+        "tags": [
+          "low-carb"
+        ],
+        "allergens": [
+          "tree nuts",
+          "soy"
+        ],
+        "cook_after_hour": 18,
+        "dietary_notes": "",
+        "ingredients_on_hand": [
+          "salmon"
+        ],
+        "cuisine_preferences": [
+          "chinese"
+        ],
+        "calorie_target_per_meal": null
+      },
+      "nl_input": "Using salmon. plan 3 meals. that are low-carb. I'm in the mood for chinese. under 60 minutes each. no tree nuts, soy.",
+      "expected": {
+        "min_meals": 3,
+        "max_minutes": 60,
+        "required_tags": [
+          "low-carb"
+        ],
+        "forbidden_allergens": [
+          "tree nuts",
+          "soy"
+        ],
+        "preferred_ingredients": [
+          "salmon"
+        ],
+        "preferred_cuisine": "chinese"
+      },
+      "id": 93
+    },
+    {
+      "complexity": "medium",
+      "constraints": {
+        "num_meals": 3,
+        "max_minutes": 45,
+        "tags": [
+          "low-fat"
+        ],
+        "allergens": [],
+        "cook_after_hour": 12,
+        "dietary_notes": "",
+        "ingredients_on_hand": [
+          "shrimp",
+          "pork"
+        ],
+        "cuisine_preferences": [],
+        "calorie_target_per_meal": null
+      },
+      "nl_input": "I have shrimp, pork at home. make me 3 dinners. that are low-fat. under 45 minutes each.",
+      "expected": {
+        "min_meals": 3,
+        "max_minutes": 45,
+        "required_tags": [
+          "low-fat"
+        ],
+        "preferred_ingredients": [
+          "shrimp",
+          "pork"
+        ]
+      },
+      "id": 94
+    },
+    {
+      "complexity": "medium",
+      "constraints": {
+        "num_meals": 3,
+        "max_minutes": 30,
+        "tags": [
+          "gluten-free"
+        ],
+        "allergens": [],
+        "cook_after_hour": 12,
+        "dietary_notes": "",
+        "ingredients_on_hand": [],
+        "cuisine_preferences": [],
+        "calorie_target_per_meal": null
+      },
+      "nl_input": "plan 3 meals. gluten-free only. under 30 minutes.",
+      "expected": {
+        "min_meals": 3,
+        "max_minutes": 30,
+        "required_tags": [
+          "gluten-free"
+        ]
+      },
+      "id": 95
+    },
+    {
+      "complexity": "medium",
+      "constraints": {
+        "num_meals": 4,
+        "max_minutes": 45,
+        "tags": [],
+        "allergens": [],
+        "cook_after_hour": 17,
+        "dietary_notes": "",
+        "ingredients_on_hand": [
+          "tuna",
+          "tofu",
+          "turkey"
+        ],
+        "cuisine_preferences": [],
+        "calorie_target_per_meal": null
+      },
+      "nl_input": "I need to use up my tuna, tofu, turkey. make me 4 dinners. under 45 minutes each.",
+      "expected": {
+        "min_meals": 4,
+        "max_minutes": 45,
+        "preferred_ingredients": [
+          "tuna",
+          "tofu",
+          "turkey"
+        ]
+      },
+      "id": 96
+    },
+    {
+      "complexity": "medium",
+      "constraints": {
+        "num_meals": 5,
+        "max_minutes": 30,
+        "tags": [],
+        "allergens": [
+          "shellfish"
+        ],
+        "cook_after_hour": 12,
+        "dietary_notes": "",
+        "ingredients_on_hand": [
+          "chicken",
+          "shrimp",
+          "pork"
+        ],
+        "cuisine_preferences": [],
+        "calorie_target_per_meal": null
+      },
+      "nl_input": "I need to use up my chicken, shrimp, pork. I need 5 meals. quick, 30 min max. no shellfish.",
+      "expected": {
+        "min_meals": 5,
+        "max_minutes": 30,
+        "forbidden_allergens": [
+          "shellfish"
+        ],
+        "preferred_ingredients": [
+          "chicken",
+          "shrimp",
+          "pork"
+        ]
+      },
+      "id": 97
+    },
+    {
+      "complexity": "medium",
+      "constraints": {
+        "num_meals": 3,
+        "max_minutes": 60,
+        "tags": [
+          "vegan"
+        ],
+        "allergens": [],
+        "cook_after_hour": 18,
+        "dietary_notes": "",
+        "ingredients_on_hand": [
+          "pork",
+          "tuna"
+        ],
+        "cuisine_preferences": [],
+        "calorie_target_per_meal": null
+      },
+      "nl_input": "I need to use up my pork, tuna. plan 3 meals. that are vegan. under 60 minutes each.",
+      "expected": {
+        "min_meals": 3,
+        "max_minutes": 60,
+        "required_tags": [
+          "vegan"
+        ],
+        "preferred_ingredients": [
+          "pork",
+          "tuna"
+        ]
+      },
+      "id": 98
+    },
+    {
+      "complexity": "medium",
+      "constraints": {
+        "num_meals": 4,
+        "max_minutes": 30,
+        "tags": [],
+        "allergens": [],
+        "cook_after_hour": 19,
+        "dietary_notes": "",
+        "ingredients_on_hand": [
+          "chicken"
+        ],
+        "cuisine_preferences": [],
+        "calorie_target_per_meal": null
+      },
+      "nl_input": "I need to use up my chicken. make me 4 dinners. under 30 minutes.",
+      "expected": {
+        "min_meals": 4,
+        "max_minutes": 30,
+        "preferred_ingredients": [
+          "chicken"
+        ]
+      },
+      "id": 99
+    },
+    {
+      "complexity": "medium",
+      "constraints": {
+        "num_meals": 3,
+        "max_minutes": 30,
+        "tags": [
+          "low-calorie"
+        ],
+        "allergens": [
+          "soy",
+          "peanuts"
+        ],
+        "cook_after_hour": 19,
+        "dietary_notes": "",
+        "ingredients_on_hand": [
+          "beef"
+        ],
+        "cuisine_preferences": [],
+        "calorie_target_per_meal": null
+      },
+      "nl_input": "I have beef at home. I need 3 meals. low-calorie only. quick, 30 min max. avoid soy, peanuts.",
+      "expected": {
+        "min_meals": 3,
+        "max_minutes": 30,
+        "required_tags": [
+          "low-calorie"
+        ],
+        "forbidden_allergens": [
+          "soy",
+          "peanuts"
+        ],
+        "preferred_ingredients": [
+          "beef"
+        ]
+      },
+      "id": 100
+    },
+    {
+      "complexity": "medium",
+      "constraints": {
+        "num_meals": 5,
+        "max_minutes": 60,
+        "tags": [
+          "vegetarian"
+        ],
+        "allergens": [
+          "soy",
+          "peanuts"
+        ],
+        "cook_after_hour": 12,
+        "dietary_notes": "",
+        "ingredients_on_hand": [
+          "tofu"
+        ],
+        "cuisine_preferences": [],
+        "calorie_target_per_meal": null
+      },
+      "nl_input": "Using tofu. make me 5 dinners. vegetarian only. under 60 minutes each. avoid soy, peanuts.",
+      "expected": {
+        "min_meals": 5,
+        "max_minutes": 60,
+        "required_tags": [
+          "vegetarian"
+        ],
+        "forbidden_allergens": [
+          "soy",
+          "peanuts"
+        ],
+        "preferred_ingredients": [
+          "tofu"
+        ]
+      },
+      "id": 101
+    },
+    {
+      "complexity": "medium",
+      "constraints": {
+        "num_meals": 3,
+        "max_minutes": 45,
+        "tags": [],
+        "allergens": [
+          "dairy"
+        ],
+        "cook_after_hour": 12,
+        "dietary_notes": "",
+        "ingredients_on_hand": [
+          "chicken"
+        ],
+        "cuisine_preferences": [],
+        "calorie_target_per_meal": null
+      },
+      "nl_input": "I need to use up my chicken. plan 3 meals. under 45 minutes each. no dairy.",
+      "expected": {
+        "min_meals": 3,
+        "max_minutes": 45,
+        "forbidden_allergens": [
+          "dairy"
+        ],
+        "preferred_ingredients": [
+          "chicken"
+        ]
+      },
+      "id": 102
+    },
+    {
+      "complexity": "medium",
+      "constraints": {
+        "num_meals": 4,
+        "max_minutes": 60,
+        "tags": [
+          "vegan"
+        ],
+        "allergens": [],
+        "cook_after_hour": 19,
+        "dietary_notes": "",
+        "ingredients_on_hand": [],
+        "cuisine_preferences": [
+          "greek"
+        ],
+        "calorie_target_per_meal": null
+      },
+      "nl_input": "make me 4 dinners. vegan only. preferably greek style. under 60 minutes each.",
+      "expected": {
+        "min_meals": 4,
+        "max_minutes": 60,
+        "required_tags": [
+          "vegan"
+        ],
+        "preferred_cuisine": "greek"
+      },
+      "id": 103
+    },
+    {
+      "complexity": "medium",
+      "constraints": {
+        "num_meals": 4,
+        "max_minutes": 30,
+        "tags": [
+          "low-calorie"
+        ],
+        "allergens": [
+          "tree nuts",
+          "wheat"
+        ],
+        "cook_after_hour": 19,
+        "dietary_notes": "",
+        "ingredients_on_hand": [
+          "shrimp",
+          "chicken"
+        ],
+        "cuisine_preferences": [
+          "italian"
+        ],
+        "calorie_target_per_meal": null
+      },
+      "nl_input": "I have shrimp, chicken at home. I need 4 meals. that are low-calorie. I'm in the mood for italian. quick, 30 min max. no tree nuts, wheat.",
+      "expected": {
+        "min_meals": 4,
+        "max_minutes": 30,
+        "required_tags": [
+          "low-calorie"
+        ],
+        "forbidden_allergens": [
+          "tree nuts",
+          "wheat"
+        ],
+        "preferred_ingredients": [
+          "shrimp",
+          "chicken"
+        ],
+        "preferred_cuisine": "italian"
+      },
+      "id": 104
+    },
+    {
+      "complexity": "medium",
+      "constraints": {
+        "num_meals": 3,
+        "max_minutes": 30,
+        "tags": [
+          "vegetarian"
+        ],
+        "allergens": [],
+        "cook_after_hour": 17,
+        "dietary_notes": "",
+        "ingredients_on_hand": [
+          "shrimp",
+          "tofu",
+          "pork"
+        ],
+        "cuisine_preferences": [],
+        "calorie_target_per_meal": null
+      },
+      "nl_input": "I have shrimp, tofu, pork at home. I need 3 meals. vegetarian only. quick, 30 min max.",
+      "expected": {
+        "min_meals": 3,
+        "max_minutes": 30,
+        "required_tags": [
+          "vegetarian"
+        ],
+        "preferred_ingredients": [
+          "shrimp",
+          "tofu",
+          "pork"
+        ]
+      },
+      "id": 105
+    },
+    {
+      "complexity": "medium",
+      "constraints": {
+        "num_meals": 3,
+        "max_minutes": 45,
+        "tags": [
+          "vegetarian"
+        ],
+        "allergens": [],
+        "cook_after_hour": 12,
+        "dietary_notes": "",
+        "ingredients_on_hand": [
+          "chicken",
+          "beef",
+          "turkey"
+        ],
+        "cuisine_preferences": [
+          "italian"
+        ],
+        "calorie_target_per_meal": null
+      },
+      "nl_input": "I need to use up my chicken, beef, turkey. plan 3 meals. that are vegetarian. I'm in the mood for italian. under 45 minutes each.",
+      "expected": {
+        "min_meals": 3,
+        "max_minutes": 45,
+        "required_tags": [
+          "vegetarian"
+        ],
+        "preferred_ingredients": [
+          "chicken",
+          "beef",
+          "turkey"
+        ],
+        "preferred_cuisine": "italian"
+      },
+      "id": 106
+    },
+    {
+      "complexity": "medium",
+      "constraints": {
+        "num_meals": 5,
+        "max_minutes": 60,
+        "tags": [
+          "low-calorie"
+        ],
+        "allergens": [],
+        "cook_after_hour": 18,
+        "dietary_notes": "",
+        "ingredients_on_hand": [],
+        "cuisine_preferences": [],
+        "calorie_target_per_meal": null
+      },
+      "nl_input": "plan 5 meals. low-calorie only. under 60 minutes each.",
+      "expected": {
+        "min_meals": 5,
+        "max_minutes": 60,
+        "required_tags": [
+          "low-calorie"
+        ]
+      },
+      "id": 107
+    },
+    {
+      "complexity": "medium",
+      "constraints": {
+        "num_meals": 4,
+        "max_minutes": 30,
+        "tags": [
+          "low-fat"
+        ],
+        "allergens": [],
+        "cook_after_hour": 12,
+        "dietary_notes": "",
+        "ingredients_on_hand": [
+          "turkey",
+          "tofu"
+        ],
+        "cuisine_preferences": [],
+        "calorie_target_per_meal": null
+      },
+      "nl_input": "I need to use up my turkey, tofu. I need 4 meals. low-fat only. under 30 minutes.",
+      "expected": {
+        "min_meals": 4,
+        "max_minutes": 30,
+        "required_tags": [
+          "low-fat"
+        ],
+        "preferred_ingredients": [
+          "turkey",
+          "tofu"
+        ]
+      },
+      "id": 108
+    },
+    {
+      "complexity": "medium",
+      "constraints": {
+        "num_meals": 3,
+        "max_minutes": 60,
+        "tags": [
+          "gluten-free"
+        ],
+        "allergens": [
+          "wheat",
+          "gluten"
+        ],
+        "cook_after_hour": 19,
+        "dietary_notes": "",
+        "ingredients_on_hand": [
+          "shrimp",
+          "salmon",
+          "pork"
+        ],
+        "cuisine_preferences": [],
+        "calorie_target_per_meal": null
+      },
+      "nl_input": "I need to use up my shrimp, salmon, pork. make me 3 dinners. that are gluten-free. under 60 minutes each. avoid wheat, gluten.",
+      "expected": {
+        "min_meals": 3,
+        "max_minutes": 60,
+        "required_tags": [
+          "gluten-free"
+        ],
+        "forbidden_allergens": [
+          "wheat",
+          "gluten"
+        ],
+        "preferred_ingredients": [
+          "shrimp",
+          "salmon",
+          "pork"
+        ]
+      },
+      "id": 109
+    },
+    {
+      "complexity": "medium",
+      "constraints": {
+        "num_meals": 5,
+        "max_minutes": 60,
+        "tags": [
+          "low-carb"
+        ],
+        "allergens": [],
+        "cook_after_hour": 17,
+        "dietary_notes": "",
+        "ingredients_on_hand": [
+          "shrimp",
+          "tofu"
+        ],
+        "cuisine_preferences": [
+          "mexican"
+        ],
+        "calorie_target_per_meal": null
+      },
+      "nl_input": "I have shrimp, tofu at home. plan 5 meals. low-carb only. preferably mexican style. under 60 minutes each.",
+      "expected": {
+        "min_meals": 5,
+        "max_minutes": 60,
+        "required_tags": [
+          "low-carb"
+        ],
+        "preferred_ingredients": [
+          "shrimp",
+          "tofu"
+        ],
+        "preferred_cuisine": "mexican"
+      },
+      "id": 110
+    },
+    {
+      "complexity": "medium",
+      "constraints": {
+        "num_meals": 3,
+        "max_minutes": 30,
+        "tags": [
+          "low-calorie"
+        ],
+        "allergens": [
+          "shellfish"
+        ],
+        "cook_after_hour": 18,
+        "dietary_notes": "",
+        "ingredients_on_hand": [
+          "tofu",
+          "turkey",
+          "shrimp"
+        ],
+        "cuisine_preferences": [],
+        "calorie_target_per_meal": null
+      },
+      "nl_input": "I need to use up my tofu, turkey, shrimp. plan 3 meals. that are low-calorie. quick, 30 min max. no shellfish.",
+      "expected": {
+        "min_meals": 3,
+        "max_minutes": 30,
+        "required_tags": [
+          "low-calorie"
+        ],
+        "forbidden_allergens": [
+          "shellfish"
+        ],
+        "preferred_ingredients": [
+          "tofu",
+          "turkey",
+          "shrimp"
+        ]
+      },
+      "id": 111
+    },
+    {
+      "complexity": "medium",
+      "constraints": {
+        "num_meals": 4,
+        "max_minutes": 30,
+        "tags": [
+          "low-calorie"
+        ],
+        "allergens": [],
+        "cook_after_hour": 17,
+        "dietary_notes": "",
+        "ingredients_on_hand": [
+          "tuna"
+        ],
+        "cuisine_preferences": [
+          "greek"
+        ],
+        "calorie_target_per_meal": null
+      },
+      "nl_input": "I have tuna at home. plan 4 meals. low-calorie only. I'm in the mood for greek. quick, 30 min max.",
+      "expected": {
+        "min_meals": 4,
+        "max_minutes": 30,
+        "required_tags": [
+          "low-calorie"
+        ],
+        "preferred_ingredients": [
+          "tuna"
+        ],
+        "preferred_cuisine": "greek"
+      },
+      "id": 112
+    },
+    {
+      "complexity": "medium",
+      "constraints": {
+        "num_meals": 3,
+        "max_minutes": 45,
+        "tags": [
+          "low-calorie"
+        ],
+        "allergens": [
+          "wheat"
+        ],
+        "cook_after_hour": 19,
+        "dietary_notes": "",
+        "ingredients_on_hand": [],
+        "cuisine_preferences": [
+          "greek"
+        ],
+        "calorie_target_per_meal": null
+      },
+      "nl_input": "make me 3 dinners. low-calorie only. preferably greek style. under 45 minutes each. avoid wheat.",
+      "expected": {
+        "min_meals": 3,
+        "max_minutes": 45,
+        "required_tags": [
+          "low-calorie"
+        ],
+        "forbidden_allergens": [
+          "wheat"
+        ],
+        "preferred_cuisine": "greek"
+      },
+      "id": 113
+    },
+    {
+      "complexity": "medium",
+      "constraints": {
+        "num_meals": 3,
+        "max_minutes": 45,
+        "tags": [
+          "low-carb"
+        ],
+        "allergens": [],
+        "cook_after_hour": 19,
+        "dietary_notes": "",
+        "ingredients_on_hand": [
+          "salmon"
+        ],
+        "cuisine_preferences": [],
+        "calorie_target_per_meal": null
+      },
+      "nl_input": "I need to use up my salmon. plan 3 meals. low-carb only. under 45 minutes each.",
+      "expected": {
+        "min_meals": 3,
+        "max_minutes": 45,
+        "required_tags": [
+          "low-carb"
+        ],
+        "preferred_ingredients": [
+          "salmon"
+        ]
+      },
+      "id": 114
+    },
+    {
+      "complexity": "medium",
+      "constraints": {
+        "num_meals": 3,
+        "max_minutes": 60,
+        "tags": [],
+        "allergens": [
+          "tree nuts"
+        ],
+        "cook_after_hour": 17,
+        "dietary_notes": "",
+        "ingredients_on_hand": [],
+        "cuisine_preferences": [
+          "french"
+        ],
+        "calorie_target_per_meal": null
+      },
+      "nl_input": "make me 3 dinners. preferably french style. under 60 minutes each. I'm allergic to tree nuts.",
+      "expected": {
+        "min_meals": 3,
+        "max_minutes": 60,
+        "forbidden_allergens": [
+          "tree nuts"
+        ],
+        "preferred_cuisine": "french"
+      },
+      "id": 115
+    },
+    {
+      "complexity": "medium",
+      "constraints": {
+        "num_meals": 5,
+        "max_minutes": 30,
+        "tags": [
+          "low-calorie"
+        ],
+        "allergens": [],
+        "cook_after_hour": 19,
+        "dietary_notes": "",
+        "ingredients_on_hand": [
+          "shrimp",
+          "turkey"
+        ],
+        "cuisine_preferences": [
+          "mexican"
+        ],
+        "calorie_target_per_meal": null
+      },
+      "nl_input": "Using shrimp, turkey. plan 5 meals. that are low-calorie. I'm in the mood for mexican. quick, 30 min max.",
+      "expected": {
+        "min_meals": 5,
+        "max_minutes": 30,
+        "required_tags": [
+          "low-calorie"
+        ],
+        "preferred_ingredients": [
+          "shrimp",
+          "turkey"
+        ],
+        "preferred_cuisine": "mexican"
+      },
+      "id": 116
+    },
+    {
+      "complexity": "medium",
+      "constraints": {
+        "num_meals": 4,
+        "max_minutes": 30,
+        "tags": [
+          "vegan"
+        ],
+        "allergens": [
+          "gluten"
+        ],
+        "cook_after_hour": 18,
+        "dietary_notes": "",
+        "ingredients_on_hand": [],
+        "cuisine_preferences": [
+          "japanese"
+        ],
+        "calorie_target_per_meal": null
+      },
+      "nl_input": "plan 4 meals. vegan only. preferably japanese style. under 30 minutes. avoid gluten.",
+      "expected": {
+        "min_meals": 4,
+        "max_minutes": 30,
+        "required_tags": [
+          "vegan"
+        ],
+        "forbidden_allergens": [
+          "gluten"
+        ],
+        "preferred_cuisine": "japanese"
+      },
+      "id": 117
+    },
+    {
+      "complexity": "medium",
+      "constraints": {
+        "num_meals": 4,
+        "max_minutes": 45,
+        "tags": [],
+        "allergens": [
+          "soy",
+          "shellfish"
+        ],
+        "cook_after_hour": 17,
+        "dietary_notes": "",
+        "ingredients_on_hand": [],
+        "cuisine_preferences": [],
+        "calorie_target_per_meal": null
+      },
+      "nl_input": "plan 4 meals. under 45 minutes each. avoid soy, shellfish.",
+      "expected": {
+        "min_meals": 4,
+        "max_minutes": 45,
+        "forbidden_allergens": [
+          "soy",
+          "shellfish"
+        ]
+      },
+      "id": 118
+    },
+    {
+      "complexity": "medium",
+      "constraints": {
+        "num_meals": 5,
+        "max_minutes": 30,
+        "tags": [],
+        "allergens": [],
+        "cook_after_hour": 18,
+        "dietary_notes": "",
+        "ingredients_on_hand": [],
+        "cuisine_preferences": [],
+        "calorie_target_per_meal": null
+      },
+      "nl_input": "make me 5 dinners. under 30 minutes.",
+      "expected": {
+        "min_meals": 5,
+        "max_minutes": 30
+      },
+      "id": 119
+    },
+    {
+      "complexity": "medium",
+      "constraints": {
+        "num_meals": 5,
+        "max_minutes": 60,
+        "tags": [],
+        "allergens": [],
+        "cook_after_hour": 12,
+        "dietary_notes": "",
+        "ingredients_on_hand": [
+          "chicken",
+          "pork",
+          "salmon"
+        ],
+        "cuisine_preferences": [
+          "indian"
+        ],
+        "calorie_target_per_meal": null
+      },
+      "nl_input": "I have chicken, pork, salmon at home. make me 5 dinners. preferably indian style. under 60 minutes each.",
+      "expected": {
+        "min_meals": 5,
+        "max_minutes": 60,
+        "preferred_ingredients": [
+          "chicken",
+          "pork",
+          "salmon"
+        ],
+        "preferred_cuisine": "indian"
+      },
+      "id": 120
+    },
+    {
+      "complexity": "medium",
+      "constraints": {
+        "num_meals": 5,
+        "max_minutes": 30,
+        "tags": [
+          "low-fat"
+        ],
+        "allergens": [],
+        "cook_after_hour": 12,
+        "dietary_notes": "",
+        "ingredients_on_hand": [],
+        "cuisine_preferences": [
+          "french"
+        ],
+        "calorie_target_per_meal": null
+      },
+      "nl_input": "make me 5 dinners. low-fat only. preferably french style. under 30 minutes.",
+      "expected": {
+        "min_meals": 5,
+        "max_minutes": 30,
+        "required_tags": [
+          "low-fat"
+        ],
+        "preferred_cuisine": "french"
+      },
+      "id": 121
+    },
+    {
+      "complexity": "medium",
+      "constraints": {
+        "num_meals": 5,
+        "max_minutes": 60,
+        "tags": [],
+        "allergens": [
+          "shellfish",
+          "peanuts"
+        ],
+        "cook_after_hour": 19,
+        "dietary_notes": "",
+        "ingredients_on_hand": [],
+        "cuisine_preferences": [],
+        "calorie_target_per_meal": null
+      },
+      "nl_input": "make me 5 dinners. under 60 minutes each. I'm allergic to shellfish, peanuts.",
+      "expected": {
+        "min_meals": 5,
+        "max_minutes": 60,
+        "forbidden_allergens": [
+          "shellfish",
+          "peanuts"
+        ]
+      },
+      "id": 122
+    },
+    {
+      "complexity": "medium",
+      "constraints": {
+        "num_meals": 4,
+        "max_minutes": 60,
+        "tags": [],
+        "allergens": [],
+        "cook_after_hour": 18,
+        "dietary_notes": "",
+        "ingredients_on_hand": [],
+        "cuisine_preferences": [],
+        "calorie_target_per_meal": null
+      },
+      "nl_input": "plan 4 meals. under 60 minutes each.",
+      "expected": {
+        "min_meals": 4,
+        "max_minutes": 60
+      },
+      "id": 123
+    },
+    {
+      "complexity": "medium",
+      "constraints": {
+        "num_meals": 5,
+        "max_minutes": 30,
+        "tags": [],
+        "allergens": [],
+        "cook_after_hour": 19,
+        "dietary_notes": "",
+        "ingredients_on_hand": [],
+        "cuisine_preferences": [],
+        "calorie_target_per_meal": null
+      },
+      "nl_input": "make me 5 dinners. quick, 30 min max.",
+      "expected": {
+        "min_meals": 5,
+        "max_minutes": 30
+      },
+      "id": 124
+    },
+    {
+      "complexity": "medium",
+      "constraints": {
+        "num_meals": 4,
+        "max_minutes": 60,
+        "tags": [],
+        "allergens": [],
+        "cook_after_hour": 18,
+        "dietary_notes": "",
+        "ingredients_on_hand": [
+          "pork",
+          "salmon",
+          "tofu"
+        ],
+        "cuisine_preferences": [],
+        "calorie_target_per_meal": null
+      },
+      "nl_input": "Using pork, salmon, tofu. plan 4 meals. under 60 minutes each.",
+      "expected": {
+        "min_meals": 4,
+        "max_minutes": 60,
+        "preferred_ingredients": [
+          "pork",
+          "salmon",
+          "tofu"
+        ]
+      },
+      "id": 125
+    },
+    {
+      "complexity": "medium",
+      "constraints": {
+        "num_meals": 5,
+        "max_minutes": 60,
+        "tags": [
+          "vegetarian"
+        ],
+        "allergens": [],
+        "cook_after_hour": 19,
+        "dietary_notes": "",
+        "ingredients_on_hand": [
+          "turkey",
+          "pork",
+          "shrimp"
+        ],
+        "cuisine_preferences": [],
+        "calorie_target_per_meal": null
+      },
+      "nl_input": "I need to use up my turkey, pork, shrimp. make me 5 dinners. vegetarian only. under 60 minutes each.",
+      "expected": {
+        "min_meals": 5,
+        "max_minutes": 60,
+        "required_tags": [
+          "vegetarian"
+        ],
+        "preferred_ingredients": [
+          "turkey",
+          "pork",
+          "shrimp"
+        ]
+      },
+      "id": 126
+    },
+    {
+      "complexity": "medium",
+      "constraints": {
+        "num_meals": 3,
+        "max_minutes": 30,
+        "tags": [],
+        "allergens": [],
+        "cook_after_hour": 19,
+        "dietary_notes": "",
+        "ingredients_on_hand": [
+          "tofu",
+          "chicken",
+          "salmon"
+        ],
+        "cuisine_preferences": [
+          "french"
+        ],
+        "calorie_target_per_meal": null
+      },
+      "nl_input": "I need to use up my tofu, chicken, salmon. plan 3 meals. I'm in the mood for french. under 30 minutes.",
+      "expected": {
+        "min_meals": 3,
+        "max_minutes": 30,
+        "preferred_ingredients": [
+          "tofu",
+          "chicken",
+          "salmon"
+        ],
+        "preferred_cuisine": "french"
+      },
+      "id": 127
+    },
+    {
+      "complexity": "medium",
+      "constraints": {
+        "num_meals": 4,
+        "max_minutes": 45,
+        "tags": [],
+        "allergens": [
+          "gluten"
+        ],
+        "cook_after_hour": 18,
+        "dietary_notes": "",
+        "ingredients_on_hand": [
+          "shrimp",
+          "tuna",
+          "beef"
+        ],
+        "cuisine_preferences": [],
+        "calorie_target_per_meal": null
+      },
+      "nl_input": "I have shrimp, tuna, beef at home. make me 4 dinners. under 45 minutes each. avoid gluten.",
+      "expected": {
+        "min_meals": 4,
+        "max_minutes": 45,
+        "forbidden_allergens": [
+          "gluten"
+        ],
+        "preferred_ingredients": [
+          "shrimp",
+          "tuna",
+          "beef"
+        ]
+      },
+      "id": 128
+    },
+    {
+      "complexity": "medium",
+      "constraints": {
+        "num_meals": 5,
+        "max_minutes": 60,
+        "tags": [],
+        "allergens": [],
+        "cook_after_hour": 19,
+        "dietary_notes": "",
+        "ingredients_on_hand": [
+          "tofu",
+          "shrimp"
+        ],
+        "cuisine_preferences": [
+          "indian"
+        ],
+        "calorie_target_per_meal": null
+      },
+      "nl_input": "Using tofu, shrimp. I need 5 meals. I'm in the mood for indian. under 60 minutes each.",
+      "expected": {
+        "min_meals": 5,
+        "max_minutes": 60,
+        "preferred_ingredients": [
+          "tofu",
+          "shrimp"
+        ],
+        "preferred_cuisine": "indian"
+      },
+      "id": 129
+    },
+    {
+      "complexity": "medium",
+      "constraints": {
+        "num_meals": 3,
+        "max_minutes": 60,
+        "tags": [
+          "gluten-free"
+        ],
+        "allergens": [
+          "tree nuts"
+        ],
+        "cook_after_hour": 17,
+        "dietary_notes": "",
+        "ingredients_on_hand": [
+          "tofu",
+          "turkey",
+          "tuna"
+        ],
+        "cuisine_preferences": [
+          "mexican"
+        ],
+        "calorie_target_per_meal": null
+      },
+      "nl_input": "I need to use up my tofu, turkey, tuna. plan 3 meals. gluten-free only. I'm in the mood for mexican. under 60 minutes each. no tree nuts.",
+      "expected": {
+        "min_meals": 3,
+        "max_minutes": 60,
+        "required_tags": [
+          "gluten-free"
+        ],
+        "forbidden_allergens": [
+          "tree nuts"
+        ],
+        "preferred_ingredients": [
+          "tofu",
+          "turkey",
+          "tuna"
+        ],
+        "preferred_cuisine": "mexican"
+      },
+      "id": 130
+    },
+    {
+      "complexity": "medium",
+      "constraints": {
+        "num_meals": 5,
+        "max_minutes": 60,
+        "tags": [
+          "high-protein"
+        ],
+        "allergens": [
+          "dairy",
+          "shellfish"
+        ],
+        "cook_after_hour": 18,
+        "dietary_notes": "",
+        "ingredients_on_hand": [
+          "turkey",
+          "pork",
+          "tofu"
+        ],
+        "cuisine_preferences": [
+          "thai"
+        ],
+        "calorie_target_per_meal": null
+      },
+      "nl_input": "Using turkey, pork, tofu. make me 5 dinners. high-protein only. preferably thai style. under 60 minutes each. avoid dairy, shellfish.",
+      "expected": {
+        "min_meals": 5,
+        "max_minutes": 60,
+        "required_tags": [
+          "high-protein"
+        ],
+        "forbidden_allergens": [
+          "dairy",
+          "shellfish"
+        ],
+        "preferred_ingredients": [
+          "turkey",
+          "pork",
+          "tofu"
+        ],
+        "preferred_cuisine": "thai"
+      },
+      "id": 131
+    },
+    {
+      "complexity": "medium",
+      "constraints": {
+        "num_meals": 5,
+        "max_minutes": 30,
+        "tags": [],
+        "allergens": [],
+        "cook_after_hour": 17,
+        "dietary_notes": "",
+        "ingredients_on_hand": [
+          "shrimp"
+        ],
+        "cuisine_preferences": [],
+        "calorie_target_per_meal": null
+      },
+      "nl_input": "I need to use up my shrimp. plan 5 meals. quick, 30 min max.",
+      "expected": {
+        "min_meals": 5,
+        "max_minutes": 30,
+        "preferred_ingredients": [
+          "shrimp"
+        ]
+      },
+      "id": 132
+    },
+    {
+      "complexity": "medium",
+      "constraints": {
+        "num_meals": 4,
+        "max_minutes": 30,
+        "tags": [
+          "low-fat"
+        ],
+        "allergens": [
+          "dairy",
+          "tree nuts"
+        ],
+        "cook_after_hour": 19,
+        "dietary_notes": "",
+        "ingredients_on_hand": [
+          "turkey"
+        ],
+        "cuisine_preferences": [
+          "italian"
+        ],
+        "calorie_target_per_meal": null
+      },
+      "nl_input": "Using turkey. make me 4 dinners. that are low-fat. preferably italian style. quick, 30 min max. no dairy, tree nuts.",
+      "expected": {
+        "min_meals": 4,
+        "max_minutes": 30,
+        "required_tags": [
+          "low-fat"
+        ],
+        "forbidden_allergens": [
+          "dairy",
+          "tree nuts"
+        ],
+        "preferred_ingredients": [
+          "turkey"
+        ],
+        "preferred_cuisine": "italian"
+      },
+      "id": 133
+    },
+    {
+      "complexity": "medium",
+      "constraints": {
+        "num_meals": 3,
+        "max_minutes": 60,
+        "tags": [],
+        "allergens": [],
+        "cook_after_hour": 18,
+        "dietary_notes": "",
+        "ingredients_on_hand": [
+          "shrimp",
+          "chicken"
+        ],
+        "cuisine_preferences": [
+          "mexican"
+        ],
+        "calorie_target_per_meal": null
+      },
+      "nl_input": "I have shrimp, chicken at home. plan 3 meals. preferably mexican style. under 60 minutes each.",
+      "expected": {
+        "min_meals": 3,
+        "max_minutes": 60,
+        "preferred_ingredients": [
+          "shrimp",
+          "chicken"
+        ],
+        "preferred_cuisine": "mexican"
+      },
+      "id": 134
+    },
+    {
+      "complexity": "medium",
+      "constraints": {
+        "num_meals": 5,
+        "max_minutes": 60,
+        "tags": [],
+        "allergens": [
+          "shellfish"
+        ],
+        "cook_after_hour": 12,
+        "dietary_notes": "",
+        "ingredients_on_hand": [
+          "turkey",
+          "salmon",
+          "chicken"
+        ],
+        "cuisine_preferences": [],
+        "calorie_target_per_meal": null
+      },
+      "nl_input": "I need to use up my turkey, salmon, chicken. I need 5 meals. under 60 minutes each. avoid shellfish.",
+      "expected": {
+        "min_meals": 5,
+        "max_minutes": 60,
+        "forbidden_allergens": [
+          "shellfish"
+        ],
+        "preferred_ingredients": [
+          "turkey",
+          "salmon",
+          "chicken"
+        ]
+      },
+      "id": 135
+    },
+    {
+      "complexity": "medium",
+      "constraints": {
+        "num_meals": 4,
+        "max_minutes": 30,
+        "tags": [
+          "low-calorie"
+        ],
+        "allergens": [],
+        "cook_after_hour": 12,
+        "dietary_notes": "",
+        "ingredients_on_hand": [
+          "salmon",
+          "shrimp",
+          "chicken"
+        ],
+        "cuisine_preferences": [],
+        "calorie_target_per_meal": null
+      },
+      "nl_input": "I have salmon, shrimp, chicken at home. make me 4 dinners. that are low-calorie. quick, 30 min max.",
+      "expected": {
+        "min_meals": 4,
+        "max_minutes": 30,
+        "required_tags": [
+          "low-calorie"
+        ],
+        "preferred_ingredients": [
+          "salmon",
+          "shrimp",
+          "chicken"
+        ]
+      },
+      "id": 136
+    },
+    {
+      "complexity": "medium",
+      "constraints": {
+        "num_meals": 3,
+        "max_minutes": 30,
+        "tags": [],
+        "allergens": [
+          "gluten",
+          "dairy"
+        ],
+        "cook_after_hour": 18,
+        "dietary_notes": "",
+        "ingredients_on_hand": [
+          "turkey",
+          "pork",
+          "chicken"
+        ],
+        "cuisine_preferences": [
+          "japanese"
+        ],
+        "calorie_target_per_meal": null
+      },
+      "nl_input": "I have turkey, pork, chicken at home. I need 3 meals. I'm in the mood for japanese. quick, 30 min max. no gluten, dairy.",
+      "expected": {
+        "min_meals": 3,
+        "max_minutes": 30,
+        "forbidden_allergens": [
+          "gluten",
+          "dairy"
+        ],
+        "preferred_ingredients": [
+          "turkey",
+          "pork",
+          "chicken"
+        ],
+        "preferred_cuisine": "japanese"
+      },
+      "id": 137
+    },
+    {
+      "complexity": "medium",
+      "constraints": {
+        "num_meals": 5,
+        "max_minutes": 45,
+        "tags": [],
+        "allergens": [
+          "soy",
+          "eggs"
+        ],
+        "cook_after_hour": 17,
+        "dietary_notes": "",
+        "ingredients_on_hand": [],
+        "cuisine_preferences": [
+          "greek"
+        ],
+        "calorie_target_per_meal": null
+      },
+      "nl_input": "I need 5 meals. preferably greek style. under 45 minutes each. avoid soy, eggs.",
+      "expected": {
+        "min_meals": 5,
+        "max_minutes": 45,
+        "forbidden_allergens": [
+          "soy",
+          "eggs"
+        ],
+        "preferred_cuisine": "greek"
+      },
+      "id": 138
+    },
+    {
+      "complexity": "medium",
+      "constraints": {
+        "num_meals": 5,
+        "max_minutes": 60,
+        "tags": [
+          "low-calorie"
+        ],
+        "allergens": [
+          "dairy"
+        ],
+        "cook_after_hour": 12,
+        "dietary_notes": "",
+        "ingredients_on_hand": [],
+        "cuisine_preferences": [
+          "indian"
+        ],
+        "calorie_target_per_meal": null
+      },
+      "nl_input": "make me 5 dinners. low-calorie only. I'm in the mood for indian. under 60 minutes each. avoid dairy.",
+      "expected": {
+        "min_meals": 5,
+        "max_minutes": 60,
+        "required_tags": [
+          "low-calorie"
+        ],
+        "forbidden_allergens": [
+          "dairy"
+        ],
+        "preferred_cuisine": "indian"
+      },
+      "id": 139
+    },
+    {
+      "complexity": "medium",
+      "constraints": {
+        "num_meals": 4,
+        "max_minutes": 30,
+        "tags": [
+          "low-fat"
+        ],
+        "allergens": [
+          "dairy"
+        ],
+        "cook_after_hour": 18,
+        "dietary_notes": "",
+        "ingredients_on_hand": [
+          "pork",
+          "salmon"
+        ],
+        "cuisine_preferences": [],
+        "calorie_target_per_meal": null
+      },
+      "nl_input": "I have pork, salmon at home. make me 4 dinners. that are low-fat. under 30 minutes. no dairy.",
+      "expected": {
+        "min_meals": 4,
+        "max_minutes": 30,
+        "required_tags": [
+          "low-fat"
+        ],
+        "forbidden_allergens": [
+          "dairy"
+        ],
+        "preferred_ingredients": [
+          "pork",
+          "salmon"
+        ]
+      },
+      "id": 140
+    },
+    {
+      "complexity": "complex",
+      "constraints": {
+        "num_meals": 5,
+        "max_minutes": 20,
+        "tags": [
+          "low-fat",
+          "gluten-free"
+        ],
+        "allergens": [
+          "peanuts"
+        ],
+        "cook_after_hour": 18,
+        "dietary_notes": "",
+        "ingredients_on_hand": [
+          "shrimp",
+          "tuna"
+        ],
+        "cuisine_preferences": [
+          "greek"
+        ],
+        "calorie_target_per_meal": 800
+      },
+      "nl_input": "I need to use up my shrimp, tuna. make me 5 dinners. low-fat and gluten-free only. preferably greek style. quick, 20 min max. avoid peanuts. about 800 calories each.",
+      "expected": {
+        "min_meals": 5,
+        "max_minutes": 20,
+        "required_tags": [
+          "low-fat",
+          "gluten-free"
+        ],
+        "forbidden_allergens": [
+          "peanuts"
+        ],
+        "preferred_ingredients": [
+          "shrimp",
+          "tuna"
+        ],
+        "calorie_target": 800
+      },
+      "id": 141
+    },
+    {
+      "complexity": "complex",
+      "constraints": {
+        "num_meals": 5,
+        "max_minutes": 30,
+        "tags": [
+          "high-protein",
+          "low-carb"
+        ],
+        "allergens": [
+          "eggs",
+          "peanuts"
+        ],
+        "cook_after_hour": 7,
+        "dietary_notes": "",
+        "ingredients_on_hand": [
+          "tofu",
+          "chicken"
+        ],
+        "cuisine_preferences": [
+          "chinese"
+        ],
+        "calorie_target_per_meal": null
+      },
+      "nl_input": "I have tofu, chicken at home. I need 5 meals. that are high-protein and low-carb. I'm in the mood for chinese. quick, 30 min max. I'm allergic to eggs, peanuts.",
+      "expected": {
+        "min_meals": 5,
+        "max_minutes": 30,
+        "required_tags": [
+          "high-protein",
+          "low-carb"
+        ],
+        "forbidden_allergens": [
+          "eggs",
+          "peanuts"
+        ],
+        "preferred_ingredients": [
+          "tofu",
+          "chicken"
+        ]
+      },
+      "id": 142
+    },
+    {
+      "complexity": "complex",
+      "constraints": {
+        "num_meals": 3,
+        "max_minutes": 30,
+        "tags": [
+          "vegetarian"
+        ],
+        "allergens": [
+          "dairy"
+        ],
+        "cook_after_hour": 12,
+        "dietary_notes": "",
+        "ingredients_on_hand": [
+          "pork",
+          "salmon",
+          "shrimp"
+        ],
+        "cuisine_preferences": [
+          "italian"
+        ],
+        "calorie_target_per_meal": null
+      },
+      "nl_input": "I have pork, salmon, shrimp at home. make me 3 dinners. vegetarian only. I'm in the mood for italian. under 30 minutes. I'm allergic to dairy.",
+      "expected": {
+        "min_meals": 3,
+        "max_minutes": 30,
+        "required_tags": [
+          "vegetarian"
+        ],
+        "forbidden_allergens": [
+          "dairy"
+        ],
+        "preferred_ingredients": [
+          "pork",
+          "salmon",
+          "shrimp"
+        ]
+      },
+      "id": 143
+    },
+    {
+      "complexity": "complex",
+      "constraints": {
+        "num_meals": 3,
+        "max_minutes": 90,
+        "tags": [
+          "low-fat",
+          "gluten-free"
+        ],
+        "allergens": [
+          "soy"
+        ],
+        "cook_after_hour": 19,
+        "dietary_notes": "",
+        "ingredients_on_hand": [
+          "pork",
+          "beef"
+        ],
+        "cuisine_preferences": [
+          "thai",
+          "italian"
+        ],
+        "calorie_target_per_meal": 500
+      },
+      "nl_input": "I have pork, beef at home. make me 3 dinners. low-fat and gluten-free only. preferably thai or italian style. no soy. about 500 calories each.",
+      "expected": {
+        "min_meals": 3,
+        "max_minutes": 90,
+        "required_tags": [
+          "low-fat",
+          "gluten-free"
+        ],
+        "forbidden_allergens": [
+          "soy"
+        ],
+        "preferred_ingredients": [
+          "pork",
+          "beef"
+        ],
+        "calorie_target": 500
+      },
+      "id": 144
+    },
+    {
+      "complexity": "complex",
+      "constraints": {
+        "num_meals": 3,
+        "max_minutes": 60,
+        "tags": [
+          "vegetarian",
+          "gluten-free"
+        ],
+        "allergens": [
+          "gluten",
+          "shellfish"
+        ],
+        "cook_after_hour": 19,
+        "dietary_notes": "",
+        "ingredients_on_hand": [
+          "turkey",
+          "beef",
+          "pork"
+        ],
+        "cuisine_preferences": [
+          "mexican",
+          "italian"
+        ],
+        "calorie_target_per_meal": 800
+      },
+      "nl_input": "I have turkey, beef, pork at home. I need 3 meals. that are vegetarian and gluten-free. I'm in the mood for mexican or italian. under 60 minutes each. I'm allergic to gluten, shellfish. about 800 calories each.",
+      "expected": {
+        "min_meals": 3,
+        "max_minutes": 60,
+        "required_tags": [
+          "vegetarian",
+          "gluten-free"
+        ],
+        "forbidden_allergens": [
+          "gluten",
+          "shellfish"
+        ],
+        "preferred_ingredients": [
+          "turkey",
+          "beef",
+          "pork"
+        ],
+        "calorie_target": 800
+      },
+      "id": 145
+    },
+    {
+      "complexity": "complex",
+      "constraints": {
+        "num_meals": 7,
+        "max_minutes": 60,
+        "tags": [
+          "gluten-free",
+          "vegan"
+        ],
+        "allergens": [
+          "peanuts"
+        ],
+        "cook_after_hour": 12,
+        "dietary_notes": "",
+        "ingredients_on_hand": [
+          "tuna",
+          "shrimp"
+        ],
+        "cuisine_preferences": [
+          "mexican"
+        ],
+        "calorie_target_per_meal": 400
+      },
+      "nl_input": "I have tuna, shrimp at home. I need 7 meals. that are gluten-free and vegan. I'm in the mood for mexican. under 60 minutes each. no peanuts. about 400 calories each.",
+      "expected": {
+        "min_meals": 7,
+        "max_minutes": 60,
+        "required_tags": [
+          "gluten-free",
+          "vegan"
+        ],
+        "forbidden_allergens": [
+          "peanuts"
+        ],
+        "preferred_ingredients": [
+          "tuna",
+          "shrimp"
+        ],
+        "calorie_target": 400
+      },
+      "id": 146
+    },
+    {
+      "complexity": "complex",
+      "constraints": {
+        "num_meals": 3,
+        "max_minutes": 20,
+        "tags": [
+          "low-calorie"
+        ],
+        "allergens": [
+          "wheat",
+          "soy"
+        ],
+        "cook_after_hour": 12,
+        "dietary_notes": "",
+        "ingredients_on_hand": [
+          "salmon",
+          "shrimp"
+        ],
+        "cuisine_preferences": [
+          "italian"
+        ],
+        "calorie_target_per_meal": 600
+      },
+      "nl_input": "Using salmon, shrimp. I need 3 meals. low-calorie only. preferably italian style. quick, 20 min max. avoid wheat, soy. about 600 calories each.",
+      "expected": {
+        "min_meals": 3,
+        "max_minutes": 20,
+        "required_tags": [
+          "low-calorie"
+        ],
+        "forbidden_allergens": [
+          "wheat",
+          "soy"
+        ],
+        "preferred_ingredients": [
+          "salmon",
+          "shrimp"
+        ],
+        "calorie_target": 600
+      },
+      "id": 147
+    },
+    {
+      "complexity": "complex",
+      "constraints": {
+        "num_meals": 5,
+        "max_minutes": 45,
+        "tags": [
+          "vegetarian"
+        ],
+        "allergens": [
+          "shellfish",
+          "peanuts",
+          "dairy"
+        ],
+        "cook_after_hour": 7,
+        "dietary_notes": "",
+        "ingredients_on_hand": [
+          "salmon",
+          "shrimp"
+        ],
+        "cuisine_preferences": [
+          "french",
+          "japanese"
+        ],
+        "calorie_target_per_meal": 600
+      },
+      "nl_input": "I need to use up my salmon, shrimp. plan 5 meals. vegetarian only. preferably french or japanese style. under 45 minutes each. avoid shellfish, peanuts, dairy. about 600 calories each.",
+      "expected": {
+        "min_meals": 5,
+        "max_minutes": 45,
+        "required_tags": [
+          "vegetarian"
+        ],
+        "forbidden_allergens": [
+          "shellfish",
+          "peanuts",
+          "dairy"
+        ],
+        "preferred_ingredients": [
+          "salmon",
+          "shrimp"
+        ],
+        "calorie_target": 600
+      },
+      "id": 148
+    },
+    {
+      "complexity": "complex",
+      "constraints": {
+        "num_meals": 3,
+        "max_minutes": 20,
+        "tags": [
+          "gluten-free"
+        ],
+        "allergens": [
+          "dairy",
+          "tree nuts"
+        ],
+        "cook_after_hour": 18,
+        "dietary_notes": "",
+        "ingredients_on_hand": [
+          "salmon",
+          "chicken",
+          "pork",
+          "beef"
+        ],
+        "cuisine_preferences": [
+          "italian",
+          "japanese"
+        ],
+        "calorie_target_per_meal": 400
+      },
+      "nl_input": "Using salmon, chicken, pork, beef. make me 3 dinners. that are gluten-free. I'm in the mood for italian or japanese. under 20 minutes. no dairy, tree nuts. about 400 calories each.",
+      "expected": {
+        "min_meals": 3,
+        "max_minutes": 20,
+        "required_tags": [
+          "gluten-free"
+        ],
+        "forbidden_allergens": [
+          "dairy",
+          "tree nuts"
+        ],
+        "preferred_ingredients": [
+          "salmon",
+          "chicken",
+          "pork",
+          "beef"
+        ],
+        "calorie_target": 400
+      },
+      "id": 149
+    },
+    {
+      "complexity": "complex",
+      "constraints": {
+        "num_meals": 3,
+        "max_minutes": 30,
+        "tags": [
+          "low-fat"
+        ],
+        "allergens": [
+          "peanuts"
+        ],
+        "cook_after_hour": 7,
+        "dietary_notes": "",
+        "ingredients_on_hand": [
+          "chicken",
+          "tuna",
+          "turkey",
+          "shrimp"
+        ],
+        "cuisine_preferences": [
+          "mexican"
+        ],
+        "calorie_target_per_meal": 400
+      },
+      "nl_input": "I have chicken, tuna, turkey, shrimp at home. I need 3 meals. low-fat only. preferably mexican style. quick, 30 min max. I'm allergic to peanuts. about 400 calories each.",
+      "expected": {
+        "min_meals": 3,
+        "max_minutes": 30,
+        "required_tags": [
+          "low-fat"
+        ],
+        "forbidden_allergens": [
+          "peanuts"
+        ],
+        "preferred_ingredients": [
+          "chicken",
+          "tuna",
+          "turkey",
+          "shrimp"
+        ],
+        "calorie_target": 400
+      },
+      "id": 150
+    },
+    {
+      "complexity": "complex",
+      "constraints": {
+        "num_meals": 5,
+        "max_minutes": 20,
+        "tags": [
+          "vegan"
+        ],
+        "allergens": [
+          "tree nuts"
+        ],
+        "cook_after_hour": 7,
+        "dietary_notes": "",
+        "ingredients_on_hand": [
+          "turkey",
+          "pork",
+          "tuna",
+          "shrimp"
+        ],
+        "cuisine_preferences": [
+          "chinese"
+        ],
+        "calorie_target_per_meal": 400
+      },
+      "nl_input": "I need to use up my turkey, pork, tuna, shrimp. I need 5 meals. that are vegan. preferably chinese style. quick, 20 min max. avoid tree nuts. about 400 calories each.",
+      "expected": {
+        "min_meals": 5,
+        "max_minutes": 20,
+        "required_tags": [
+          "vegan"
+        ],
+        "forbidden_allergens": [
+          "tree nuts"
+        ],
+        "preferred_ingredients": [
+          "turkey",
+          "pork",
+          "tuna",
+          "shrimp"
+        ],
+        "calorie_target": 400
+      },
+      "id": 151
+    },
+    {
+      "complexity": "complex",
+      "constraints": {
+        "num_meals": 3,
+        "max_minutes": 45,
+        "tags": [
+          "low-carb",
+          "low-fat"
+        ],
+        "allergens": [
+          "shellfish",
+          "soy",
+          "gluten"
+        ],
+        "cook_after_hour": 19,
+        "dietary_notes": "",
+        "ingredients_on_hand": [
+          "salmon",
+          "beef"
+        ],
+        "cuisine_preferences": [
+          "mexican"
+        ],
+        "calorie_target_per_meal": null
+      },
+      "nl_input": "I need to use up my salmon, beef. plan 3 meals. that are low-carb and low-fat. I'm in the mood for mexican. under 45 minutes each. no shellfish, soy, gluten.",
+      "expected": {
+        "min_meals": 3,
+        "max_minutes": 45,
+        "required_tags": [
+          "low-carb",
+          "low-fat"
+        ],
+        "forbidden_allergens": [
+          "shellfish",
+          "soy",
+          "gluten"
+        ],
+        "preferred_ingredients": [
+          "salmon",
+          "beef"
+        ]
+      },
+      "id": 152
+    },
+    {
+      "complexity": "complex",
+      "constraints": {
+        "num_meals": 7,
+        "max_minutes": 30,
+        "tags": [
+          "low-fat"
+        ],
+        "allergens": [
+          "shellfish"
+        ],
+        "cook_after_hour": 12,
+        "dietary_notes": "",
+        "ingredients_on_hand": [
+          "salmon",
+          "chicken",
+          "shrimp"
+        ],
+        "cuisine_preferences": [
+          "thai",
+          "mexican"
+        ],
+        "calorie_target_per_meal": null
+      },
+      "nl_input": "I have salmon, chicken, shrimp at home. I need 7 meals. low-fat only. I'm in the mood for thai or mexican. quick, 30 min max. no shellfish.",
+      "expected": {
+        "min_meals": 7,
+        "max_minutes": 30,
+        "required_tags": [
+          "low-fat"
+        ],
+        "forbidden_allergens": [
+          "shellfish"
+        ],
+        "preferred_ingredients": [
+          "salmon",
+          "chicken",
+          "shrimp"
+        ]
+      },
+      "id": 153
+    },
+    {
+      "complexity": "complex",
+      "constraints": {
+        "num_meals": 3,
+        "max_minutes": 60,
+        "tags": [
+          "low-fat",
+          "low-calorie"
+        ],
+        "allergens": [
+          "peanuts",
+          "tree nuts",
+          "eggs"
+        ],
+        "cook_after_hour": 19,
+        "dietary_notes": "",
+        "ingredients_on_hand": [
+          "salmon",
+          "turkey"
+        ],
+        "cuisine_preferences": [
+          "italian"
+        ],
+        "calorie_target_per_meal": null
+      },
+      "nl_input": "I have salmon, turkey at home. plan 3 meals. that are low-fat and low-calorie. I'm in the mood for italian. under 60 minutes each. I'm allergic to peanuts, tree nuts, eggs.",
+      "expected": {
+        "min_meals": 3,
+        "max_minutes": 60,
+        "required_tags": [
+          "low-fat",
+          "low-calorie"
+        ],
+        "forbidden_allergens": [
+          "peanuts",
+          "tree nuts",
+          "eggs"
+        ],
+        "preferred_ingredients": [
+          "salmon",
+          "turkey"
+        ]
+      },
+      "id": 154
+    },
+    {
+      "complexity": "complex",
+      "constraints": {
+        "num_meals": 3,
+        "max_minutes": 60,
+        "tags": [
+          "gluten-free"
+        ],
+        "allergens": [
+          "shellfish"
+        ],
+        "cook_after_hour": 7,
+        "dietary_notes": "",
+        "ingredients_on_hand": [
+          "salmon",
+          "turkey"
+        ],
+        "cuisine_preferences": [
+          "french"
+        ],
+        "calorie_target_per_meal": 500
+      },
+      "nl_input": "I have salmon, turkey at home. plan 3 meals. that are gluten-free. I'm in the mood for french. under 60 minutes each. no shellfish. about 500 calories each.",
+      "expected": {
+        "min_meals": 3,
+        "max_minutes": 60,
+        "required_tags": [
+          "gluten-free"
+        ],
+        "forbidden_allergens": [
+          "shellfish"
+        ],
+        "preferred_ingredients": [
+          "salmon",
+          "turkey"
+        ],
+        "calorie_target": 500
+      },
+      "id": 155
+    },
+    {
+      "complexity": "complex",
+      "constraints": {
+        "num_meals": 7,
+        "max_minutes": 20,
+        "tags": [
+          "low-carb"
+        ],
+        "allergens": [
+          "tree nuts",
+          "eggs"
+        ],
+        "cook_after_hour": 19,
+        "dietary_notes": "",
+        "ingredients_on_hand": [
+          "shrimp",
+          "tuna",
+          "turkey"
+        ],
+        "cuisine_preferences": [
+          "japanese"
+        ],
+        "calorie_target_per_meal": 800
+      },
+      "nl_input": "I have shrimp, tuna, turkey at home. I need 7 meals. low-carb only. preferably japanese style. quick, 20 min max. I'm allergic to tree nuts, eggs. about 800 calories each.",
+      "expected": {
+        "min_meals": 7,
+        "max_minutes": 20,
+        "required_tags": [
+          "low-carb"
+        ],
+        "forbidden_allergens": [
+          "tree nuts",
+          "eggs"
+        ],
+        "preferred_ingredients": [
+          "shrimp",
+          "tuna",
+          "turkey"
+        ],
+        "calorie_target": 800
+      },
+      "id": 156
+    },
+    {
+      "complexity": "complex",
+      "constraints": {
+        "num_meals": 7,
+        "max_minutes": 30,
+        "tags": [
+          "high-protein"
+        ],
+        "allergens": [
+          "dairy",
+          "shellfish"
+        ],
+        "cook_after_hour": 18,
+        "dietary_notes": "",
+        "ingredients_on_hand": [
+          "tuna",
+          "beef",
+          "pork"
+        ],
+        "cuisine_preferences": [
+          "indian",
+          "thai"
+        ],
+        "calorie_target_per_meal": 800
+      },
+      "nl_input": "I have tuna, beef, pork at home. plan 7 meals. high-protein only. preferably indian or thai style. quick, 30 min max. no dairy, shellfish. about 800 calories each.",
+      "expected": {
+        "min_meals": 7,
+        "max_minutes": 30,
+        "required_tags": [
+          "high-protein"
+        ],
+        "forbidden_allergens": [
+          "dairy",
+          "shellfish"
+        ],
+        "preferred_ingredients": [
+          "tuna",
+          "beef",
+          "pork"
+        ],
+        "calorie_target": 800
+      },
+      "id": 157
+    },
+    {
+      "complexity": "complex",
+      "constraints": {
+        "num_meals": 3,
+        "max_minutes": 20,
+        "tags": [
+          "vegetarian",
+          "low-calorie"
+        ],
+        "allergens": [
+          "dairy",
+          "tree nuts",
+          "shellfish"
+        ],
+        "cook_after_hour": 7,
+        "dietary_notes": "",
+        "ingredients_on_hand": [
+          "salmon",
+          "chicken",
+          "turkey"
+        ],
+        "cuisine_preferences": [
+          "mexican"
+        ],
+        "calorie_target_per_meal": 400
+      },
+      "nl_input": "Using salmon, chicken, turkey. make me 3 dinners. vegetarian and low-calorie only. I'm in the mood for mexican. under 20 minutes. no dairy, tree nuts, shellfish. about 400 calories each.",
+      "expected": {
+        "min_meals": 3,
+        "max_minutes": 20,
+        "required_tags": [
+          "vegetarian",
+          "low-calorie"
+        ],
+        "forbidden_allergens": [
+          "dairy",
+          "tree nuts",
+          "shellfish"
+        ],
+        "preferred_ingredients": [
+          "salmon",
+          "chicken",
+          "turkey"
+        ],
+        "calorie_target": 400
+      },
+      "id": 158
+    },
+    {
+      "complexity": "complex",
+      "constraints": {
+        "num_meals": 7,
+        "max_minutes": 20,
+        "tags": [
+          "gluten-free",
+          "vegetarian"
+        ],
+        "allergens": [
+          "peanuts",
+          "soy",
+          "eggs"
+        ],
+        "cook_after_hour": 7,
+        "dietary_notes": "",
+        "ingredients_on_hand": [
+          "salmon",
+          "tofu",
+          "chicken",
+          "beef"
+        ],
+        "cuisine_preferences": [
+          "thai",
+          "mexican"
+        ],
+        "calorie_target_per_meal": 600
+      },
+      "nl_input": "I need to use up my salmon, tofu, chicken, beef. make me 7 dinners. gluten-free and vegetarian only. preferably thai or mexican style. quick, 20 min max. avoid peanuts, soy, eggs. about 600 calories each.",
+      "expected": {
+        "min_meals": 7,
+        "max_minutes": 20,
+        "required_tags": [
+          "gluten-free",
+          "vegetarian"
+        ],
+        "forbidden_allergens": [
+          "peanuts",
+          "soy",
+          "eggs"
+        ],
+        "preferred_ingredients": [
+          "salmon",
+          "tofu",
+          "chicken",
+          "beef"
+        ],
+        "calorie_target": 600
+      },
+      "id": 159
+    },
+    {
+      "complexity": "complex",
+      "constraints": {
+        "num_meals": 3,
+        "max_minutes": 30,
+        "tags": [
+          "vegetarian"
+        ],
+        "allergens": [
+          "wheat",
+          "peanuts",
+          "soy"
+        ],
+        "cook_after_hour": 12,
+        "dietary_notes": "",
+        "ingredients_on_hand": [
+          "beef",
+          "tofu",
+          "salmon"
+        ],
+        "cuisine_preferences": [
+          "indian",
+          "japanese"
+        ],
+        "calorie_target_per_meal": 600
+      },
+      "nl_input": "I have beef, tofu, salmon at home. I need 3 meals. that are vegetarian. preferably indian or japanese style. under 30 minutes. avoid wheat, peanuts, soy. about 600 calories each.",
+      "expected": {
+        "min_meals": 3,
+        "max_minutes": 30,
+        "required_tags": [
+          "vegetarian"
+        ],
+        "forbidden_allergens": [
+          "wheat",
+          "peanuts",
+          "soy"
+        ],
+        "preferred_ingredients": [
+          "beef",
+          "tofu",
+          "salmon"
+        ],
+        "calorie_target": 600
+      },
+      "id": 160
+    },
+    {
+      "complexity": "complex",
+      "constraints": {
+        "num_meals": 5,
+        "max_minutes": 45,
+        "tags": [
+          "gluten-free",
+          "high-protein"
+        ],
+        "allergens": [
+          "peanuts",
+          "soy",
+          "gluten"
+        ],
+        "cook_after_hour": 12,
+        "dietary_notes": "",
+        "ingredients_on_hand": [
+          "tofu",
+          "shrimp"
+        ],
+        "cuisine_preferences": [
+          "chinese"
+        ],
+        "calorie_target_per_meal": 400
+      },
+      "nl_input": "I have tofu, shrimp at home. I need 5 meals. that are gluten-free and high-protein. preferably chinese style. under 45 minutes each. I'm allergic to peanuts, soy, gluten. about 400 calories each.",
+      "expected": {
+        "min_meals": 5,
+        "max_minutes": 45,
+        "required_tags": [
+          "gluten-free",
+          "high-protein"
+        ],
+        "forbidden_allergens": [
+          "peanuts",
+          "soy",
+          "gluten"
+        ],
+        "preferred_ingredients": [
+          "tofu",
+          "shrimp"
+        ],
+        "calorie_target": 400
+      },
+      "id": 161
+    },
+    {
+      "complexity": "complex",
+      "constraints": {
+        "num_meals": 3,
+        "max_minutes": 90,
+        "tags": [
+          "low-calorie"
+        ],
+        "allergens": [
+          "wheat",
+          "dairy",
+          "gluten"
+        ],
+        "cook_after_hour": 17,
+        "dietary_notes": "",
+        "ingredients_on_hand": [
+          "tuna",
+          "turkey",
+          "tofu",
+          "beef"
+        ],
+        "cuisine_preferences": [
+          "italian"
+        ],
+        "calorie_target_per_meal": 400
+      },
+      "nl_input": "I need to use up my tuna, turkey, tofu, beef. plan 3 meals. low-calorie only. preferably italian style. no wheat, dairy, gluten. about 400 calories each.",
+      "expected": {
+        "min_meals": 3,
+        "max_minutes": 90,
+        "required_tags": [
+          "low-calorie"
+        ],
+        "forbidden_allergens": [
+          "wheat",
+          "dairy",
+          "gluten"
+        ],
+        "preferred_ingredients": [
+          "tuna",
+          "turkey",
+          "tofu",
+          "beef"
+        ],
+        "calorie_target": 400
+      },
+      "id": 162
+    },
+    {
+      "complexity": "complex",
+      "constraints": {
+        "num_meals": 3,
+        "max_minutes": 90,
+        "tags": [
+          "vegan"
+        ],
+        "allergens": [
+          "shellfish"
+        ],
+        "cook_after_hour": 18,
+        "dietary_notes": "",
+        "ingredients_on_hand": [
+          "shrimp",
+          "chicken",
+          "beef",
+          "tofu"
+        ],
+        "cuisine_preferences": [
+          "greek",
+          "thai"
+        ],
+        "calorie_target_per_meal": 600
+      },
+      "nl_input": "Using shrimp, chicken, beef, tofu. I need 3 meals. that are vegan. preferably greek or thai style. no shellfish. about 600 calories each.",
+      "expected": {
+        "min_meals": 3,
+        "max_minutes": 90,
+        "required_tags": [
+          "vegan"
+        ],
+        "forbidden_allergens": [
+          "shellfish"
+        ],
+        "preferred_ingredients": [
+          "shrimp",
+          "chicken",
+          "beef",
+          "tofu"
+        ],
+        "calorie_target": 600
+      },
+      "id": 163
+    },
+    {
+      "complexity": "complex",
+      "constraints": {
+        "num_meals": 7,
+        "max_minutes": 60,
+        "tags": [
+          "gluten-free",
+          "high-protein"
+        ],
+        "allergens": [
+          "eggs"
+        ],
+        "cook_after_hour": 19,
+        "dietary_notes": "",
+        "ingredients_on_hand": [
+          "beef",
+          "tuna",
+          "pork",
+          "salmon"
+        ],
+        "cuisine_preferences": [
+          "greek",
+          "japanese"
+        ],
+        "calorie_target_per_meal": 800
+      },
+      "nl_input": "I have beef, tuna, pork, salmon at home. I need 7 meals. gluten-free and high-protein only. I'm in the mood for greek or japanese. under 60 minutes each. avoid eggs. about 800 calories each.",
+      "expected": {
+        "min_meals": 7,
+        "max_minutes": 60,
+        "required_tags": [
+          "gluten-free",
+          "high-protein"
+        ],
+        "forbidden_allergens": [
+          "eggs"
+        ],
+        "preferred_ingredients": [
+          "beef",
+          "tuna",
+          "pork",
+          "salmon"
+        ],
+        "calorie_target": 800
+      },
+      "id": 164
+    },
+    {
+      "complexity": "complex",
+      "constraints": {
+        "num_meals": 7,
+        "max_minutes": 30,
+        "tags": [
+          "vegetarian",
+          "gluten-free"
+        ],
+        "allergens": [
+          "dairy",
+          "shellfish",
+          "eggs"
+        ],
+        "cook_after_hour": 19,
+        "dietary_notes": "",
+        "ingredients_on_hand": [
+          "shrimp",
+          "chicken"
+        ],
+        "cuisine_preferences": [
+          "thai"
+        ],
+        "calorie_target_per_meal": 800
+      },
+      "nl_input": "I have shrimp, chicken at home. plan 7 meals. vegetarian and gluten-free only. I'm in the mood for thai. quick, 30 min max. I'm allergic to dairy, shellfish, eggs. about 800 calories each.",
+      "expected": {
+        "min_meals": 7,
+        "max_minutes": 30,
+        "required_tags": [
+          "vegetarian",
+          "gluten-free"
+        ],
+        "forbidden_allergens": [
+          "dairy",
+          "shellfish",
+          "eggs"
+        ],
+        "preferred_ingredients": [
+          "shrimp",
+          "chicken"
+        ],
+        "calorie_target": 800
+      },
+      "id": 165
+    },
+    {
+      "complexity": "complex",
+      "constraints": {
+        "num_meals": 7,
+        "max_minutes": 90,
+        "tags": [
+          "low-fat"
+        ],
+        "allergens": [
+          "shellfish",
+          "eggs",
+          "gluten"
+        ],
+        "cook_after_hour": 12,
+        "dietary_notes": "",
+        "ingredients_on_hand": [
+          "turkey",
+          "shrimp",
+          "salmon",
+          "pork"
+        ],
+        "cuisine_preferences": [
+          "mexican",
+          "japanese"
+        ],
+        "calorie_target_per_meal": null
+      },
+      "nl_input": "Using turkey, shrimp, salmon, pork. plan 7 meals. that are low-fat. preferably mexican or japanese style. I'm allergic to shellfish, eggs, gluten.",
+      "expected": {
+        "min_meals": 7,
+        "max_minutes": 90,
+        "required_tags": [
+          "low-fat"
+        ],
+        "forbidden_allergens": [
+          "shellfish",
+          "eggs",
+          "gluten"
+        ],
+        "preferred_ingredients": [
+          "turkey",
+          "shrimp",
+          "salmon",
+          "pork"
+        ]
+      },
+      "id": 166
+    },
+    {
+      "complexity": "complex",
+      "constraints": {
+        "num_meals": 3,
+        "max_minutes": 20,
+        "tags": [
+          "gluten-free",
+          "vegetarian"
+        ],
+        "allergens": [
+          "eggs",
+          "tree nuts"
+        ],
+        "cook_after_hour": 12,
+        "dietary_notes": "",
+        "ingredients_on_hand": [
+          "tofu",
+          "shrimp",
+          "pork",
+          "chicken"
+        ],
+        "cuisine_preferences": [
+          "japanese",
+          "greek"
+        ],
+        "calorie_target_per_meal": null
+      },
+      "nl_input": "Using tofu, shrimp, pork, chicken. I need 3 meals. that are gluten-free and vegetarian. I'm in the mood for japanese or greek. under 20 minutes. I'm allergic to eggs, tree nuts.",
+      "expected": {
+        "min_meals": 3,
+        "max_minutes": 20,
+        "required_tags": [
+          "gluten-free",
+          "vegetarian"
+        ],
+        "forbidden_allergens": [
+          "eggs",
+          "tree nuts"
+        ],
+        "preferred_ingredients": [
+          "tofu",
+          "shrimp",
+          "pork",
+          "chicken"
+        ]
+      },
+      "id": 167
+    },
+    {
+      "complexity": "complex",
+      "constraints": {
+        "num_meals": 3,
+        "max_minutes": 60,
+        "tags": [
+          "gluten-free"
+        ],
+        "allergens": [
+          "shellfish",
+          "tree nuts"
+        ],
+        "cook_after_hour": 12,
+        "dietary_notes": "",
+        "ingredients_on_hand": [
+          "pork",
+          "shrimp",
+          "chicken"
+        ],
+        "cuisine_preferences": [
+          "chinese",
+          "indian"
+        ],
+        "calorie_target_per_meal": 600
+      },
+      "nl_input": "Using pork, shrimp, chicken. make me 3 dinners. that are gluten-free. preferably chinese or indian style. under 60 minutes each. no shellfish, tree nuts. about 600 calories each.",
+      "expected": {
+        "min_meals": 3,
+        "max_minutes": 60,
+        "required_tags": [
+          "gluten-free"
+        ],
+        "forbidden_allergens": [
+          "shellfish",
+          "tree nuts"
+        ],
+        "preferred_ingredients": [
+          "pork",
+          "shrimp",
+          "chicken"
+        ],
+        "calorie_target": 600
+      },
+      "id": 168
+    },
+    {
+      "complexity": "complex",
+      "constraints": {
+        "num_meals": 3,
+        "max_minutes": 20,
+        "tags": [
+          "low-carb",
+          "high-protein"
+        ],
+        "allergens": [
+          "shellfish",
+          "tree nuts",
+          "soy"
+        ],
+        "cook_after_hour": 19,
+        "dietary_notes": "",
+        "ingredients_on_hand": [
+          "shrimp",
+          "chicken",
+          "pork"
+        ],
+        "cuisine_preferences": [
+          "thai"
+        ],
+        "calorie_target_per_meal": 400
+      },
+      "nl_input": "I have shrimp, chicken, pork at home. I need 3 meals. that are low-carb and high-protein. I'm in the mood for thai. under 20 minutes. no shellfish, tree nuts, soy. about 400 calories each.",
+      "expected": {
+        "min_meals": 3,
+        "max_minutes": 20,
+        "required_tags": [
+          "low-carb",
+          "high-protein"
+        ],
+        "forbidden_allergens": [
+          "shellfish",
+          "tree nuts",
+          "soy"
+        ],
+        "preferred_ingredients": [
+          "shrimp",
+          "chicken",
+          "pork"
+        ],
+        "calorie_target": 400
+      },
+      "id": 169
+    },
+    {
+      "complexity": "complex",
+      "constraints": {
+        "num_meals": 5,
+        "max_minutes": 60,
+        "tags": [
+          "vegetarian"
+        ],
+        "allergens": [
+          "shellfish",
+          "gluten"
+        ],
+        "cook_after_hour": 12,
+        "dietary_notes": "",
+        "ingredients_on_hand": [
+          "shrimp",
+          "beef",
+          "turkey"
+        ],
+        "cuisine_preferences": [
+          "french"
+        ],
+        "calorie_target_per_meal": 600
+      },
+      "nl_input": "Using shrimp, beef, turkey. plan 5 meals. that are vegetarian. I'm in the mood for french. under 60 minutes each. I'm allergic to shellfish, gluten. about 600 calories each.",
+      "expected": {
+        "min_meals": 5,
+        "max_minutes": 60,
+        "required_tags": [
+          "vegetarian"
+        ],
+        "forbidden_allergens": [
+          "shellfish",
+          "gluten"
+        ],
+        "preferred_ingredients": [
+          "shrimp",
+          "beef",
+          "turkey"
+        ],
+        "calorie_target": 600
+      },
+      "id": 170
+    },
+    {
+      "complexity": "complex",
+      "constraints": {
+        "num_meals": 3,
+        "max_minutes": 90,
+        "tags": [
+          "vegetarian",
+          "high-protein"
+        ],
+        "allergens": [
+          "peanuts",
+          "dairy",
+          "wheat"
+        ],
+        "cook_after_hour": 7,
+        "dietary_notes": "",
+        "ingredients_on_hand": [
+          "shrimp",
+          "salmon",
+          "turkey",
+          "tuna"
+        ],
+        "cuisine_preferences": [
+          "thai"
+        ],
+        "calorie_target_per_meal": 800
+      },
+      "nl_input": "I need to use up my shrimp, salmon, turkey, tuna. make me 3 dinners. vegetarian and high-protein only. preferably thai style. I'm allergic to peanuts, dairy, wheat. about 800 calories each.",
+      "expected": {
+        "min_meals": 3,
+        "max_minutes": 90,
+        "required_tags": [
+          "vegetarian",
+          "high-protein"
+        ],
+        "forbidden_allergens": [
+          "peanuts",
+          "dairy",
+          "wheat"
+        ],
+        "preferred_ingredients": [
+          "shrimp",
+          "salmon",
+          "turkey",
+          "tuna"
+        ],
+        "calorie_target": 800
+      },
+      "id": 171
+    },
+    {
+      "complexity": "complex",
+      "constraints": {
+        "num_meals": 5,
+        "max_minutes": 20,
+        "tags": [
+          "low-fat",
+          "low-calorie"
+        ],
+        "allergens": [
+          "eggs",
+          "shellfish"
+        ],
+        "cook_after_hour": 12,
+        "dietary_notes": "",
+        "ingredients_on_hand": [
+          "tofu",
+          "salmon"
+        ],
+        "cuisine_preferences": [
+          "italian",
+          "mexican"
+        ],
+        "calorie_target_per_meal": null
+      },
+      "nl_input": "I have tofu, salmon at home. make me 5 dinners. low-fat and low-calorie only. I'm in the mood for italian or mexican. quick, 20 min max. no eggs, shellfish.",
+      "expected": {
+        "min_meals": 5,
+        "max_minutes": 20,
+        "required_tags": [
+          "low-fat",
+          "low-calorie"
+        ],
+        "forbidden_allergens": [
+          "eggs",
+          "shellfish"
+        ],
+        "preferred_ingredients": [
+          "tofu",
+          "salmon"
+        ]
+      },
+      "id": 172
+    },
+    {
+      "complexity": "complex",
+      "constraints": {
+        "num_meals": 7,
+        "max_minutes": 90,
+        "tags": [
+          "vegan"
+        ],
+        "allergens": [
+          "peanuts",
+          "soy"
+        ],
+        "cook_after_hour": 18,
+        "dietary_notes": "",
+        "ingredients_on_hand": [
+          "tuna",
+          "shrimp",
+          "chicken",
+          "salmon"
+        ],
+        "cuisine_preferences": [
+          "indian"
+        ],
+        "calorie_target_per_meal": null
+      },
+      "nl_input": "I have tuna, shrimp, chicken, salmon at home. make me 7 dinners. vegan only. I'm in the mood for indian. I'm allergic to peanuts, soy.",
+      "expected": {
+        "min_meals": 7,
+        "max_minutes": 90,
+        "required_tags": [
+          "vegan"
+        ],
+        "forbidden_allergens": [
+          "peanuts",
+          "soy"
+        ],
+        "preferred_ingredients": [
+          "tuna",
+          "shrimp",
+          "chicken",
+          "salmon"
+        ]
+      },
+      "id": 173
+    },
+    {
+      "complexity": "complex",
+      "constraints": {
+        "num_meals": 5,
+        "max_minutes": 45,
+        "tags": [
+          "low-fat"
+        ],
+        "allergens": [
+          "tree nuts"
+        ],
+        "cook_after_hour": 17,
+        "dietary_notes": "",
+        "ingredients_on_hand": [
+          "pork",
+          "chicken"
+        ],
+        "cuisine_preferences": [
+          "thai"
+        ],
+        "calorie_target_per_meal": 800
+      },
+      "nl_input": "I have pork, chicken at home. plan 5 meals. that are low-fat. I'm in the mood for thai. under 45 minutes each. I'm allergic to tree nuts. about 800 calories each.",
+      "expected": {
+        "min_meals": 5,
+        "max_minutes": 45,
+        "required_tags": [
+          "low-fat"
+        ],
+        "forbidden_allergens": [
+          "tree nuts"
+        ],
+        "preferred_ingredients": [
+          "pork",
+          "chicken"
+        ],
+        "calorie_target": 800
+      },
+      "id": 174
+    },
+    {
+      "complexity": "complex",
+      "constraints": {
+        "num_meals": 7,
+        "max_minutes": 60,
+        "tags": [
+          "gluten-free"
+        ],
+        "allergens": [
+          "dairy",
+          "shellfish",
+          "peanuts"
+        ],
+        "cook_after_hour": 7,
+        "dietary_notes": "",
+        "ingredients_on_hand": [
+          "beef",
+          "tofu",
+          "chicken"
+        ],
+        "cuisine_preferences": [
+          "japanese",
+          "mexican"
+        ],
+        "calorie_target_per_meal": 600
+      },
+      "nl_input": "I need to use up my beef, tofu, chicken. plan 7 meals. gluten-free only. I'm in the mood for japanese or mexican. under 60 minutes each. avoid dairy, shellfish, peanuts. about 600 calories each.",
+      "expected": {
+        "min_meals": 7,
+        "max_minutes": 60,
+        "required_tags": [
+          "gluten-free"
+        ],
+        "forbidden_allergens": [
+          "dairy",
+          "shellfish",
+          "peanuts"
+        ],
+        "preferred_ingredients": [
+          "beef",
+          "tofu",
+          "chicken"
+        ],
+        "calorie_target": 600
+      },
+      "id": 175
+    },
+    {
+      "complexity": "complex",
+      "constraints": {
+        "num_meals": 5,
+        "max_minutes": 20,
+        "tags": [
+          "high-protein"
+        ],
+        "allergens": [
+          "tree nuts",
+          "peanuts",
+          "wheat"
+        ],
+        "cook_after_hour": 17,
+        "dietary_notes": "",
+        "ingredients_on_hand": [
+          "tuna",
+          "turkey"
+        ],
+        "cuisine_preferences": [
+          "thai",
+          "italian"
+        ],
+        "calorie_target_per_meal": 400
+      },
+      "nl_input": "I have tuna, turkey at home. I need 5 meals. high-protein only. I'm in the mood for thai or italian. quick, 20 min max. avoid tree nuts, peanuts, wheat. about 400 calories each.",
+      "expected": {
+        "min_meals": 5,
+        "max_minutes": 20,
+        "required_tags": [
+          "high-protein"
+        ],
+        "forbidden_allergens": [
+          "tree nuts",
+          "peanuts",
+          "wheat"
+        ],
+        "preferred_ingredients": [
+          "tuna",
+          "turkey"
+        ],
+        "calorie_target": 400
+      },
+      "id": 176
+    },
+    {
+      "complexity": "complex",
+      "constraints": {
+        "num_meals": 5,
+        "max_minutes": 30,
+        "tags": [
+          "vegetarian",
+          "low-carb"
+        ],
+        "allergens": [
+          "gluten"
+        ],
+        "cook_after_hour": 7,
+        "dietary_notes": "",
+        "ingredients_on_hand": [
+          "salmon",
+          "tofu"
+        ],
+        "cuisine_preferences": [
+          "mexican"
+        ],
+        "calorie_target_per_meal": 500
+      },
+      "nl_input": "I have salmon, tofu at home. I need 5 meals. that are vegetarian and low-carb. I'm in the mood for mexican. under 30 minutes. avoid gluten. about 500 calories each.",
+      "expected": {
+        "min_meals": 5,
+        "max_minutes": 30,
+        "required_tags": [
+          "vegetarian",
+          "low-carb"
+        ],
+        "forbidden_allergens": [
+          "gluten"
+        ],
+        "preferred_ingredients": [
+          "salmon",
+          "tofu"
+        ],
+        "calorie_target": 500
+      },
+      "id": 177
+    },
+    {
+      "complexity": "complex",
+      "constraints": {
+        "num_meals": 5,
+        "max_minutes": 45,
+        "tags": [
+          "vegetarian",
+          "gluten-free"
+        ],
+        "allergens": [
+          "dairy",
+          "peanuts"
+        ],
+        "cook_after_hour": 19,
+        "dietary_notes": "",
+        "ingredients_on_hand": [
+          "turkey",
+          "salmon",
+          "tuna",
+          "tofu"
+        ],
+        "cuisine_preferences": [
+          "italian"
+        ],
+        "calorie_target_per_meal": 600
+      },
+      "nl_input": "I need to use up my turkey, salmon, tuna, tofu. plan 5 meals. that are vegetarian and gluten-free. preferably italian style. under 45 minutes each. no dairy, peanuts. about 600 calories each.",
+      "expected": {
+        "min_meals": 5,
+        "max_minutes": 45,
+        "required_tags": [
+          "vegetarian",
+          "gluten-free"
+        ],
+        "forbidden_allergens": [
+          "dairy",
+          "peanuts"
+        ],
+        "preferred_ingredients": [
+          "turkey",
+          "salmon",
+          "tuna",
+          "tofu"
+        ],
+        "calorie_target": 600
+      },
+      "id": 178
+    },
+    {
+      "complexity": "complex",
+      "constraints": {
+        "num_meals": 5,
+        "max_minutes": 45,
+        "tags": [
+          "vegan"
+        ],
+        "allergens": [
+          "wheat",
+          "soy"
+        ],
+        "cook_after_hour": 12,
+        "dietary_notes": "",
+        "ingredients_on_hand": [
+          "pork",
+          "tuna",
+          "beef"
+        ],
+        "cuisine_preferences": [
+          "mexican",
+          "thai"
+        ],
+        "calorie_target_per_meal": 600
+      },
+      "nl_input": "I need to use up my pork, tuna, beef. I need 5 meals. that are vegan. I'm in the mood for mexican or thai. under 45 minutes each. avoid wheat, soy. about 600 calories each.",
+      "expected": {
+        "min_meals": 5,
+        "max_minutes": 45,
+        "required_tags": [
+          "vegan"
+        ],
+        "forbidden_allergens": [
+          "wheat",
+          "soy"
+        ],
+        "preferred_ingredients": [
+          "pork",
+          "tuna",
+          "beef"
+        ],
+        "calorie_target": 600
+      },
+      "id": 179
+    },
+    {
+      "complexity": "complex",
+      "constraints": {
+        "num_meals": 3,
+        "max_minutes": 30,
+        "tags": [
+          "gluten-free",
+          "high-protein"
+        ],
+        "allergens": [
+          "peanuts"
+        ],
+        "cook_after_hour": 12,
+        "dietary_notes": "",
+        "ingredients_on_hand": [
+          "turkey",
+          "tofu"
+        ],
+        "cuisine_preferences": [
+          "japanese"
+        ],
+        "calorie_target_per_meal": 600
+      },
+      "nl_input": "I need to use up my turkey, tofu. make me 3 dinners. that are gluten-free and high-protein. preferably japanese style. under 30 minutes. I'm allergic to peanuts. about 600 calories each.",
+      "expected": {
+        "min_meals": 3,
+        "max_minutes": 30,
+        "required_tags": [
+          "gluten-free",
+          "high-protein"
+        ],
+        "forbidden_allergens": [
+          "peanuts"
+        ],
+        "preferred_ingredients": [
+          "turkey",
+          "tofu"
+        ],
+        "calorie_target": 600
+      },
+      "id": 180
+    },
+    {
+      "complexity": "complex",
+      "constraints": {
+        "num_meals": 3,
+        "max_minutes": 90,
+        "tags": [
+          "high-protein"
+        ],
+        "allergens": [
+          "shellfish",
+          "soy"
+        ],
+        "cook_after_hour": 17,
+        "dietary_notes": "",
+        "ingredients_on_hand": [
+          "chicken",
+          "tuna",
+          "shrimp",
+          "beef"
+        ],
+        "cuisine_preferences": [
+          "italian"
+        ],
+        "calorie_target_per_meal": 500
+      },
+      "nl_input": "I have chicken, tuna, shrimp, beef at home. I need 3 meals. that are high-protein. preferably italian style. no shellfish, soy. about 500 calories each.",
+      "expected": {
+        "min_meals": 3,
+        "max_minutes": 90,
+        "required_tags": [
+          "high-protein"
+        ],
+        "forbidden_allergens": [
+          "shellfish",
+          "soy"
+        ],
+        "preferred_ingredients": [
+          "chicken",
+          "tuna",
+          "shrimp",
+          "beef"
+        ],
+        "calorie_target": 500
+      },
+      "id": 181
+    },
+    {
+      "complexity": "complex",
+      "constraints": {
+        "num_meals": 3,
+        "max_minutes": 45,
+        "tags": [
+          "low-fat"
+        ],
+        "allergens": [
+          "tree nuts",
+          "peanuts",
+          "gluten"
+        ],
+        "cook_after_hour": 12,
+        "dietary_notes": "",
+        "ingredients_on_hand": [
+          "beef",
+          "turkey"
+        ],
+        "cuisine_preferences": [
+          "thai",
+          "french"
+        ],
+        "calorie_target_per_meal": null
+      },
+      "nl_input": "Using beef, turkey. I need 3 meals. low-fat only. I'm in the mood for thai or french. under 45 minutes each. avoid tree nuts, peanuts, gluten.",
+      "expected": {
+        "min_meals": 3,
+        "max_minutes": 45,
+        "required_tags": [
+          "low-fat"
+        ],
+        "forbidden_allergens": [
+          "tree nuts",
+          "peanuts",
+          "gluten"
+        ],
+        "preferred_ingredients": [
+          "beef",
+          "turkey"
+        ]
+      },
+      "id": 182
+    },
+    {
+      "complexity": "complex",
+      "constraints": {
+        "num_meals": 7,
+        "max_minutes": 90,
+        "tags": [
+          "low-calorie",
+          "low-fat"
+        ],
+        "allergens": [
+          "gluten"
+        ],
+        "cook_after_hour": 17,
+        "dietary_notes": "",
+        "ingredients_on_hand": [
+          "tuna",
+          "chicken"
+        ],
+        "cuisine_preferences": [
+          "japanese",
+          "chinese"
+        ],
+        "calorie_target_per_meal": 500
+      },
+      "nl_input": "Using tuna, chicken. I need 7 meals. that are low-calorie and low-fat. I'm in the mood for japanese or chinese. no gluten. about 500 calories each.",
+      "expected": {
+        "min_meals": 7,
+        "max_minutes": 90,
+        "required_tags": [
+          "low-calorie",
+          "low-fat"
+        ],
+        "forbidden_allergens": [
+          "gluten"
+        ],
+        "preferred_ingredients": [
+          "tuna",
+          "chicken"
+        ],
+        "calorie_target": 500
+      },
+      "id": 183
+    },
+    {
+      "complexity": "complex",
+      "constraints": {
+        "num_meals": 5,
+        "max_minutes": 20,
+        "tags": [
+          "vegan"
+        ],
+        "allergens": [
+          "wheat"
+        ],
+        "cook_after_hour": 19,
+        "dietary_notes": "",
+        "ingredients_on_hand": [
+          "shrimp",
+          "beef"
+        ],
+        "cuisine_preferences": [
+          "japanese",
+          "indian"
+        ],
+        "calorie_target_per_meal": null
+      },
+      "nl_input": "I have shrimp, beef at home. make me 5 dinners. vegan only. preferably japanese or indian style. quick, 20 min max. avoid wheat.",
+      "expected": {
+        "min_meals": 5,
+        "max_minutes": 20,
+        "required_tags": [
+          "vegan"
+        ],
+        "forbidden_allergens": [
+          "wheat"
+        ],
+        "preferred_ingredients": [
+          "shrimp",
+          "beef"
+        ]
+      },
+      "id": 184
+    },
+    {
+      "complexity": "complex",
+      "constraints": {
+        "num_meals": 5,
+        "max_minutes": 20,
+        "tags": [
+          "low-carb"
+        ],
+        "allergens": [
+          "soy"
+        ],
+        "cook_after_hour": 18,
+        "dietary_notes": "",
+        "ingredients_on_hand": [
+          "salmon",
+          "beef",
+          "tofu"
+        ],
+        "cuisine_preferences": [
+          "french"
+        ],
+        "calorie_target_per_meal": 600
+      },
+      "nl_input": "I need to use up my salmon, beef, tofu. plan 5 meals. low-carb only. I'm in the mood for french. quick, 20 min max. I'm allergic to soy. about 600 calories each.",
+      "expected": {
+        "min_meals": 5,
+        "max_minutes": 20,
+        "required_tags": [
+          "low-carb"
+        ],
+        "forbidden_allergens": [
+          "soy"
+        ],
+        "preferred_ingredients": [
+          "salmon",
+          "beef",
+          "tofu"
+        ],
+        "calorie_target": 600
+      },
+      "id": 185
+    },
+    {
+      "complexity": "complex",
+      "constraints": {
+        "num_meals": 5,
+        "max_minutes": 20,
+        "tags": [
+          "high-protein"
+        ],
+        "allergens": [
+          "soy",
+          "tree nuts"
+        ],
+        "cook_after_hour": 18,
+        "dietary_notes": "",
+        "ingredients_on_hand": [
+          "chicken",
+          "pork",
+          "tuna"
+        ],
+        "cuisine_preferences": [
+          "japanese"
+        ],
+        "calorie_target_per_meal": 500
+      },
+      "nl_input": "I need to use up my chicken, pork, tuna. make me 5 dinners. high-protein only. preferably japanese style. under 20 minutes. avoid soy, tree nuts. about 500 calories each.",
+      "expected": {
+        "min_meals": 5,
+        "max_minutes": 20,
+        "required_tags": [
+          "high-protein"
+        ],
+        "forbidden_allergens": [
+          "soy",
+          "tree nuts"
+        ],
+        "preferred_ingredients": [
+          "chicken",
+          "pork",
+          "tuna"
+        ],
+        "calorie_target": 500
+      },
+      "id": 186
+    },
+    {
+      "complexity": "complex",
+      "constraints": {
+        "num_meals": 5,
+        "max_minutes": 45,
+        "tags": [
+          "low-calorie"
+        ],
+        "allergens": [
+          "dairy"
+        ],
+        "cook_after_hour": 17,
+        "dietary_notes": "",
+        "ingredients_on_hand": [
+          "salmon",
+          "shrimp",
+          "tuna"
+        ],
+        "cuisine_preferences": [
+          "italian",
+          "japanese"
+        ],
+        "calorie_target_per_meal": 500
+      },
+      "nl_input": "I have salmon, shrimp, tuna at home. plan 5 meals. low-calorie only. preferably italian or japanese style. under 45 minutes each. avoid dairy. about 500 calories each.",
+      "expected": {
+        "min_meals": 5,
+        "max_minutes": 45,
+        "required_tags": [
+          "low-calorie"
+        ],
+        "forbidden_allergens": [
+          "dairy"
+        ],
+        "preferred_ingredients": [
+          "salmon",
+          "shrimp",
+          "tuna"
+        ],
+        "calorie_target": 500
+      },
+      "id": 187
+    },
+    {
+      "complexity": "complex",
+      "constraints": {
+        "num_meals": 5,
+        "max_minutes": 90,
+        "tags": [
+          "high-protein",
+          "vegan"
+        ],
+        "allergens": [
+          "shellfish"
+        ],
+        "cook_after_hour": 19,
+        "dietary_notes": "",
+        "ingredients_on_hand": [
+          "shrimp",
+          "salmon",
+          "tuna",
+          "beef"
+        ],
+        "cuisine_preferences": [
+          "thai",
+          "french"
+        ],
+        "calorie_target_per_meal": 500
+      },
+      "nl_input": "I need to use up my shrimp, salmon, tuna, beef. plan 5 meals. that are high-protein and vegan. I'm in the mood for thai or french. no shellfish. about 500 calories each.",
+      "expected": {
+        "min_meals": 5,
+        "max_minutes": 90,
+        "required_tags": [
+          "high-protein",
+          "vegan"
+        ],
+        "forbidden_allergens": [
+          "shellfish"
+        ],
+        "preferred_ingredients": [
+          "shrimp",
+          "salmon",
+          "tuna",
+          "beef"
+        ],
+        "calorie_target": 500
+      },
+      "id": 188
+    },
+    {
+      "complexity": "complex",
+      "constraints": {
+        "num_meals": 7,
+        "max_minutes": 20,
+        "tags": [
+          "gluten-free"
+        ],
+        "allergens": [
+          "wheat",
+          "shellfish",
+          "gluten"
+        ],
+        "cook_after_hour": 19,
+        "dietary_notes": "",
+        "ingredients_on_hand": [
+          "tuna",
+          "turkey"
+        ],
+        "cuisine_preferences": [
+          "french",
+          "indian"
+        ],
+        "calorie_target_per_meal": null
+      },
+      "nl_input": "I need to use up my tuna, turkey. make me 7 dinners. gluten-free only. preferably french or indian style. under 20 minutes. avoid wheat, shellfish, gluten.",
+      "expected": {
+        "min_meals": 7,
+        "max_minutes": 20,
+        "required_tags": [
+          "gluten-free"
+        ],
+        "forbidden_allergens": [
+          "wheat",
+          "shellfish",
+          "gluten"
+        ],
+        "preferred_ingredients": [
+          "tuna",
+          "turkey"
+        ]
+      },
+      "id": 189
+    },
+    {
+      "complexity": "complex",
+      "constraints": {
+        "num_meals": 3,
+        "max_minutes": 60,
+        "tags": [
+          "gluten-free"
+        ],
+        "allergens": [
+          "wheat"
+        ],
+        "cook_after_hour": 12,
+        "dietary_notes": "",
+        "ingredients_on_hand": [
+          "salmon",
+          "chicken",
+          "tuna"
+        ],
+        "cuisine_preferences": [
+          "italian"
+        ],
+        "calorie_target_per_meal": 400
+      },
+      "nl_input": "I need to use up my salmon, chicken, tuna. make me 3 dinners. that are gluten-free. preferably italian style. under 60 minutes each. avoid wheat. about 400 calories each.",
+      "expected": {
+        "min_meals": 3,
+        "max_minutes": 60,
+        "required_tags": [
+          "gluten-free"
+        ],
+        "forbidden_allergens": [
+          "wheat"
+        ],
+        "preferred_ingredients": [
+          "salmon",
+          "chicken",
+          "tuna"
+        ],
+        "calorie_target": 400
+      },
+      "id": 190
+    },
+    {
+      "complexity": "complex",
+      "constraints": {
+        "num_meals": 7,
+        "max_minutes": 90,
+        "tags": [
+          "low-calorie",
+          "vegan"
+        ],
+        "allergens": [
+          "wheat",
+          "peanuts"
+        ],
+        "cook_after_hour": 17,
+        "dietary_notes": "",
+        "ingredients_on_hand": [
+          "tuna",
+          "salmon",
+          "chicken",
+          "turkey"
+        ],
+        "cuisine_preferences": [
+          "mexican",
+          "french"
+        ],
+        "calorie_target_per_meal": null
+      },
+      "nl_input": "I need to use up my tuna, salmon, chicken, turkey. plan 7 meals. that are low-calorie and vegan. I'm in the mood for mexican or french. no wheat, peanuts.",
+      "expected": {
+        "min_meals": 7,
+        "max_minutes": 90,
+        "required_tags": [
+          "low-calorie",
+          "vegan"
+        ],
+        "forbidden_allergens": [
+          "wheat",
+          "peanuts"
+        ],
+        "preferred_ingredients": [
+          "tuna",
+          "salmon",
+          "chicken",
+          "turkey"
+        ]
+      },
+      "id": 191
+    },
+    {
+      "complexity": "complex",
+      "constraints": {
+        "num_meals": 3,
+        "max_minutes": 30,
+        "tags": [
+          "low-fat"
+        ],
+        "allergens": [
+          "tree nuts",
+          "dairy"
+        ],
+        "cook_after_hour": 17,
+        "dietary_notes": "",
+        "ingredients_on_hand": [
+          "tofu",
+          "beef",
+          "turkey"
+        ],
+        "cuisine_preferences": [
+          "chinese"
+        ],
+        "calorie_target_per_meal": 500
+      },
+      "nl_input": "Using tofu, beef, turkey. plan 3 meals. low-fat only. I'm in the mood for chinese. quick, 30 min max. I'm allergic to tree nuts, dairy. about 500 calories each.",
+      "expected": {
+        "min_meals": 3,
+        "max_minutes": 30,
+        "required_tags": [
+          "low-fat"
+        ],
+        "forbidden_allergens": [
+          "tree nuts",
+          "dairy"
+        ],
+        "preferred_ingredients": [
+          "tofu",
+          "beef",
+          "turkey"
+        ],
+        "calorie_target": 500
+      },
+      "id": 192
+    },
+    {
+      "complexity": "complex",
+      "constraints": {
+        "num_meals": 7,
+        "max_minutes": 90,
+        "tags": [
+          "vegetarian",
+          "low-calorie"
+        ],
+        "allergens": [
+          "eggs",
+          "shellfish",
+          "gluten"
+        ],
+        "cook_after_hour": 12,
+        "dietary_notes": "",
+        "ingredients_on_hand": [
+          "turkey",
+          "shrimp",
+          "salmon",
+          "pork"
+        ],
+        "cuisine_preferences": [
+          "mexican",
+          "chinese"
+        ],
+        "calorie_target_per_meal": 400
+      },
+      "nl_input": "Using turkey, shrimp, salmon, pork. plan 7 meals. vegetarian and low-calorie only. I'm in the mood for mexican or chinese. no eggs, shellfish, gluten. about 400 calories each.",
+      "expected": {
+        "min_meals": 7,
+        "max_minutes": 90,
+        "required_tags": [
+          "vegetarian",
+          "low-calorie"
+        ],
+        "forbidden_allergens": [
+          "eggs",
+          "shellfish",
+          "gluten"
+        ],
+        "preferred_ingredients": [
+          "turkey",
+          "shrimp",
+          "salmon",
+          "pork"
+        ],
+        "calorie_target": 400
+      },
+      "id": 193
+    },
+    {
+      "complexity": "complex",
+      "constraints": {
+        "num_meals": 5,
+        "max_minutes": 60,
+        "tags": [
+          "high-protein",
+          "vegetarian"
+        ],
+        "allergens": [
+          "dairy",
+          "shellfish",
+          "soy"
+        ],
+        "cook_after_hour": 18,
+        "dietary_notes": "",
+        "ingredients_on_hand": [
+          "shrimp",
+          "salmon",
+          "tofu"
+        ],
+        "cuisine_preferences": [
+          "mexican",
+          "thai"
+        ],
+        "calorie_target_per_meal": 800
+      },
+      "nl_input": "Using shrimp, salmon, tofu. plan 5 meals. high-protein and vegetarian only. preferably mexican or thai style. under 60 minutes each. I'm allergic to dairy, shellfish, soy. about 800 calories each.",
+      "expected": {
+        "min_meals": 5,
+        "max_minutes": 60,
+        "required_tags": [
+          "high-protein",
+          "vegetarian"
+        ],
+        "forbidden_allergens": [
+          "dairy",
+          "shellfish",
+          "soy"
+        ],
+        "preferred_ingredients": [
+          "shrimp",
+          "salmon",
+          "tofu"
+        ],
+        "calorie_target": 800
+      },
+      "id": 194
+    },
+    {
+      "complexity": "complex",
+      "constraints": {
+        "num_meals": 5,
+        "max_minutes": 90,
+        "tags": [
+          "vegan"
+        ],
+        "allergens": [
+          "soy"
+        ],
+        "cook_after_hour": 19,
+        "dietary_notes": "",
+        "ingredients_on_hand": [
+          "tofu",
+          "salmon",
+          "pork",
+          "turkey"
+        ],
+        "cuisine_preferences": [
+          "greek",
+          "italian"
+        ],
+        "calorie_target_per_meal": 400
+      },
+      "nl_input": "Using tofu, salmon, pork, turkey. make me 5 dinners. vegan only. I'm in the mood for greek or italian. avoid soy. about 400 calories each.",
+      "expected": {
+        "min_meals": 5,
+        "max_minutes": 90,
+        "required_tags": [
+          "vegan"
+        ],
+        "forbidden_allergens": [
+          "soy"
+        ],
+        "preferred_ingredients": [
+          "tofu",
+          "salmon",
+          "pork",
+          "turkey"
+        ],
+        "calorie_target": 400
+      },
+      "id": 195
+    },
+    {
+      "complexity": "complex",
+      "constraints": {
+        "num_meals": 5,
+        "max_minutes": 60,
+        "tags": [
+          "vegan",
+          "gluten-free"
+        ],
+        "allergens": [
+          "wheat",
+          "peanuts"
+        ],
+        "cook_after_hour": 18,
+        "dietary_notes": "",
+        "ingredients_on_hand": [
+          "pork",
+          "salmon",
+          "chicken",
+          "shrimp"
+        ],
+        "cuisine_preferences": [
+          "japanese"
+        ],
+        "calorie_target_per_meal": null
+      },
+      "nl_input": "I need to use up my pork, salmon, chicken, shrimp. I need 5 meals. that are vegan and gluten-free. preferably japanese style. under 60 minutes each. no wheat, peanuts.",
+      "expected": {
+        "min_meals": 5,
+        "max_minutes": 60,
+        "required_tags": [
+          "vegan",
+          "gluten-free"
+        ],
+        "forbidden_allergens": [
+          "wheat",
+          "peanuts"
+        ],
+        "preferred_ingredients": [
+          "pork",
+          "salmon",
+          "chicken",
+          "shrimp"
+        ]
+      },
+      "id": 196
+    },
+    {
+      "complexity": "complex",
+      "constraints": {
+        "num_meals": 5,
+        "max_minutes": 90,
+        "tags": [
+          "gluten-free",
+          "high-protein"
+        ],
+        "allergens": [
+          "wheat",
+          "eggs"
+        ],
+        "cook_after_hour": 17,
+        "dietary_notes": "",
+        "ingredients_on_hand": [
+          "tuna",
+          "tofu",
+          "pork",
+          "beef"
+        ],
+        "cuisine_preferences": [
+          "mexican"
+        ],
+        "calorie_target_per_meal": 600
+      },
+      "nl_input": "Using tuna, tofu, pork, beef. make me 5 dinners. that are gluten-free and high-protein. preferably mexican style. I'm allergic to wheat, eggs. about 600 calories each.",
+      "expected": {
+        "min_meals": 5,
+        "max_minutes": 90,
+        "required_tags": [
+          "gluten-free",
+          "high-protein"
+        ],
+        "forbidden_allergens": [
+          "wheat",
+          "eggs"
+        ],
+        "preferred_ingredients": [
+          "tuna",
+          "tofu",
+          "pork",
+          "beef"
+        ],
+        "calorie_target": 600
+      },
+      "id": 197
+    },
+    {
+      "complexity": "complex",
+      "constraints": {
+        "num_meals": 5,
+        "max_minutes": 20,
+        "tags": [
+          "low-carb"
+        ],
+        "allergens": [
+          "peanuts",
+          "shellfish",
+          "eggs"
+        ],
+        "cook_after_hour": 17,
+        "dietary_notes": "",
+        "ingredients_on_hand": [
+          "chicken",
+          "turkey",
+          "pork",
+          "salmon"
+        ],
+        "cuisine_preferences": [
+          "italian"
+        ],
+        "calorie_target_per_meal": 800
+      },
+      "nl_input": "I need to use up my chicken, turkey, pork, salmon. plan 5 meals. low-carb only. preferably italian style. under 20 minutes. I'm allergic to peanuts, shellfish, eggs. about 800 calories each.",
+      "expected": {
+        "min_meals": 5,
+        "max_minutes": 20,
+        "required_tags": [
+          "low-carb"
+        ],
+        "forbidden_allergens": [
+          "peanuts",
+          "shellfish",
+          "eggs"
+        ],
+        "preferred_ingredients": [
+          "chicken",
+          "turkey",
+          "pork",
+          "salmon"
+        ],
+        "calorie_target": 800
+      },
+      "id": 198
+    },
+    {
+      "complexity": "complex",
+      "constraints": {
+        "num_meals": 5,
+        "max_minutes": 30,
+        "tags": [
+          "vegetarian",
+          "low-fat"
+        ],
+        "allergens": [
+          "shellfish"
+        ],
+        "cook_after_hour": 7,
+        "dietary_notes": "",
+        "ingredients_on_hand": [
+          "tuna",
+          "tofu"
+        ],
+        "cuisine_preferences": [
+          "thai"
+        ],
+        "calorie_target_per_meal": null
+      },
+      "nl_input": "Using tuna, tofu. I need 5 meals. that are vegetarian and low-fat. I'm in the mood for thai. quick, 30 min max. avoid shellfish.",
+      "expected": {
+        "min_meals": 5,
+        "max_minutes": 30,
+        "required_tags": [
+          "vegetarian",
+          "low-fat"
+        ],
+        "forbidden_allergens": [
+          "shellfish"
+        ],
+        "preferred_ingredients": [
+          "tuna",
+          "tofu"
+        ]
+      },
+      "id": 199
+    },
+    {
+      "complexity": "complex",
+      "constraints": {
+        "num_meals": 3,
+        "max_minutes": 60,
+        "tags": [
+          "high-protein"
+        ],
+        "allergens": [
+          "peanuts",
+          "tree nuts",
+          "wheat"
+        ],
+        "cook_after_hour": 18,
+        "dietary_notes": "",
+        "ingredients_on_hand": [
+          "pork",
+          "tuna",
+          "beef",
+          "chicken"
+        ],
+        "cuisine_preferences": [
+          "italian",
+          "mexican"
+        ],
+        "calorie_target_per_meal": 600
+      },
+      "nl_input": "Using pork, tuna, beef, chicken. make me 3 dinners. high-protein only. I'm in the mood for italian or mexican. under 60 minutes each. no peanuts, tree nuts, wheat. about 600 calories each.",
+      "expected": {
+        "min_meals": 3,
+        "max_minutes": 60,
+        "required_tags": [
+          "high-protein"
+        ],
+        "forbidden_allergens": [
+          "peanuts",
+          "tree nuts",
+          "wheat"
+        ],
+        "preferred_ingredients": [
+          "pork",
+          "tuna",
+          "beef",
+          "chicken"
+        ],
+        "calorie_target": 600
+      },
+      "id": 200
+    },
+    {
+      "description": "Very tight time limit",
+      "constraints": {
+        "num_meals": 3,
+        "max_minutes": 10,
+        "tags": [],
+        "allergens": [],
+        "cook_after_hour": 18,
+        "dietary_notes": "Extremely quick meals only",
+        "ingredients_on_hand": [],
+        "cuisine_preferences": [],
+        "calorie_target_per_meal": null
+      },
+      "expected": {
+        "min_meals": 1,
+        "max_minutes": 10
+      },
+      "complexity": "edge_case",
+      "nl_input": "Very tight time limit",
+      "id": 201
+    },
+    {
+      "description": "Many allergens",
+      "constraints": {
+        "num_meals": 5,
+        "max_minutes": 45,
+        "tags": [],
+        "allergens": [
+          "dairy",
+          "gluten",
+          "peanuts",
+          "soy",
+          "eggs",
+          "shellfish"
+        ],
+        "cook_after_hour": 18,
+        "dietary_notes": "",
+        "ingredients_on_hand": [],
+        "cuisine_preferences": [],
+        "calorie_target_per_meal": null
+      },
+      "expected": {
+        "min_meals": 3,
+        "forbidden_allergens": [
+          "dairy",
+          "gluten",
+          "peanuts",
+          "soy",
+          "eggs",
+          "shellfish"
+        ]
+      },
+      "complexity": "edge_case",
+      "nl_input": "Many allergens",
+      "id": 202
+    },
+    {
+      "description": "Conflicting diet + cuisine",
+      "constraints": {
+        "num_meals": 3,
+        "max_minutes": 30,
+        "tags": [
+          "vegan"
+        ],
+        "allergens": [],
+        "cook_after_hour": 18,
+        "dietary_notes": "",
+        "ingredients_on_hand": [],
+        "cuisine_preferences": [
+          "japanese"
+        ],
+        "calorie_target_per_meal": null
+      },
+      "expected": {
+        "min_meals": 1,
+        "required_tags": [
+          "vegan"
+        ]
+      },
+      "complexity": "edge_case",
+      "nl_input": "Conflicting diet + cuisine",
+      "id": 203
+    },
+    {
+      "description": "Maximum meals",
+      "constraints": {
+        "num_meals": 7,
+        "max_minutes": 90,
+        "tags": [],
+        "allergens": [],
+        "cook_after_hour": 12,
+        "dietary_notes": "Full week planning",
+        "ingredients_on_hand": [],
+        "cuisine_preferences": [],
+        "calorie_target_per_meal": null
+      },
+      "expected": {
+        "min_meals": 7,
+        "max_minutes": 90
+      },
+      "complexity": "edge_case",
+      "nl_input": "Maximum meals",
+      "id": 204
+    },
+    {
+      "description": "Ingredient-only query",
+      "constraints": {
+        "num_meals": 3,
+        "max_minutes": 30,
+        "tags": [],
+        "allergens": [],
+        "cook_after_hour": 18,
+        "dietary_notes": "",
+        "ingredients_on_hand": [
+          "chicken",
+          "rice",
+          "broccoli",
+          "garlic",
+          "soy sauce"
+        ],
+        "cuisine_preferences": [],
+        "calorie_target_per_meal": null
+      },
+      "expected": {
+        "min_meals": 3,
+        "preferred_ingredients": [
+          "chicken",
+          "rice",
+          "broccoli"
+        ]
+      },
+      "complexity": "edge_case",
+      "nl_input": "Ingredient-only query",
+      "id": 205
+    }
+  ]
+}

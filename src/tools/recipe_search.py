@@ -31,6 +31,9 @@ def recipe_search(
     max_minutes: int | None = None,
     required_tags: list[str] | None = None,
     forbidden_ingredients: list[str] | None = None,
+    preferred_ingredients: list[str] | None = None,
+    preferred_tags: list[str] | None = None,
+    calorie_target: int | None = None,
     top_k: int = 5,
 ) -> list[dict]:
     """
@@ -41,13 +44,20 @@ def recipe_search(
         max_minutes: Filter out recipes that take longer than this.
         required_tags: All of these tags must appear in recipe tags.
         forbidden_ingredients: Recipes containing any of these are excluded.
+        preferred_ingredients: Ingredients to boost via KG re-ranking.
+        preferred_tags: Tags to boost via KG re-ranking.
+        calorie_target: Target calories per meal (soft sort, not hard filter).
         top_k: Maximum number of results to return.
 
     Returns:
         List of recipe dicts with citation fields.
     """
     retriever = get_retriever()
-    hits: list[RecipeHit] = retriever.retrieve(query)
+    hits: list[RecipeHit] = retriever.retrieve(
+        query,
+        preferred_ingredients=preferred_ingredients,
+        preferred_tags=preferred_tags,
+    )
     details_db = _load_recipe_details()
 
     results = []
@@ -89,7 +99,13 @@ def recipe_search(
             }
         )
 
-        if len(results) >= top_k:
+        if len(results) >= top_k * 2:
             break
 
-    return results
+    if calorie_target is not None and len(results) > 1:
+        def _calorie_distance(r):
+            cal = r.get("nutrition", {}).get("calories_pdv", 0)
+            return abs(cal - calorie_target)
+        results.sort(key=_calorie_distance)
+
+    return results[:top_k]

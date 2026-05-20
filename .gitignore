@@ -14,20 +14,16 @@ build/
 venv/
 env/
 .venv/
-.env/
 
 # Environment variables
 .env
 
-# Data (raw CSVs are large — download separately)
-data/raw/
+# Data (raw CSV is large, download from Kaggle separately)
 data/RAW_recipes.csv
-data/RAW_interactions.csv
 data/processed/
-# Keep the sample in version control
 !data/sample_recipes.csv
 
-# ChromaDB index
+# ChromaDB index (rebuilt with `python -m src.rag.indexer`)
 data/chroma_db/
 
 # Generated artifacts
@@ -38,9 +34,8 @@ logs/
 # Keep eval results in version control
 !data/eval/
 
-# Internal planning docs (not for submission)
-PLAN.md
-assignment.txt
+# Pytest
+.pytest_cache/
 
 # Jupyter
 .ipynb_checkpoints/
@@ -55,3 +50,9 @@ assignment.txt
 
 # Distribution
 *.dist-info/
+
+# LaTeX build artifacts
+report/*.aux
+report/*.log
+report/*.out
+report/*.synctex.gz
